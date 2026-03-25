@@ -1,0 +1,7 @@
+chromadb>=0.4.0
+PyMuPDF>=1.23.0
+ollama>=0.3.0
+rich>=13.0.0
+pydantic>=2.0.0
+pyyaml>=6.0
+sentence-transformers>=2.2.0

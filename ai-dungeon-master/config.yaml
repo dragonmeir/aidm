@@ -1,0 +1,51 @@
+# AI Dungeon Master Configuration
+
+ollama:
+  model: "llama3.2:3b"      # Smaller model, much faster on CPU
+  base_url: "http://localhost:11434"
+  temperature: 0.8
+  context_length: 8192
+
+rag:
+  # Multiple PDF roots since your collection spans drives
+  pdf_roots:
+    - "D:/Tabletop rpg"
+    - "E:/Tabletop rpg"
+
+  # Only these specific PDFs get indexed. Pick your rules + one adventure.
+  # Paths are relative to whichever pdf_root they're found under.
+  include_files:
+    # --- OSE Core Rules ---
+    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Rules Tome [1.3].pdf"
+    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Monsters [1.0].pdf"
+    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Treasures [1.0].pdf"
+    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Cleric and Magic-User Spells [1.0].pdf"
+
+    # --- OSE Advanced Fantasy (optional, for extra classes/spells) ---
+    # - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Advanced Fantasy/Old-School Essentials Advanced Fantasy Player's Tome [1.2].pdf"
+    # - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Advanced Fantasy/Old-School Essentials Advanced Fantasy Referee's Tome [1.2].pdf"
+    # - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Advanced Fantasy/Old-School Essentials Advanced Fantasy Monsters [2nd print 1.0].pdf"
+
+    # --- Adventure Module ---
+    # Uncomment ONE adventure to run:
+    - "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan (SW).pdf"
+    - "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan GM's Worksheet.pdf"
+    # - "OSR/# OSR Generic/OSR Adventures & Settings/Tomb of the Serpent Kings (OSR).pdf"
+    # - "OSR/# OSR Generic/OSR Adventures & Settings/Maze of the Blue Medusa (OSR).pdf"
+
+    # --- Optional extras ---
+    # - "OSR/# OSR Generic/OSR Monster Manuals/CC1 Creature Compendium (OSR).pdf"
+    # - "OSR/# OSR Generic/OSR Combat/Combat Rules (OSR).Pdf"
+
+  chunk_size: 500            # tokens per chunk
+  chunk_overlap: 50          # overlap between chunks
+  top_k: 5                   # number of RAG results to include
+  embedding_model: "all-MiniLM-L6-v2"
+
+game:
+  system: "ose"              # ose, adnd1e, bx
+  max_players: 2
+  auto_save: true
+
+persistence:
+  db_path: "data/sessions/aidm.db"

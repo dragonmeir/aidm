@@ -14,12 +14,13 @@ class CommandHandler:
         self.game_state = game_state
         self.db = db
         self.session_id: int | None = None
-        self.active_player_idx: int = 0  # which player is currently acting
+        self.active_player_idx: int = 0
 
     @property
     def active_player(self) -> Character | None:
         if self.game_state.players:
-            return self.game_state.players[self.active_player_idx]
+            idx = self.active_player_idx % len(self.game_state.players)
+            return self.game_state.players[idx]
         return None
 
     def handle(self, input_text: str) -> bool | None:
@@ -46,6 +47,8 @@ class CommandHandler:
             "/newchar": self._cmd_newchar,
             "/reroll": self._cmd_reroll,
             "/switch": self._cmd_switch,
+            "/log": self._cmd_log,
+            "/light": self._cmd_light,
             "/help": self._cmd_help,
             "/quit": self._cmd_quit,
             "/exit": self._cmd_quit,
@@ -112,9 +115,8 @@ class CommandHandler:
                 sid = int(args)
                 loaded = self.db.load_session(sid)
                 if loaded:
-                    # Replace game state fields
-                    for field in loaded.model_fields:
-                        setattr(self.game_state, field, getattr(loaded, field))
+                    for field_name in loaded.model_fields:
+                        setattr(self.game_state, field_name, getattr(loaded, field_name))
                     self.session_id = sid
                     ui.print_system(f"Loaded session: {self.game_state.session_name}")
                     return True
@@ -130,25 +132,21 @@ class CommandHandler:
         return True
 
     def _cmd_module(self, args: str) -> bool:
-        if args:
-            self.game_state.active_module = args
-            ui.print_system(f"Active module set to: {args}")
-            ui.print_system("RAG searches will prioritize content from this source.")
-        else:
-            if self.game_state.active_module:
-                ui.print_system(f"Current module: {self.game_state.active_module}")
-                ui.print_system("Use /module <name> to change, or /module clear to remove.")
-            else:
-                ui.print_system("No active module. Use /module <name> to set one.")
-                ui.print_system("Example: /module Barrowmaze")
         if args == "clear":
             self.game_state.active_module = ""
             ui.print_system("Module filter cleared.")
+        elif args:
+            self.game_state.active_module = args
+            ui.print_system(f"Active module set to: {args}")
+        else:
+            if self.game_state.active_module:
+                ui.print_system(f"Current module: {self.game_state.active_module}")
+            else:
+                ui.print_system("No active module. Use /module <name> to set one.")
         return True
 
     def _cmd_search(self, args: str) -> bool:
-        # This will be handled by main.py which has access to RAG
-        return None  # Signal that this needs special handling
+        return None  # Handled by main.py which has RAG access
 
     def _cmd_newchar(self, _args: str) -> bool:
         player_name = ui.console.input("[bold]Player name: [/bold]").strip()
@@ -160,7 +158,6 @@ class CommandHandler:
         return True
 
     def _cmd_reroll(self, _args: str) -> bool:
-        """Replace the active player's character with a freshly rolled one."""
         if not self.active_player:
             ui.print_system("No active character to reroll.")
             return True
@@ -185,6 +182,56 @@ class CommandHandler:
             return True
         self.active_player_idx = (self.active_player_idx + 1) % len(self.game_state.players)
         ui.print_system(f"Switched to {self.active_player.name}")
+        return True
+
+    def _cmd_log(self, args: str) -> bool:
+        """Show recent dice rolls and mechanical events."""
+        count = 10
+        if args:
+            try:
+                count = int(args)
+            except ValueError:
+                pass
+        entries = self.game_state.roll_log[-count:]
+        if not entries:
+            ui.print_system("No rolls yet.")
+            return True
+        ui.console.print("\n[bold]Recent Rolls:[/bold]")
+        for entry in entries:
+            tool = entry.get("tool", "?")
+            turn = entry.get("turn", "?")
+            detail = {k: v for k, v in entry.items() if k not in ("tool", "turn")}
+            ui.console.print(f"  Turn {turn} | {tool}: {detail}")
+        ui.console.print()
+        return True
+
+    def _cmd_light(self, args: str) -> bool:
+        """Manage light sources."""
+        if not args:
+            if self.game_state.light_sources:
+                for ls in self.game_state.light_sources:
+                    ui.console.print(f"  {ls.bearer}'s {ls.kind}: {ls.turns_remaining} turns remaining")
+            else:
+                ui.print_system("No active light sources.")
+            return True
+
+        parts = args.split()
+        kind = parts[0].lower() if parts else "torch"
+        bearer = self.active_player.name if self.active_player else "Party"
+        if len(parts) > 1:
+            bearer = parts[1]
+
+        from ..game.state import LightSource
+        if kind == "torch":
+            ls = LightSource(kind="torch", turns_remaining=6, bearer=bearer)
+        elif kind == "lantern":
+            ls = LightSource(kind="lantern", turns_remaining=24, bearer=bearer)
+        else:
+            ui.print_system("Use: /light torch [name] or /light lantern [name]")
+            return True
+
+        self.game_state.light_sources.append(ls)
+        ui.print_system(f"{bearer} lights a {kind} ({ls.turns_remaining} turns).")
         return True
 
     def _cmd_help(self, _args: str) -> bool:

@@ -1,0 +1,392 @@
+id: ose
+name: "Old-School Essentials"
+version: "Classic Fantasy 1.3"
+genre: fantasy
+
+dm_title: "Dungeon Master"
+player_term: "player"
+tone: "gritty, old-school, deadly"
+gm_principles:
+  - "Be fair but deadly. OSR play is dangerous. Don't pull punches, but give players fair warnings and meaningful choices."
+  - "Value player agency. Present situations and let players decide. Never decide actions for the players."
+  - "Keep the game moving. Be descriptive but concise. Don't monologue."
+  - "The world is alive and has consequences. EVERY action has a reaction."
+
+# ── Attributes ────────────────────────────────────────────
+
+attributes:
+  generation_order: in_order
+  attributes:
+    - name: Strength
+      abbreviation: STR
+      min_value: 3
+      max_value: 18
+      generation_method: "3d6"
+      modifier_table:
+        "3": -3
+        "4-5": -2
+        "6-8": -1
+        "9-12": 0
+        "13-15": 1
+        "16-17": 2
+        "18": 3
+    - name: Dexterity
+      abbreviation: DEX
+      min_value: 3
+      max_value: 18
+      generation_method: "3d6"
+      modifier_table:
+        "3": -3
+        "4-5": -2
+        "6-8": -1
+        "9-12": 0
+        "13-15": 1
+        "16-17": 2
+        "18": 3
+    - name: Constitution
+      abbreviation: CON
+      min_value: 3
+      max_value: 18
+      generation_method: "3d6"
+      modifier_table:
+        "3": -3
+        "4-5": -2
+        "6-8": -1
+        "9-12": 0
+        "13-15": 1
+        "16-17": 2
+        "18": 3
+    - name: Intelligence
+      abbreviation: INT
+      min_value: 3
+      max_value: 18
+      generation_method: "3d6"
+      modifier_table:
+        "3": -3
+        "4-5": -2
+        "6-8": -1
+        "9-12": 0
+        "13-15": 1
+        "16-17": 2
+        "18": 3
+    - name: Wisdom
+      abbreviation: WIS
+      min_value: 3
+      max_value: 18
+      generation_method: "3d6"
+      modifier_table:
+        "3": -3
+        "4-5": -2
+        "6-8": -1
+        "9-12": 0
+        "13-15": 1
+        "16-17": 2
+        "18": 3
+    - name: Charisma
+      abbreviation: CHA
+      min_value: 3
+      max_value: 18
+      generation_method: "3d6"
+      modifier_table:
+        "3": -3
+        "4-5": -2
+        "6-8": -1
+        "9-12": 0
+        "13-15": 1
+        "16-17": 2
+        "18": 3
+
+# ── Character Types ───────────────────────────────────────
+
+character_types:
+  label: Class
+  optional: false
+  types:
+    - name: Fighter
+      hit_die: "1d8"
+      prime_attribute: STR
+      requirements: {}
+      save_values:
+        "Death/Poison": 12
+        "Wands": 13
+        "Paralysis/Petrify": 14
+        "Breath Attacks": 15
+        "Spells/Rods/Staves": 16
+      thac0: 19
+      armor_allowed: ["any"]
+      weapons_allowed: ["any"]
+      starting_equipment: ["Sword", "Dagger"]
+      special_abilities: []
+
+    - name: Cleric
+      hit_die: "1d6"
+      prime_attribute: WIS
+      requirements: {}
+      save_values:
+        "Death/Poison": 11
+        "Wands": 12
+        "Paralysis/Petrify": 14
+        "Breath Attacks": 16
+        "Spells/Rods/Staves": 15
+      thac0: 19
+      armor_allowed: ["any"]
+      weapons_allowed: ["blunt"]
+      starting_equipment: ["Mace", "War Hammer"]
+      spell_slots_by_level: [0]
+      starting_spells:
+        - "Cure Light Wounds"
+        - "Detect Evil"
+        - "Detect Magic"
+        - "Light"
+        - "Protection from Evil"
+        - "Purify Food and Water"
+        - "Remove Fear"
+        - "Resist Cold"
+      special_abilities:
+        - "Turn Undead: Roll 2d6 — Skeletons on 7+, Zombies on 9+, Ghouls on 11+. Cannot turn higher undead at L1."
+
+    - name: Magic-User
+      hit_die: "1d4"
+      prime_attribute: INT
+      requirements: {}
+      save_values:
+        "Death/Poison": 13
+        "Wands": 14
+        "Paralysis/Petrify": 13
+        "Breath Attacks": 16
+        "Spells/Rods/Staves": 15
+      thac0: 19
+      armor_allowed: ["none"]
+      weapons_allowed: ["dagger", "staff"]
+      starting_equipment: ["Dagger", "Staff"]
+      spell_slots_by_level: [1]
+      starting_spells:
+        - "Charm Person"
+        - "Detect Magic"
+        - "Floating Disc"
+        - "Hold Portal"
+        - "Light"
+        - "Magic Missile"
+        - "Protection from Evil"
+        - "Read Languages"
+        - "Read Magic"
+        - "Shield"
+        - "Sleep"
+        - "Ventriloquism"
+      special_abilities: []
+
+    - name: Thief
+      hit_die: "1d4"
+      prime_attribute: DEX
+      requirements: {}
+      save_values:
+        "Death/Poison": 13
+        "Wands": 14
+        "Paralysis/Petrify": 13
+        "Breath Attacks": 16
+        "Spells/Rods/Staves": 15
+      thac0: 19
+      armor_allowed: ["leather"]
+      weapons_allowed: ["any"]
+      starting_equipment: ["Short Sword", "Dagger", "Short Bow"]
+      special_abilities:
+        - "Backstab: +4 to hit and double damage when attacking from behind undetected."
+        - "Thief skills: Open Locks 15%, Find/Remove Traps 10%, Pick Pockets 20%, Move Silently 20%, Climb Walls 87%, Hide in Shadows 10%, Hear Noise 2-in-6."
+
+    - name: Dwarf
+      hit_die: "1d8"
+      prime_attribute: STR
+      requirements:
+        CON: 9
+      save_values:
+        "Death/Poison": 8
+        "Wands": 9
+        "Paralysis/Petrify": 10
+        "Breath Attacks": 13
+        "Spells/Rods/Staves": 12
+      thac0: 19
+      armor_allowed: ["any"]
+      weapons_allowed: ["any", "no long bows", "no two-handed swords"]
+      starting_equipment: ["Battle Axe", "Hand Axe"]
+      special_abilities:
+        - "Infravision 60'"
+        - "Listen at doors: 2-in-6"
+        - "Detect room traps, sliding walls, sloping corridors: 2-in-6"
+
+    - name: Elf
+      hit_die: "1d6"
+      prime_attribute: STR
+      requirements:
+        INT: 9
+      save_values:
+        "Death/Poison": 12
+        "Wands": 13
+        "Paralysis/Petrify": 13
+        "Breath Attacks": 15
+        "Spells/Rods/Staves": 15
+      thac0: 19
+      armor_allowed: ["any"]
+      weapons_allowed: ["any"]
+      starting_equipment: ["Sword", "Short Bow", "Dagger"]
+      spell_slots_by_level: [1]
+      starting_spells:
+        - "Charm Person"
+        - "Detect Magic"
+        - "Floating Disc"
+        - "Hold Portal"
+        - "Light"
+        - "Magic Missile"
+        - "Protection from Evil"
+        - "Read Languages"
+        - "Read Magic"
+        - "Shield"
+        - "Sleep"
+        - "Ventriloquism"
+      special_abilities:
+        - "Infravision 60'"
+        - "Detect secret doors: 2-in-6 (1-in-6 passively)"
+        - "Immune to ghoul paralysis"
+
+    - name: Halfling
+      hit_die: "1d6"
+      prime_attribute: DEX
+      requirements:
+        CON: 9
+        DEX: 9
+      save_values:
+        "Death/Poison": 8
+        "Wands": 9
+        "Paralysis/Petrify": 10
+        "Breath Attacks": 13
+        "Spells/Rods/Staves": 12
+      thac0: 19
+      armor_allowed: ["any"]
+      weapons_allowed: ["any", "no long bows", "no two-handed swords"]
+      starting_equipment: ["Short Sword", "Sling", "Dagger"]
+      special_abilities:
+        - "Infravision 60' (optional rule)"
+        - "Listen at doors: 2-in-6"
+        - "+1 to ranged attacks"
+        - "-2 AC bonus vs creatures larger than human"
+        - "Hide in woods/underbrush: 90% success"
+
+# ── Combat ────────────────────────────────────────────────
+
+combat:
+  attack:
+    method: thac0_minus_ac
+    dice: "1d20"
+    success_condition: "d20 >= THAC0 - target AC"
+    critical_success: ""
+    critical_failure: ""
+    damage_default: "1d6"
+  initiative:
+    method: group_d6
+    dice: "1d6"
+    modifier_attribute: ""
+    reroll_each_round: true
+  morale:
+    dice: "2d6"
+    holds_on: "roll <= morale_score"
+    default_score: 7
+    check_triggers:
+      - "first ally killed"
+      - "half the group down"
+  rounds_description: "10 seconds"
+  special_rules:
+    - "Ties in initiative mean simultaneous action."
+    - "Damage: weapon die + STR mod (melee) or DEX mod (ranged). Minimum 1 damage on a hit."
+
+# ── Health ────────────────────────────────────────────────
+
+health:
+  model: hit_points
+  hit_points:
+    base_die: "1d8"
+    modifier_attribute: CON
+    minimum_hp: 1
+  death_at: "0 HP"
+  healing: "Natural healing: 1d3 HP per full day of complete rest."
+  death_rules: "At 0 HP a character is DEAD. No death saves, no stabilization. Dead is dead."
+
+# ── Defense ───────────────────────────────────────────────
+
+defense:
+  model: descending_ac
+  base_value: 9
+  better_direction: lower
+  modifier_attribute: DEX
+  armor_examples:
+    Leather: 7
+    Chain Mail: 5
+    Plate Mail: 3
+    Shield: -1
+
+# ── Saves ─────────────────────────────────────────────────
+
+saves:
+  per_class: true
+  roll_dice: "1d20"
+  categories:
+    - name: "Death/Poison"
+      default_target: 14
+      roll_method: d20_roll_over
+    - name: "Wands"
+      default_target: 15
+      roll_method: d20_roll_over
+    - name: "Paralysis/Petrify"
+      default_target: 16
+      roll_method: d20_roll_over
+    - name: "Breath Attacks"
+      default_target: 17
+      roll_method: d20_roll_over
+    - name: "Spells/Rods/Staves"
+      default_target: 18
+      roll_method: d20_roll_over
+
+# ── Magic ─────────────────────────────────────────────────
+
+magic:
+  model: memorize
+  recovery: full_rest
+  notes: "Magic-Users and Clerics have LIMITED spell slots. Level 1 Magic-User/Elf = 1 spell per day. Level 1 Cleric = 0 spells. Spells must be memorized during rest. When cast, a spell is GONE until the next full rest."
+
+# ── Dice Conventions ──────────────────────────────────────
+
+dice_conventions:
+  primary_dice: d20
+  stat_generation: "3d6"
+  ability_check_method: d20_roll_under
+  common_notation: "Standard D&D dice: d4, d6, d8, d10, d12, d20, d100"
+
+# ── Exploration ───────────────────────────────────────────
+
+exploration:
+  turn_length: "10 minutes"
+  wandering_monster_frequency: "every 2 turns"
+  wandering_monster_chance: "1-in-6"
+  light_sources:
+    torch: "6 turns (1 hour), 30' radius"
+    lantern: "24 turns (4 hours), 30' radius"
+  search_mechanic: "1-in-6 (elves 2-in-6). Takes 1 turn per 10'x10' area."
+  door_mechanic: "Doors are stuck by default. Force open: d6, 1-2 = open. Forced doors make noise."
+  listen_mechanic: "1-in-6 (demihumans 2-in-6)"
+  rest_rules: "Short rest (1 turn): resets forced march penalties. Full rest (8 hours, safe location): recover 1d3 HP, re-memorize spells, consume 1 day rations per character."
+  movement_rates:
+    "0-400 coins": "120' per turn (40' exploring)"
+    "401-600 coins": "90' per turn (30' exploring)"
+    "601-800 coins": "60' per turn (20' exploring)"
+    "801+ coins": "30' per turn (10' exploring)"
+  notes: "Infravision: Dwarves, Elves see heat 60'. Negated by any light source. XP: 1 GP recovered = 1 XP (primary source)."
+
+# ── Reaction Table ────────────────────────────────────────
+
+reaction_table:
+  dice: "2d6"
+  modifier_attribute: CHA
+  results:
+    "2-3": "Hostile, attacks immediately"
+    "4-5": "Unfriendly, may attack"
+    "6-8": "Neutral, uncertain"
+    "9-10": "Indifferent, uninterested"
+    "11-12": "Friendly, helpful"

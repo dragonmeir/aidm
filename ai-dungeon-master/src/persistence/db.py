@@ -7,6 +7,7 @@ from datetime import datetime
 
 from ..game.state import GameState
 from ..game.character import Character
+from ..game.generic_character import GenericCharacter
 
 
 class GameDatabase:
@@ -59,14 +60,41 @@ class GameDatabase:
                 return cursor.lastrowid
 
     def load_session(self, session_id: int) -> GameState | None:
-        """Load a game session by ID."""
+        """Load a game session by ID.
+
+        Auto-migrates legacy Character objects to GenericCharacter format.
+        """
         with sqlite3.connect(self.db_path) as conn:
             row = conn.execute(
                 "SELECT game_state FROM sessions WHERE id = ?", (session_id,)
             ).fetchone()
-            if row:
-                return GameState.model_validate_json(row[0])
-        return None
+            if not row:
+                return None
+
+            state = GameState.model_validate_json(row[0])
+
+            # Migrate legacy Character dicts to GenericCharacter
+            migrated_players = []
+            for p in state.players:
+                if isinstance(p, dict):
+                    if "char_class" in p and "system_id" not in p:
+                        # Legacy OSE Character — migrate
+                        migrated_players.append(_migrate_ose_character(p))
+                    elif "system_id" in p:
+                        migrated_players.append(GenericCharacter.model_validate(p))
+                    else:
+                        migrated_players.append(p)
+                elif hasattr(p, "system_id"):
+                    migrated_players.append(p)
+                else:
+                    migrated_players.append(p)
+            state.players = migrated_players
+
+            # Ensure system_id is set
+            if not state.system_id:
+                state.system_id = "ose"
+
+            return state
 
     def list_sessions(self) -> list[dict]:
         """List all saved sessions."""
@@ -116,3 +144,44 @@ class GameDatabase:
                 {"id": r[0], "name": r[1], "player_name": r[2], "created_at": r[3]}
                 for r in rows
             ]
+
+
+def _migrate_ose_character(data: dict) -> GenericCharacter:
+    """Convert a legacy OSE Character dict to GenericCharacter."""
+    return GenericCharacter(
+        name=data.get("name", ""),
+        player_name=data.get("player_name", ""),
+        system_id="ose",
+        attributes={
+            "STR": data.get("strength", 10),
+            "DEX": data.get("dexterity", 10),
+            "CON": data.get("constitution", 10),
+            "INT": data.get("intelligence", 10),
+            "WIS": data.get("wisdom", 10),
+            "CHA": data.get("charisma", 10),
+        },
+        character_type=data.get("char_class", "Fighter"),
+        level=data.get("level", 1),
+        xp=data.get("xp", 0),
+        hp=data.get("hp", 1),
+        max_hp=data.get("max_hp", 1),
+        defense_value=data.get("ac", 9),
+        defense_label="AC",
+        attack_value=data.get("thac0", 19),
+        attack_label="THAC0",
+        saves={
+            "Death/Poison": data.get("save_death", 14),
+            "Wands": data.get("save_wands", 15),
+            "Paralysis/Petrify": data.get("save_paralysis", 16),
+            "Breath Attacks": data.get("save_breath", 17),
+            "Spells/Rods/Staves": data.get("save_spells", 18),
+        },
+        inventory=data.get("inventory", []),
+        weapons=data.get("weapons", []),
+        armor=data.get("armor", ""),
+        currency={"gp": data.get("gold", 0)},
+        spells_known=data.get("spells_known", []),
+        spells_memorized=data.get("spells_memorized", []),
+        spell_slots=data.get("spell_slots", []),
+        notes=data.get("notes", ""),
+    )

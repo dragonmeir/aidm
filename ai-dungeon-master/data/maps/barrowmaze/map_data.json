@@ -1,0 +1,11 @@
+{
+  "module": "barrowmaze",
+  "maps": {
+    "barrowmaze_map_cyan": {
+      "file": "barrowmaze_map_cyan.png",
+      "label": "Barrowmaze Map Cyan",
+      "sections": []
+    }
+  },
+  "rooms": {}
+}

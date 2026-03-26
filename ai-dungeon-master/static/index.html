@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Dungeon Master</title>
+<style>
+:root{--bg:#0a0a0a;--bg2:#141414;--bg3:#1e1e1e;--bg4:#282828;--gold:#c9a54e;--gold-dim:#8a7234;--gold-bg:rgba(201,165,78,.08);--red:#a83232;--red-dim:#6b2020;--green:#3a8a3a;--blue:#3a5a8a;--purple:#6a3a8a;--text:#d4d4d4;--dim:#666;--dim2:#444;--border:#2a2a2a;--border2:#3a3a3a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Courier New',monospace;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* Header */
+header{background:var(--bg2);border-bottom:1px solid var(--gold-dim);padding:6px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+header h1{color:var(--gold);font-size:15px;letter-spacing:3px;font-weight:600}
+header .right{display:flex;align-items:center;gap:12px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;margin-right:4px}
+.status-dot.on{background:var(--green)}
+.hdr-text{font-size:11px;color:var(--dim)}
+
+/* Main Layout */
+#main{flex:1;display:flex;overflow:hidden}
+#game-view{flex:1;display:flex;flex-direction:column}
+#narrative{flex:1;overflow-y:auto;padding:16px 20px;background:var(--bg)}
+.msg{margin-bottom:14px;line-height:1.6;font-size:14px;white-space:pre-wrap}
+.msg.dm{color:var(--gold);border-left:2px solid var(--gold-dim);padding-left:12px}
+.msg.player{color:#7ec8e3}.msg.player::before{content:attr(data-name) " > ";color:#5a9ab5;font-weight:600}
+.msg.system{color:var(--dim);font-size:12px;font-style:italic}
+.msg.roll{color:var(--green);background:rgba(58,138,58,.06);border-left:2px solid var(--green);padding:6px 12px;font-size:13px;font-family:'Courier New',monospace;border-radius:0 4px 4px 0}
+.msg.event{color:#b88a3a;font-size:13px}
+.msg.error{color:var(--red);font-size:13px}
+#stream-ind{display:none;padding:4px 20px;font-size:12px;color:var(--gold-dim);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* Action Bar */
+#action-bar{background:var(--bg2);border-top:1px solid var(--border);padding:6px 12px;display:flex;gap:6px;align-items:center;flex-shrink:0}
+.ab-btn{background:var(--bg3);border:1px solid var(--border);color:var(--dim);padding:5px 12px;font-size:11px;cursor:pointer;border-radius:4px;font-family:inherit;transition:all .15s}
+.ab-btn:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--gold-bg)}
+.ab-btn.danger:hover{color:var(--red);border-color:var(--red-dim)}
+.spacer{flex:1}
+#save-status{color:var(--green);font-size:10px;transition:opacity .3s}
+
+/* Input Bar */
+#input-bar{background:var(--bg2);border-top:1px solid var(--border2);padding:8px 12px;display:flex;gap:8px;flex-shrink:0}
+#input-bar input{flex:1;background:var(--bg);border:1px solid var(--border2);color:var(--text);padding:10px 14px;font-family:inherit;font-size:14px;border-radius:6px;outline:none;transition:border-color .15s}
+#input-bar input:focus{border-color:var(--gold-dim)}
+#input-bar input::placeholder{color:var(--dim2)}
+#send-btn{background:var(--gold-dim);color:var(--bg);border:none;padding:10px 20px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;border-radius:6px;transition:background .15s}
+#send-btn:hover{background:var(--gold)}#send-btn:disabled{opacity:.3;cursor:default}
+
+/* Sidebar */
+#sidebar{width:380px;background:var(--bg2);display:flex;flex-direction:column;border-left:1px solid var(--border);flex-shrink:0}
+.tabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border)}
+.tab{flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;letter-spacing:1px;transition:all .15s}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}.tab:hover{color:var(--text)}
+.tab-content{display:none;flex:1;overflow-y:auto;padding:12px}.tab-content.active{display:flex;flex-direction:column;gap:8px}
+
+/* Character Sheet */
+.cs{background:var(--bg3);border:1px solid var(--border2);border-radius:6px;overflow:hidden}
+.cs-header{background:var(--bg4);padding:10px 12px;border-bottom:1px solid var(--border)}
+.cs-name{color:var(--gold);font-size:15px;font-weight:700}.cs-class{color:var(--dim);font-size:12px;margin-top:2px}
+.cs-body{padding:10px 12px}
+.cs-vitals{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+.vital{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 10px;text-align:center;flex:1;min-width:60px}
+.vital .vl{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}.vital .vv{font-size:16px;font-weight:700;color:var(--text)}
+.vital.hp .vv{color:var(--green)}.vital.hp.hurt .vv{color:#a8a832}.vital.hp.crit .vv{color:var(--red)}
+.hp-track{height:3px;background:var(--bg);border-radius:2px;margin:6px 0;overflow:hidden}
+.hp-track .fill{height:100%;border-radius:2px;transition:width .3s}
+.hp-track .fill.g{background:var(--green)}.hp-track .fill.y{background:#a8a832}.hp-track .fill.r{background:var(--red)}
+.cs-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-bottom:8px}
+.cs-stat{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:4px 0;text-align:center}
+.cs-stat .sl{font-size:8px;color:var(--dim);text-transform:uppercase}.cs-stat .ss{font-size:16px;font-weight:700}.cs-stat .sm{font-size:10px}
+.sm.p{color:var(--green)}.sm.n{color:var(--red)}.sm.z{color:var(--dim)}
+.cs-section{margin-top:6px}.cs-section h5{font-size:10px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;border-bottom:1px solid var(--border);padding-bottom:2px}
+.cs-section .item{font-size:11px;color:var(--dim);padding:1px 0}
+.cs-saves{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.cs-save{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:3px;text-align:center;font-size:10px}
+.cs-save .sv-name{color:var(--dim);font-size:8px;text-transform:uppercase}.cs-save .sv-val{font-weight:700;font-size:13px}
+
+/* Map */
+#map-container img{max-width:100%;border:1px solid var(--border2);border-radius:4px;cursor:zoom-in}
+.map-tabs{display:flex;gap:4px;flex-wrap:wrap}
+.mt{padding:5px 10px;background:var(--bg3);border:1px solid var(--border);color:var(--dim);font-size:11px;cursor:pointer;border-radius:4px;transition:all .15s}
+.mt.active{color:var(--gold);border-color:var(--gold-dim);background:var(--gold-bg)}.mt:hover{border-color:var(--border2);color:var(--text)}
+
+/* Dice Log */
+.dl-entry{font-size:11px;padding:4px 6px;border-bottom:1px solid var(--border);display:flex;gap:8px;font-family:'Courier New',monospace}
+.dl-turn{color:var(--dim);min-width:30px}.dl-tool{color:var(--gold-dim);min-width:80px}.dl-data{color:var(--text);flex:1;word-break:break-all}
+
+/* Modal */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.88);display:flex;justify-content:center;align-items:center;z-index:100}
+.modal.hidden{display:none}
+.mbox{background:var(--bg2);border:1px solid var(--gold-dim);border-radius:8px;padding:0;width:680px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column}
+.mbox-head{background:var(--bg3);padding:16px 20px;border-bottom:1px solid var(--border);text-align:center}
+.mbox-head h2{color:var(--gold);font-size:18px;letter-spacing:2px;margin-bottom:2px}
+.mbox-head p{color:var(--dim);font-size:12px}
+.mbox-body{padding:20px;overflow-y:auto;flex:1}
+.mbox-foot{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;background:var(--bg3)}
+
+/* Form Elements */
+.fg{margin-bottom:12px}.fg label{display:block;color:var(--dim);font-size:10px;margin-bottom:3px;text-transform:uppercase;letter-spacing:1px}
+.fg input,.fg select{width:100%;background:var(--bg);border:1px solid var(--border2);color:var(--text);padding:8px 10px;font-family:inherit;font-size:13px;border-radius:4px;outline:none}
+.fg input:focus,.fg select:focus{border-color:var(--gold-dim)}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--gold-dim);color:var(--bg);border:none;padding:10px 20px;font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;border-radius:5px;transition:all .15s;gap:6px}
+.btn:hover{background:var(--gold)}.btn:disabled{opacity:.3;cursor:default}
+.btn.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2)}.btn.sec:hover{border-color:var(--gold-dim);color:var(--gold)}
+.btn.red{background:var(--red-dim);color:#eee}.btn.red:hover{background:var(--red)}
+.btn.full{width:100%}.btn.lg{padding:14px 24px;font-size:15px}
+
+/* Step Progress */
+.steps{display:flex;gap:3px;margin-bottom:16px}.steps .s{flex:1;height:3px;background:var(--border);border-radius:2px}
+.steps .s.done{background:var(--green)}.steps .s.cur{background:var(--gold)}
+
+/* Stat Roller */
+.roll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.rb{background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:8px;text-align:center;transition:border-color .2s}
+.rb .rn{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.rb .rv{font-size:28px;font-weight:700;color:var(--gold);margin:2px 0}
+.rb .rm{font-size:13px}
+
+/* Class Grid */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0}
+.co{background:var(--bg);border:2px solid var(--border);border-radius:6px;padding:8px;cursor:pointer;transition:all .15s}
+.co:hover{border-color:var(--gold-dim)}.co.sel{border-color:var(--gold);background:var(--gold-bg)}
+.co.bad{opacity:.25;cursor:not-allowed;filter:grayscale(1)}.co .cn{font-weight:700;font-size:13px}.co .ci{font-size:10px;color:var(--dim);margin-top:2px}
+.co .cx{font-size:10px;margin-top:2px}.cx.bon{color:var(--green)}.cx.pen{color:var(--red)}
+
+/* Shop */
+.shop-cat{margin-bottom:10px}
+.shop-cat h4{font-size:10px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;padding-bottom:3px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.si{display:flex;align-items:center;padding:3px 0;font-size:12px;gap:4px}.si:hover{background:rgba(255,255,255,.02)}
+.si .sin{flex:1}.si .sip{color:var(--dim);font-size:10px;width:70px;text-align:right}
+.si .sic{color:var(--gold);width:45px;text-align:right;font-weight:600}
+.si button{background:var(--bg3);border:1px solid var(--border);color:var(--dim);padding:2px 8px;font-size:10px;cursor:pointer;border-radius:3px;font-family:inherit}
+.si button:hover{color:var(--gold);border-color:var(--gold-dim)}.si button:disabled{opacity:.3;cursor:default}
+.cart-box{background:var(--bg);border:1px solid var(--gold-dim);border-radius:4px;padding:8px;margin:8px 0}
+.cart-box h4{color:var(--gold);font-size:10px;text-transform:uppercase;margin-bottom:4px}
+.ci-item{display:flex;justify-content:space-between;font-size:11px;padding:2px 0}.ci-item .rm{color:var(--red);cursor:pointer;font-size:10px}
+.gold-box{text-align:center;font-size:18px;color:var(--gold);padding:8px;background:var(--bg);border-radius:4px;border:1px solid var(--gold-dim);margin:8px 0;font-weight:700}
+
+/* Library Card */
+.lib-card{background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:12px;cursor:pointer;transition:all .15s}
+.lib-card:hover{border-color:var(--gold-dim)}.lib-card.sel{border-color:var(--gold);background:var(--gold-bg)}
+.lib-card .lc-name{font-weight:700;color:var(--text);font-size:14px}.lib-card .lc-desc{color:var(--dim);font-size:11px;margin-top:3px}
+.lib-card .lc-tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.lc-tag.rules{background:rgba(58,90,138,.2);color:var(--blue)}.lc-tag.module{background:rgba(106,58,138,.2);color:var(--purple)}
+.lc-tag.both{background:rgba(138,114,52,.2);color:var(--gold)}
+
+/* Preview Box */
+.preview{background:var(--bg);border:1px solid var(--gold-dim);border-radius:6px;padding:14px;margin:12px 0}
+.preview h3{color:var(--gold);font-size:16px;margin-bottom:8px}
+.preview .pd{font-size:12px;margin:3px 0}.preview .pd .pl{color:var(--dim)}
+
+/* Full Map Overlay */
+#map-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);z-index:200;cursor:zoom-out;overflow:auto;padding:20px}
+#map-overlay img{max-width:100%;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AI DUNGEON MASTER</h1>
+  <div class="right">
+    <span class="hdr-text" id="turn-display">Turn 0</span>
+    <span><span class="status-dot" id="conn-dot"></span><span class="hdr-text" id="conn-text">Offline</span></span>
+  </div>
+</header>
+
+<div id="main">
+  <div id="game-view">
+    <div id="narrative"></div>
+    <div id="stream-ind">The Dungeon Master is speaking...</div>
+    <div id="action-bar">
+      <button class="ab-btn" onclick="saveGame()">Save</button>
+      <button class="ab-btn" onclick="loadGameList()">Load</button>
+      <button class="ab-btn" onclick="switchTab('party',document.querySelector('.tab:nth-child(2)'))">Party</button>
+      <span class="spacer"></span>
+      <span id="save-status"></span>
+      <button class="ab-btn danger" onclick="mainMenu()">Menu</button>
+    </div>
+    <div id="input-bar">
+      <input type="text" id="player-input" placeholder="Describe your action..." autocomplete="off" disabled>
+      <button id="send-btn" onclick="sendAction()" disabled>Send</button>
+    </div>
+  </div>
+
+  <div id="sidebar">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('map',this)">Map</div>
+      <div class="tab" onclick="switchTab('party',this)">Party</div>
+      <div class="tab" onclick="switchTab('journal',this)">Journal</div>
+      <div class="tab" onclick="switchTab('npcs',this)">NPCs</div>
+      <div class="tab" onclick="switchTab('log',this)">Log</div>
+    </div>
+    <div class="tab-content active" id="tab-map">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <div class="map-tabs" id="map-tabs" style="flex:1"></div>
+        <button class="ab-btn" onclick="popoutMap()" title="Pop out map" style="margin-left:4px;font-size:14px">&#8599;</button>
+      </div>
+      <div id="map-container"><p style="color:var(--dim);text-align:center;padding:20px">No maps loaded</p></div>
+    </div>
+    <div class="tab-content" id="tab-party"><div id="party-list"></div></div>
+    <div class="tab-content" id="tab-journal"><div id="journal-list"><p style="color:var(--dim);text-align:center;padding:20px">No events yet</p></div></div>
+    <div class="tab-content" id="tab-npcs"><div id="npc-list"><p style="color:var(--dim);text-align:center;padding:20px">No NPCs met yet</p></div></div>
+    <div class="tab-content" id="tab-log"><div id="dice-log"><p style="color:var(--dim)">No rolls yet</p></div></div>
+  </div>
+</div>
+
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+<div id="map-overlay" onclick="this.style.display='none'"><img id="map-overlay-img"></div>
+
+<script>
+const API=location.origin;
+let ws=null,sid=null,pname='',gs=null,maps={},curMap='ground_floor',sbuf='',streaming=false,sEl=null;
+let rolled=null,selClass=null,shopData=null,cart={weapons:[],armor:'None',shield:false,gear:[],ammo:[]},cartCost=0;
+let libData=null;
+
+const $=id=>document.getElementById(id);
+function mod(m){return m>0?`<span class="rm p">+${m}</span>`:m<0?`<span class="rm n">${m}</span>`:`<span class="rm z">0</span>`}
+function modC(m){return m>0?'p':m<0?'n':'z'}
+
+// ── Modal ──────────────────────────────────────────────────
+function modal(head,body,foot=''){
+  $('mbox').innerHTML=`<div class="mbox-head">${head}</div><div class="mbox-body">${body}</div>${foot?`<div class="mbox-foot">${foot}</div>`:''}`;
+  $('modal').classList.remove('hidden');
+}
+function hide(){$('modal').classList.add('hidden')}
+function steps(n,t=5){return `<div class="steps">${Array.from({length:t},(_,i)=>`<div class="s ${i<n-1?'done':i===n-1?'cur':''}"></div>`).join('')}</div>`}
+
+// ── Step 1: Welcome ────────────────────────────────────────
+async function showWelcome(){
+  // Fetch library
+  try{libData=await(await fetch(`${API}/library`)).json()}catch(e){libData={rules:{},modules:{}}}
+
+  const rKeys=Object.keys(libData.rules||{});
+  const mKeys=Object.keys(libData.modules||{});
+
+  modal(
+    `<h2>AI DUNGEON MASTER</h2><p>Old-School Essentials Edition</p>`,
+    `${steps(1)}
+    <div class="fg"><label>Session Name</label><input id="i-sess" value="New Adventure"></div>
+    <div class="fg"><label>Player Name</label><input id="i-player" placeholder="Your name"></div>
+    ${mKeys.length?`<div class="fg"><label>Adventure Module</label>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+        ${mKeys.map(k=>{const m=libData.modules[k];return `<div class="lib-card mod" data-key="${k}" onclick="document.querySelectorAll('.lib-card.mod').forEach(c=>c.classList.remove('sel'));this.classList.add('sel')">
+          <div class="lc-name">${m.display_name}</div>
+          <div class="lc-desc">${m.description||'No description'}</div>
+          <span class="lc-tag module">Module</span> <span class="lc-tag rules">${m.system||'Generic'}</span>
+        </div>`}).join('')}
+      </div>
+    </div>`:'<p style="color:var(--dim);font-size:12px">No modules in library. Add PDFs via the API.</p>'}`,
+    `<button class="btn sec" onclick="loadGameList()">Load Game</button>
+     <button class="btn sec" onclick="showJoin()">Join Session</button>
+     <a href="/library-manager" class="btn sec" style="text-decoration:none">Library Manager</a>
+     <button class="btn lg" onclick="goRoll()">Create Character</button>`
+  );
+}
+
+function showJoin(){
+  modal(`<h2>JOIN SESSION</h2>`,
+    `<div class="fg"><label>Session ID</label><input id="i-jid" placeholder="a1b2c3d4"></div>`,
+    `<button class="btn sec" onclick="showWelcome()">Back</button><button class="btn" onclick="doJoin()">Join</button>`);
+}
+async function doJoin(){sid=$('i-jid').value.trim();if(!sid)return;pname='Player';await loadMaps();connectWS();hide();enableInput()}
+
+// ── Step 2: Roll Stats ─────────────────────────────────────
+async function goRoll(){
+  pname=$('i-player')?.value?.trim()||'Player';
+  window._sn=$('i-sess')?.value?.trim()||'New Adventure';
+  // Get selected module
+  const sel=document.querySelector('.lib-card.mod.sel');
+  window._mod=sel?sel.dataset.key:'';
+  console.log('Selected module key:', window._mod, 'element:', sel);
+  if(!window._mod && Object.keys(libData?.modules||{}).length){
+    // If nothing selected but modules exist, default to first
+    window._mod=Object.keys(libData.modules)[0];
+    console.log('Defaulted to:', window._mod);
+  }
+  await doRoll();
+}
+async function doRoll(){
+  rolled=await(await fetch(`${API}/characters/roll-stats`)).json();
+  selClass=null;showRollUI();
+}
+function showRollUI(){
+  const a=rolled.abilities;
+  modal(`<h2>ROLL ABILITIES</h2><p>3d6 in order — the old-school way</p>`,
+    `${steps(2)}
+    <div class="roll-grid">${['STR','DEX','CON','INT','WIS','CHA'].map(s=>`<div class="rb"><div class="rn">${s}</div><div class="rv">${a[s].score}</div><div class="rm"><span class="sm ${modC(a[s].modifier)}">${a[s].modifier>0?'+':''}${a[s].modifier}</span></div></div>`).join('')}</div>
+    <div class="gold-box">${rolled.gold} Gold Pieces</div>`,
+    `<button class="btn red" onclick="doRoll()">Reroll</button><button class="btn lg" onclick="showClassPick()">Keep Stats</button>`);
+}
+
+// ── Step 3: Pick Class ─────────────────────────────────────
+function showClassPick(){
+  const cd=rolled.classes;
+  modal(`<h2>CHOOSE CLASS</h2>`,
+    `${steps(3)}
+    <div class="cg">${Object.entries(cd).map(([n,i])=>{
+      const ok=i.eligible,xp=i.xp_adjustment,rq=Object.entries(i.min_reqs).map(([k,v])=>`${k} ${v}+`).join(', ');
+      return `<div class="co ${ok?'':'bad'} ${selClass===n?'sel':''}" onclick="${ok?`pickClass('${n}')`:''}">`+
+        `<div class="cn">${n}</div><div class="ci">HD: ${i.hit_die} | Prime: ${i.prime_req}${rq?' | '+rq:''}</div>`+
+        `${xp?`<div class="cx ${xp>0?'bon':'pen'}">${xp>0?'+':''}${xp}% XP</div>`:''}</div>`}).join('')}</div>`,
+    `<button class="btn sec" onclick="showRollUI()">Back</button><button class="btn lg" id="b-equip" onclick="showEquipChoice()" ${selClass?'':'disabled'}>Next</button>`);
+}
+function pickClass(n){selClass=n;showClassPick()}
+
+// ── Step 4: Equip ──────────────────────────────────────────
+function showEquipChoice(){
+  modal(`<h2>EQUIP YOUR CHARACTER</h2><p>${selClass} — ${rolled.gold} gp to spend</p>`,
+    `${steps(4)}
+    <div style="display:flex;gap:12px">
+      <div class="lib-card" onclick="doQuickCreate()" style="flex:1;text-align:center">
+        <div style="font-size:24px;margin-bottom:6px">&#9876;</div>
+        <div class="lc-name">Quick Start</div>
+        <div class="lc-desc">Standard loadout for your class</div>
+      </div>
+      <div class="lib-card" onclick="openShop()" style="flex:1;text-align:center">
+        <div style="font-size:24px;margin-bottom:6px">&#128176;</div>
+        <div class="lc-name">Visit the Shop</div>
+        <div class="lc-desc">Pick every item yourself</div>
+      </div>
+    </div>`,
+    `<button class="btn sec" onclick="showClassPick()">Back</button>`);
+}
+
+// Quick Create
+async function doQuickCreate(){
+  await makeSess();
+  const c=await(await fetch(`${API}/sessions/${sid}/characters/create-from-roll`,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:pname+"'s "+selClass,player_name:pname,char_class:selClass,stats:rolled.stats_array,gold:rolled.gold})})).json();
+  showCharPreview(c);
+}
+
+// Shop
+async function openShop(){
+  if(!shopData)shopData=await(await fetch(`${API}/shop`)).json();
+  cart={weapons:[],armor:'None',shield:false,gear:[],ammo:[]};cartCost=0;renderShop();
+}
+function goldLeft(){return rolled.gold-cartCost}
+function addCart(cat,name,cost){if(goldLeft()<cost)return;if(cat==='armor'){cart.armor=name;recalc();renderShop();return}if(cat==='shield'){cart.shield=!cart.shield;recalc();renderShop();return}cart[cat].push(name);cartCost+=cost;renderShop()}
+function rmCart(cat,idx){if(cat==='armor')cart.armor='None';else if(cat==='shield')cart.shield=false;else cart[cat].splice(idx,1);recalc();renderShop()}
+function recalc(){cartCost=0;for(const w of cart.weapons)cartCost+=shopData.weapons[w]?.cost||0;if(cart.armor!=='None')cartCost+=shopData.armor[cart.armor]?.cost||0;if(cart.shield)cartCost+=shopData.armor.Shield?.cost||0;for(const g of cart.gear)cartCost+=shopData.gear[g]?.cost||0;for(const a of cart.ammo)cartCost+=shopData.ammo[a]?.cost||0}
+function shopSec(obj,cat,label){
+  return `<div class="shop-cat"><h4>${label}</h4>${Object.entries(obj).map(([n,i])=>{
+    const c=i.cost,x=i.damage||i.ac?`AC ${i.ac}`||i.damage:'',ok=goldLeft()>=c;
+    return `<div class="si"><span class="sin">${n}</span><span class="sip">${i.damage||i.ac?`${i.damage||'AC '+i.ac}`:''}</span><span class="sic">${c}gp</span><button ${ok?`onclick="addCart('${cat}','${n.replace(/'/g,"\\'")}',${c})"`:' disabled'}>${cat==='armor'?'Wear':'Buy'}</button></div>`}).join('')}</div>`;
+}
+function renderShop(){
+  let ci='';
+  cart.weapons.forEach((w,i)=>ci+=`<div class="ci-item"><span>${w}</span><span class="rm" onclick="rmCart('weapons',${i})">x</span></div>`);
+  if(cart.armor!=='None')ci+=`<div class="ci-item"><span>${cart.armor}</span><span class="rm" onclick="rmCart('armor',0)">x</span></div>`;
+  if(cart.shield)ci+=`<div class="ci-item"><span>Shield</span><span class="rm" onclick="rmCart('shield',0)">x</span></div>`;
+  cart.gear.forEach((g,i)=>ci+=`<div class="ci-item"><span>${g}</span><span class="rm" onclick="rmCart('gear',${i})">x</span></div>`);
+  cart.ammo.forEach((a,i)=>ci+=`<div class="ci-item"><span>${a}</span><span class="rm" onclick="rmCart('ammo',${i})">x</span></div>`);
+  modal(`<h2>EQUIPMENT SHOP</h2><p>${selClass}</p>`,
+    `${steps(4)}<div class="gold-box">Gold: ${goldLeft()} / ${rolled.gold} gp</div>
+    ${ci?`<div class="cart-box"><h4>Your Cart (${cartCost} gp)</h4>${ci}</div>`:''}
+    <div style="max-height:300px;overflow-y:auto;border:1px solid var(--border);border-radius:4px;padding:8px">
+      ${shopSec(shopData.weapons,'weapons','Weapons')}${shopSec(shopData.armor,'armor','Armor')}
+      ${shopSec(shopData.gear,'gear','Adventuring Gear')}${shopSec(shopData.ammo,'ammo','Ammunition')}
+    </div>`,
+    `<button class="btn sec" onclick="showEquipChoice()">Back</button><button class="btn lg" onclick="finishManual()">Done Shopping</button>`);
+}
+
+// Step 5: Name & Confirm
+async function finishManual(){
+  modal(`<h2>NAME YOUR CHARACTER</h2>`,
+    `${steps(5)}
+    <div class="fg"><label>Character Name</label><input id="i-cname" placeholder="Enter a name"></div>
+    <div class="preview"><h3>${selClass}</h3>
+      <div class="pd">Weapons: ${cart.weapons.join(', ')||'none'}</div>
+      <div class="pd">Armor: ${cart.armor}${cart.shield?' + Shield':''}</div>
+      <div class="pd">Gear: ${cart.gear.join(', ')||'none'}</div>
+      ${cart.ammo.length?`<div class="pd">Ammo: ${cart.ammo.join(', ')}</div>`:''}
+      <div class="pd" style="color:var(--gold)">Gold remaining: ${goldLeft()} gp</div>
+    </div>`,
+    `<button class="btn sec" onclick="renderShop()">Back</button><button class="btn lg" onclick="submitManual()">Begin Adventure</button>`);
+}
+async function submitManual(){
+  const name=$('i-cname')?.value?.trim()||pname+"'s "+selClass;
+  await makeSess();
+  const c=await(await fetch(`${API}/sessions/${sid}/characters/create-manual`,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name,player_name:pname,char_class:selClass,stats:rolled.stats_array,gold:rolled.gold,
+      weapons:cart.weapons,armor:cart.armor==='None'?'':cart.armor,shield:cart.shield,gear:cart.gear,ammo:cart.ammo})})).json();
+  showCharPreview(c);
+}
+
+async function makeSess(){
+  if(sid)return;
+  const modKey=window._mod||'';
+  activeModule=modKey;  // Use the library key, not the display name
+  const r=await fetch(`${API}/sessions/create`,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({session_name:window._sn||'New Adventure',module:modKey})});
+  sid=(await r.json()).session_id;
+}
+
+function showCharPreview(c){
+  const pct=Math.round(c.hp/c.max_hp*100);
+  modal(`<h2>CHARACTER READY</h2>`,
+    `<div class="cs">
+      <div class="cs-header"><div class="cs-name">${c.name}</div><div class="cs-class">${c.char_class} Level ${c.level}</div></div>
+      <div class="cs-body">
+        <div class="cs-stats">${['strength','dexterity','constitution','intelligence','wisdom','charisma'].map(s=>{const v=c[s],m=v<=3?-3:v<=5?-2:v<=8?-1:v<=12?0:v<=15?1:v<=17?2:3;return `<div class="cs-stat"><div class="sl">${s.slice(0,3)}</div><div class="ss">${v}</div><div class="sm ${modC(m)}">${m>0?'+':''}${m}</div></div>`}).join('')}</div>
+        <div class="cs-vitals">
+          <div class="vital hp"><div class="vl">HP</div><div class="vv">${c.hp}/${c.max_hp}</div></div>
+          <div class="vital"><div class="vl">AC</div><div class="vv">${c.ac}</div></div>
+          <div class="vital"><div class="vl">THAC0</div><div class="vv">${c.thac0}</div></div>
+          <div class="vital"><div class="vl">Gold</div><div class="vv">${c.gold}</div></div>
+        </div>
+        <div class="hp-track"><div class="fill g" style="width:${pct}%"></div></div>
+        ${c.weapons?.length?`<div class="cs-section"><h5>Weapons</h5>${c.weapons.map(w=>`<div class="item">${w}</div>`).join('')}</div>`:''}
+        ${c.armor!=='None'?`<div class="cs-section"><h5>Armor</h5><div class="item">${c.armor}</div></div>`:''}
+        ${c.inventory?.length?`<div class="cs-section"><h5>Equipment</h5>${c.inventory.map(i=>`<div class="item">${i}</div>`).join('')}</div>`:''}
+        <div class="cs-section"><h5>Saving Throws</h5><div class="cs-saves">
+          <div class="cs-save"><div class="sv-name">Death</div><div class="sv-val">${c.save_death}</div></div>
+          <div class="cs-save"><div class="sv-name">Wands</div><div class="sv-val">${c.save_wands}</div></div>
+          <div class="cs-save"><div class="sv-name">Para</div><div class="sv-val">${c.save_paralysis}</div></div>
+          <div class="cs-save"><div class="sv-name">Breath</div><div class="sv-val">${c.save_breath}</div></div>
+          <div class="cs-save"><div class="sv-name">Spells</div><div class="sv-val">${c.save_spells}</div></div>
+        </div></div>
+      </div>
+    </div>`,
+    `<button class="btn lg full" onclick="startGame()">Enter the World</button>`);
+}
+
+async function startGame(){await loadMaps();connectWS();hide();enableInput();addMsg('system','Type anything to begin the adventure.')}
+function enableInput(){$('player-input').disabled=false;$('send-btn').disabled=false;$('player-input').focus()}
+
+// ── Main Menu ──────────────────────────────────────────────
+function mainMenu(){
+  modal(`<h2>MENU</h2>`,
+    `<div style="display:flex;flex-direction:column;gap:8px">
+      <button class="btn full" onclick="hide()">Resume Game</button>
+      <button class="btn sec full" onclick="saveGame();hide()">Save & Resume</button>
+      <button class="btn sec full" onclick="loadGameList()">Load Game</button>
+      <button class="btn red full" onclick="newGame()">New Game</button>
+    </div>`,'');
+}
+function newGame(){if(ws){ws.close();ws=null}sid=null;gs=null;sEl=null;streaming=false;$('narrative').innerHTML='';$('player-input').disabled=true;$('send-btn').disabled=true;$('conn-dot').classList.remove('on');$('conn-text').textContent='Offline';$('turn-display').textContent='Turn 0';showWelcome()}
+
+// ── Save/Load ──────────────────────────────────────────────
+async function saveGame(){
+  if(!sid)return;
+  try{const r=await fetch(`${API}/sessions/${sid}/save`,{method:'POST'});const d=await r.json();$('save-status').textContent='Saved';addMsg('system','Game saved.');setTimeout(()=>$('save-status').textContent='',3000)}catch(e){addMsg('error','Save failed: '+e.message)}
+}
+async function loadGameList(){
+  try{const d=await(await fetch(`${API}/sessions`)).json();const saved=d.saved||[];
+    if(!saved.length){modal(`<h2>LOAD GAME</h2>`,`<p style="color:var(--dim);text-align:center;padding:20px">No saved games found.</p>`,`<button class="btn sec" onclick="showWelcome()">Back</button>`);return}
+    modal(`<h2>LOAD GAME</h2>`,
+      `<div style="display:flex;flex-direction:column;gap:6px">${saved.map(s=>`<div class="lib-card" onclick="loadGame(${s.id})"><div class="lc-name">${s.name}</div><div class="lc-desc">Last played: ${(s.updated_at||'').slice(0,16)} | ID: ${s.id}</div></div>`).join('')}</div>`,
+      `<button class="btn sec" onclick="showWelcome()">Back</button>`);
+  }catch(e){addMsg('error','Error: '+e.message)}
+}
+async function loadGame(dbId){
+  try{const d=await(await fetch(`${API}/sessions/load/${dbId}`,{method:'POST'})).json();sid=d.session_id;if(ws)ws.close();pname='Player';await loadMaps();connectWS();hide();enableInput();addMsg('system',`Loaded: ${d.session_name} (Turn ${d.turn_count})`)}catch(e){addMsg('error','Load failed: '+e.message)}
+}
+
+// ── WebSocket ──────────────────────────────────────────────
+function connectWS(){
+  const p=location.protocol==='https:'?'wss':'ws';ws=new WebSocket(`${p}://${location.host}/ws/game/${sid}`);
+  ws.onopen=()=>{$('conn-dot').classList.add('on');$('conn-text').textContent='Connected'};
+  ws.onclose=()=>{$('conn-dot').classList.remove('on');$('conn-text').textContent='Offline';setTimeout(()=>{if(sid)connectWS()},3000)};
+  ws.onmessage=e=>handleMsg(JSON.parse(e.data));
+}
+function handleMsg(m){
+  switch(m.type){
+    case'dm_chunk':if(!streaming){streaming=true;sbuf='';$('stream-ind').style.display='block'}sbuf+=m.text;updStream(sbuf);break;
+    case'dm_stream_end':streaming=false;$('stream-ind').style.display='none';finStream(sbuf);sbuf='';break;
+    case'game_state':gs=m.state;updUI();break;
+    case'dice_roll':addMsg('roll',`${m.result.player}: ${m.result.display}`);break;
+    case'turn_events':m.events.forEach(e=>addMsg('event',e));break;
+    case'system':addMsg('system',m.text);break;
+    case'error':addMsg('error',m.message);break;
+    case'character_joined':addMsg('system',`${m.character.name} the ${m.character.char_class} joined`);break;
+  }
+}
+function addMsg(t,x){const e=document.createElement('div');e.className='msg '+t;if(t==='player')e.setAttribute('data-name',pname);e.textContent=x;$('narrative').appendChild(e);scr()}
+function updStream(t){if(!sEl){sEl=document.createElement('div');sEl.className='msg dm';$('narrative').appendChild(sEl)}sEl.innerHTML=t.replace(/^> (.+)$/gm,'<span class="msg roll" style="display:block;margin:6px 0">$1</span>');scr()}
+function finStream(t){if(sEl){sEl.innerHTML=t.replace(/^> (.+)$/gm,'<span class="msg roll" style="display:block;margin:6px 0">$1</span>');sEl=null}scr()}
+function scr(){const e=$('narrative');e.scrollTop=e.scrollHeight}
+
+// ── UI Updates ─────────────────────────────────────────────
+function updUI(){if(!gs)return;$('turn-display').textContent='Turn '+gs.turn_count;renParty();renLog();renJournal();renNPCs()}
+function renParty(){
+  const el=$('party-list');if(!gs?.players?.length){el.innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">No party members</p>';return}
+  el.innerHTML=gs.players.map(p=>{
+    const pct=Math.round(p.hp/p.max_hp*100),hc=pct<=25?'crit':pct<=50?'hurt':'',fc=pct<=25?'r':pct<=50?'y':'g';
+    const modV=s=>{const v=p[s];return v<=3?-3:v<=5?-2:v<=8?-1:v<=12?0:v<=15?1:v<=17?2:3};
+    return `<div class="cs"><div class="cs-header"><div class="cs-name">${p.name}</div><div class="cs-class">${p.char_class} Level ${p.level}</div></div><div class="cs-body">
+      <div class="cs-vitals">
+        <div class="vital hp ${hc}"><div class="vl">HP</div><div class="vv">${p.hp}/${p.max_hp}</div></div>
+        <div class="vital"><div class="vl">AC</div><div class="vv">${p.ac}</div></div>
+        <div class="vital"><div class="vl">THAC0</div><div class="vv">${p.thac0}</div></div>
+        <div class="vital"><div class="vl">Gold</div><div class="vv">${p.gold}</div></div>
+      </div>
+      <div class="hp-track"><div class="fill ${fc}" style="width:${pct}%"></div></div>
+      <div class="cs-stats">${['strength','dexterity','constitution','intelligence','wisdom','charisma'].map(s=>{const v=p[s],m=modV(s);return `<div class="cs-stat"><div class="sl">${s.slice(0,3)}</div><div class="ss">${v}</div><div class="sm ${modC(m)}">${m>0?'+':''}${m}</div></div>`}).join('')}</div>
+      ${p.weapons?.length?`<div class="cs-section"><h5>Weapons</h5>${p.weapons.map(w=>`<div class="item">${w}</div>`).join('')}</div>`:''}
+      ${p.armor&&p.armor!=='None'?`<div class="cs-section"><h5>Armor</h5><div class="item">${p.armor}</div></div>`:''}
+      ${p.inventory?.length?`<div class="cs-section"><h5>Equipment</h5>${p.inventory.map(i=>`<div class="item">${i}</div>`).join('')}</div>`:''}
+      ${p.spells_memorized?.length?`<div class="cs-section"><h5>Spells</h5>${p.spells_memorized.map(s=>{
+        const used=s.startsWith('[USED] ');const name=used?s.replace('[USED] ',''):s;
+        return `<div class="item" style="${used?'text-decoration:line-through;color:var(--dim)':''}">${used?'&#9723;':'&#9724;'} ${name}</div>`;
+      }).join('')}</div>`:''}
+      <div class="cs-section"><h5>Saving Throws</h5><div class="cs-saves">
+        <div class="cs-save"><div class="sv-name">Death</div><div class="sv-val">${p.save_death}</div></div>
+        <div class="cs-save"><div class="sv-name">Wands</div><div class="sv-val">${p.save_wands}</div></div>
+        <div class="cs-save"><div class="sv-name">Para</div><div class="sv-val">${p.save_paralysis}</div></div>
+        <div class="cs-save"><div class="sv-name">Breath</div><div class="sv-val">${p.save_breath}</div></div>
+        <div class="cs-save"><div class="sv-name">Spells</div><div class="sv-val">${p.save_spells}</div></div>
+      </div></div>
+    </div></div>`}).join('') +
+    // Retainers
+    (gs.retainers?.length ? `<div class="cs" style="border-color:var(--gold-dim)"><div class="cs-header" style="background:rgba(201,165,78,.1)"><div class="cs-name" style="font-size:13px">Retainers (${gs.retainers.filter(r=>r.hp>0).length}/${gs.retainers.length})</div></div><div class="cs-body">${
+      gs.retainers.filter(r=>r.hp>0).map(r=>{
+        const rpct=Math.round(r.hp/r.max_hp*100);
+        return `<div style="padding:6px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-weight:700;font-size:12px">${r.name}</div><div style="font-size:10px;color:var(--dim)">${r.char_class} L${r.level} | AC:${r.ac} | Loyalty:${r.loyalty} | ${r.wage_gp_per_day}gp/day</div></div>
+          <div style="text-align:right"><div style="font-size:12px">HP ${r.hp}/${r.max_hp}</div><div class="hp-track" style="width:50px"><div class="fill ${rpct<=25?'r':rpct<=50?'y':'g'}" style="width:${rpct}%"></div></div></div>
+        </div>`}).join('')
+    }</div></div>` : '')}
+function renLog(){
+  const el=$('dice-log');if(!gs?.roll_log?.length){el.innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">No rolls yet</p>';return}
+  el.innerHTML=gs.roll_log.slice(-40).reverse().map(e=>{
+    const d=Object.entries(e).filter(([k])=>!['turn','tool'].includes(k)).map(([k,v])=>`${k}:${typeof v==='object'?JSON.stringify(v):v}`).join(' ');
+    return `<div class="dl-entry"><span class="dl-turn">T${e.turn||'?'}</span><span class="dl-tool">${e.tool||'?'}</span><span class="dl-data">${d}</span></div>`}).join('')}
+
+// ── Journal ────────────────────────────────────────────────
+function renJournal(){
+  const el=$('journal-list');if(!gs?.journal?.length){el.innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">No events yet</p>';return}
+  const icons={combat:'&#9876;',treasure:'&#128176;',npc:'&#128100;',exploration:'&#128065;',death:'&#9760;',rest:'&#9790;',retainer:'&#128101;',level_up:'&#11014;'};
+  el.innerHTML=gs.journal.slice().reverse().map(e=>`<div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;display:flex;gap:6px">
+    <span style="color:var(--dim);min-width:30px">T${e.turn}</span>
+    <span style="min-width:20px">${icons[e.event_type]||'&#8226;'}</span>
+    <span style="flex:1">${e.text}</span>
+  </div>`).join('')}
+
+// ── NPC Tracker ────────────────────────────────────────────
+function renNPCs(){
+  const el=$('npc-list');if(!gs?.npc_tracker?.length){el.innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">No NPCs met yet</p>';return}
+  const dColors={hostile:'var(--red)',unfriendly:'#c86432',neutral:'var(--dim)',indifferent:'var(--dim)',friendly:'var(--green)'};
+  el.innerHTML=gs.npc_tracker.map(n=>`<div style="background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:8px;margin-bottom:6px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-weight:700;font-size:13px">${n.name}</span>
+      <span style="font-size:10px;color:${dColors[n.disposition]||'var(--dim)'};text-transform:uppercase;letter-spacing:1px">${n.disposition}${n.alive?'':' (DEAD)'}</span>
+    </div>
+    ${n.location?`<div style="font-size:10px;color:var(--dim)">Location: ${n.location}</div>`:''}
+    ${n.description?`<div style="font-size:11px;margin-top:3px">${n.description}</div>`:''}
+    ${n.notes?`<div style="font-size:10px;color:var(--dim);margin-top:2px">${n.notes}</div>`:''}
+  </div>`).join('')}
+
+// ── Popout Map ─────────────────────────────────────────────
+let mapWindow=null;
+function popoutMap(){
+  if(mapWindow&&!mapWindow.closed){mapWindow.focus();return}
+  const img=document.querySelector('#map-container img');
+  if(!img)return;
+  mapWindow=window.open('','map','width=900,height=700,resizable=yes');
+  mapWindow.document.write(`<!DOCTYPE html><html><head><title>Map</title><style>
+    body{margin:0;background:#0a0a0a;overflow:auto;cursor:grab}
+    body.dragging{cursor:grabbing}
+    img{display:block;transform-origin:0 0;transition:transform .1s}
+    .controls{position:fixed;top:10px;right:10px;display:flex;gap:4px;z-index:10}
+    .controls button{background:#1e1e1e;border:1px solid #3a3a3a;color:#d4d4d4;padding:6px 12px;cursor:pointer;border-radius:4px;font-size:14px;font-family:monospace}
+    .controls button:hover{border-color:#c9a54e;color:#c9a54e}
+    .tabs{position:fixed;top:10px;left:10px;display:flex;gap:4px;z-index:10;flex-wrap:wrap}
+    .tab{background:#1e1e1e;border:1px solid #3a3a3a;color:#666;padding:4px 10px;cursor:pointer;border-radius:4px;font-size:11px}
+    .tab.active{color:#c9a54e;border-color:#8a7234}
+  </style></head><body>
+    <div class="controls">
+      <button onclick="zoom(1.2)">+</button><button onclick="zoom(0.8)">−</button><button onclick="scale=1;render()">Reset</button>
+    </div>
+    <div class="tabs" id="ptabs"></div>
+    <img id="pimg" src="${img.src}" draggable="false">
+    <script>
+      let scale=1,ox=0,oy=0,dragging=false,sx=0,sy=0;
+      const img=document.getElementById('pimg');
+      function render(){img.style.transform='translate('+ox+'px,'+oy+'px) scale('+scale+')'}
+      function zoom(f){scale*=f;render()}
+      img.addEventListener('mousedown',e=>{dragging=true;sx=e.clientX-ox;sy=e.clientY-oy;document.body.classList.add('dragging')});
+      window.addEventListener('mousemove',e=>{if(dragging){ox=e.clientX-sx;oy=e.clientY-sy;render()}});
+      window.addEventListener('mouseup',()=>{dragging=false;document.body.classList.remove('dragging')});
+      img.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY<0?1.1:0.9)});
+    <\/script></body></html>`);
+  // Sync map tabs
+  if(maps?.maps){
+    const mkey=maps._key||'';
+    const tabs=mapWindow.document.getElementById('ptabs');
+    if(tabs)tabs.innerHTML=Object.entries(maps.maps).map(([k,v])=>
+      `<div class="tab ${k===curMap?'active':''}" onclick="document.getElementById('pimg').src='${API}/maps/${mkey}/image/${v.file}';document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));this.classList.add('active')">${v.label}</div>`
+    ).join('');
+  }
+}
+
+// ── Maps ───────────────────────────────────────────────────
+let activeModule='';
+async function loadMaps(){
+  try{
+    const d=await(await fetch(`${API}/maps`)).json();
+    // Try multiple sources for the module identifier
+    const candidates=[activeModule, window._mod, gs?.active_module].filter(Boolean).map(s=>s.toLowerCase());
+    console.log('loadMaps candidates:', candidates, 'available:', Object.keys(d));
+    let mapKey='';
+    for(const mod of candidates){
+      for(const k of Object.keys(d)){
+        if(k===mod || k.toLowerCase()===mod || mod.includes(k.toLowerCase()) || k.toLowerCase().includes(mod) || (d[k].module||'').toLowerCase().includes(mod) || mod.includes((d[k].module||'').toLowerCase())){
+          mapKey=k;break;
+        }
+      }
+      if(mapKey)break;
+    }
+    if(mapKey){
+      maps=await(await fetch(`${API}/maps/${mapKey}/data`)).json();
+      maps._key=mapKey;
+      renMapTabs();
+      const firstMap=Object.keys(maps.maps||{})[0];
+      if(firstMap)showMapF(firstMap);
+    }else{
+      maps={};
+      $('map-container').innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">No maps for this module yet.<br>Add map images to data/maps/'+mod+'/</p>';
+      $('map-tabs').innerHTML='';
+    }
+  }catch(e){maps={};$('map-container').innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">No maps available</p>';$('map-tabs').innerHTML=''}
+}
+function renMapTabs(){if(!maps.maps)return;$('map-tabs').innerHTML=Object.entries(maps.maps).map(([k,v])=>`<div class="mt ${k===curMap?'active':''}" onclick="showMapF('${k}')">${v.label}</div>`).join('')}
+function showMapF(k){curMap=k;const i=maps.maps?.[k];if(!i)return;const mkey=maps._key||'xyntillan';$('map-container').innerHTML=`<img src="${API}/maps/${mkey}/image/${i.file}" alt="${i.label}" onclick="$('map-overlay-img').src=this.src;$('map-overlay').style.display='block'">`;renMapTabs()}
+
+// ── Input ──────────────────────────────────────────────────
+function sendAction(){
+  const inp=$('player-input'),t=inp.value.trim();if(!t||!ws)return;
+  if(t.startsWith('/roll'))ws.send(JSON.stringify({type:'roll',notation:t.split(' ')[1]||'1d20',player:pname}));
+  else if(t.startsWith('/'))ws.send(JSON.stringify({type:'command',command:t}));
+  else if(gs&&gs.turn_count===0)ws.send(JSON.stringify({type:'start_adventure'}));
+  else{addMsg('player',t);ws.send(JSON.stringify({type:'action',player:pname,text:t}))}
+  inp.value='';inp.focus();
+}
+$('player-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendAction()});
+function switchTab(n,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));$('tab-'+n).classList.add('active');el.classList.add('active')}
+
+// ── Init ───────────────────────────────────────────────────
+showWelcome();
+</script>
+</body>
+</html>

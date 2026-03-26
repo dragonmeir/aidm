@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ai-dungeon-master"
-version = "0.1.0"
-description = "AI Dungeon Master for OSR/OSE tabletop RPGs"
+version = "0.2.0"
+description = "AI Dungeon Master server for OSR/OSE tabletop RPGs"
 requires-python = ">=3.10"
 dependencies = [
     "chromadb>=0.4.0",
@@ -15,10 +15,14 @@ dependencies = [
     "pydantic>=2.0.0",
     "pyyaml>=6.0",
     "sentence-transformers>=2.2.0",
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.27.0",
+    "websockets>=12.0",
 ]
 
 [project.scripts]
 aidm = "src.main:main"
+aidm-server = "src.server:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

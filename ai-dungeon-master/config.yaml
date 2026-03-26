@@ -1,51 +1,54 @@
-# AI Dungeon Master Configuration
+# AI Dungeon Master - Server Configuration
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  # Set to true to allow connections from any origin (dev mode)
+  cors_allow_all: true
 
 ollama:
-  model: "llama3.2:3b"      # Smaller model, much faster on CPU
+  model: "dolphin-llama3:8b"
   base_url: "http://localhost:11434"
   temperature: 0.8
   context_length: 8192
 
-rag:
-  # Multiple PDF roots since your collection spans drives
-  pdf_roots:
-    - "D:/Tabletop rpg"
-    - "E:/Tabletop rpg"
+  # Vision model for map analysis (set to "" to disable)
+  vision_model: ""
 
-  # Only these specific PDFs get indexed. Pick your rules + one adventure.
-  # Paths are relative to whichever pdf_root they're found under.
+rag:
+  # PDF roots - add your local paths here
+  pdf_roots:
+    - "/home/tyler/tabletop-rpg"
+
+  # Specific PDFs to index (paths relative to whichever pdf_root they live under)
   include_files:
     # --- OSE Core Rules ---
-    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Rules Tome [1.3].pdf"
-    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Monsters [1.0].pdf"
-    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Treasures [1.0].pdf"
-    - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Classic Fantasy/Old-School Essentials Classic Fantasy Cleric and Magic-User Spells [1.0].pdf"
+    - "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Rules Tome [1.3].pdf"
+    - "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Monsters [1.0].pdf"
+    - "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Treasures [1.0].pdf"
+    - "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Cleric and Magic-User Spells [1.0].pdf"
 
-    # --- OSE Advanced Fantasy (optional, for extra classes/spells) ---
-    # - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Advanced Fantasy/Old-School Essentials Advanced Fantasy Player's Tome [1.2].pdf"
-    # - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Advanced Fantasy/Old-School Essentials Advanced Fantasy Referee's Tome [1.2].pdf"
-    # - "OSR/Old-School Essentials; BX Essentials/Old-School Essentials Advanced Fantasy/Old-School Essentials Advanced Fantasy Monsters [2nd print 1.0].pdf"
+    # --- Adventure Module (uncomment ONE) ---
+    # - "OSR/Castle Xyntillan/EMDT60 Castle Xyntillan (SW).pdf"
+    # - "OSR/Castle Xyntillan/EMDT60 Castle Xyntillan GM's Worksheet.pdf"
+    # - "OSR/Barrowmaze/Barrowmaze Complete.pdf"
+    # - "OSR/Tomb of the Serpent Kings/Tomb of the Serpent Kings (OSR).pdf"
 
-    # --- Adventure Module ---
-    # Uncomment ONE adventure to run:
-    - "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan (SW).pdf"
-    - "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan GM's Worksheet.pdf"
-    # - "OSR/# OSR Generic/OSR Adventures & Settings/Tomb of the Serpent Kings (OSR).pdf"
-    # - "OSR/# OSR Generic/OSR Adventures & Settings/Maze of the Blue Medusa (OSR).pdf"
-
-    # --- Optional extras ---
-    # - "OSR/# OSR Generic/OSR Monster Manuals/CC1 Creature Compendium (OSR).pdf"
-    # - "OSR/# OSR Generic/OSR Combat/Combat Rules (OSR).Pdf"
-
-  chunk_size: 500            # tokens per chunk
-  chunk_overlap: 50          # overlap between chunks
-  top_k: 5                   # number of RAG results to include
+  chunk_size: 500
+  chunk_overlap: 50
+  top_k: 8
   embedding_model: "all-MiniLM-L6-v2"
 
 game:
-  system: "ose"              # ose, adnd1e, bx
-  max_players: 2
+  system: "ose"
+  max_players: 0        # 0 = unlimited
   auto_save: true
+  auto_save_interval: 10  # turns between auto-saves
+  # Wandering monster check frequency (turns)
+  wandering_monster_interval: 2
+  # Torch duration in turns
+  torch_duration: 6
+  lantern_duration: 24
 
 persistence:
   db_path: "data/sessions/aidm.db"

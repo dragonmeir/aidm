@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Dungeon Master — Library</title>
+<style>
+:root{--bg:#0a0a0a;--bg2:#141414;--bg3:#1e1e1e;--bg4:#282828;--gold:#c9a54e;--gold-dim:#8a7234;--gold-bg:rgba(201,165,78,.08);--red:#a83232;--green:#3a8a3a;--blue:#3a5a8a;--purple:#6a3a8a;--text:#d4d4d4;--dim:#666;--border:#2a2a2a;--border2:#3a3a3a}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Courier New',monospace;min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+header{background:var(--bg2);border-bottom:1px solid var(--gold-dim);padding:10px 24px;display:flex;justify-content:space-between;align-items:center}
+header h1{color:var(--gold);font-size:16px;letter-spacing:3px}header a{color:var(--gold-dim);text-decoration:none;font-size:13px}header a:hover{color:var(--gold)}
+.container{max-width:1000px;margin:0 auto;padding:24px}
+h2{color:var(--gold);font-size:16px;margin-bottom:12px;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:14px;transition:border-color .15s}.card:hover{border-color:var(--gold-dim)}
+.card-name{font-size:15px;font-weight:700;margin-bottom:3px}.card-desc{font-size:11px;color:var(--dim);margin-bottom:6px;line-height:1.4}
+.tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:9px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.tag.rules{background:rgba(58,90,138,.2);color:var(--blue)}.tag.module{background:rgba(106,58,138,.2);color:var(--purple)}.tag.both{background:rgba(138,114,52,.2);color:var(--gold)}.tag.sys{background:rgba(58,138,58,.15);color:var(--green);margin-left:3px}
+.bs{font-size:10px;padding:2px 7px;border-radius:3px;display:inline-block;margin-left:4px}.bs.y{background:rgba(58,138,58,.15);color:var(--green)}.bs.n{background:rgba(168,50,50,.15);color:var(--red)}
+.card-meta{font-size:10px;color:var(--dim);margin-top:6px}
+.card-actions{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;background:var(--bg3);border:1px solid var(--border2);color:var(--dim);padding:5px 10px;font-size:11px;cursor:pointer;border-radius:4px;font-family:inherit;transition:all .15s;gap:3px}
+.btn:hover{color:var(--gold);border-color:var(--gold-dim)}.btn.pri{background:var(--gold-dim);color:var(--bg);border-color:var(--gold-dim)}.btn.pri:hover{background:var(--gold)}
+.btn.red{color:var(--red)}.btn.red:hover{border-color:var(--red)}.btn:disabled{opacity:.3;cursor:default}
+.section{margin-bottom:28px}.section h3{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.fcard{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:16px;margin-bottom:20px}
+.fg{margin-bottom:10px}.fg label{display:block;color:var(--dim);font-size:10px;margin-bottom:3px;text-transform:uppercase;letter-spacing:1px}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--bg);border:1px solid var(--border2);color:var(--text);padding:7px 10px;font-family:inherit;font-size:13px;border-radius:4px;outline:none}
+.fg textarea{min-height:70px;resize:vertical;font-size:12px}.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold-dim)}
+.fg .help{font-size:10px;color:var(--dim);margin-top:2px}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.sbox{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:10px;flex:1;text-align:center}
+.sbox .sl{color:var(--dim);font-size:10px;text-transform:uppercase}.sbox .sv{color:var(--gold);font-weight:700;font-size:16px;margin-top:2px}
+/* File Browser */
+.fb{background:var(--bg);border:1px solid var(--border2);border-radius:6px;overflow:hidden;margin-top:8px}
+.fb-bar{background:var(--bg3);padding:6px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;font-size:12px}
+.fb-bar .fb-path{flex:1;color:var(--dim);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fb-bar button{background:var(--bg4);border:1px solid var(--border);color:var(--dim);padding:3px 8px;font-size:10px;cursor:pointer;border-radius:3px;font-family:inherit}
+.fb-bar button:hover{color:var(--gold);border-color:var(--gold-dim)}
+.fb-list{max-height:300px;overflow-y:auto}
+.fb-item{display:flex;align-items:center;padding:6px 12px;cursor:pointer;gap:8px;font-size:13px;border-bottom:1px solid var(--border);transition:background .1s}
+.fb-item:hover{background:var(--bg3)}
+.fb-item.selected{background:var(--gold-bg);border-left:3px solid var(--gold)}
+.fb-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.fb-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fb-size{color:var(--dim);font-size:11px;width:60px;text-align:right;flex-shrink:0}
+.fb-check{width:20px;text-align:center;flex-shrink:0;color:var(--green);font-weight:700}
+.fb-roots{display:flex;gap:6px;flex-wrap:wrap;padding:8px}
+.fb-root{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:6px 12px;cursor:pointer;font-size:12px;transition:all .15s}
+.fb-root:hover{border-color:var(--gold-dim);color:var(--gold)}
+.selected-files{margin-top:8px}.sf-item{display:flex;align-items:center;gap:6px;padding:3px 8px;font-size:11px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;margin-bottom:3px}
+.sf-item .sf-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
+.sf-item .sf-rm{color:var(--red);cursor:pointer;font-size:10px;padding:2px 4px}
+.sf-item .sf-rm:hover{color:#ff4444}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--bg3);border:1px solid var(--gold-dim);color:var(--gold);padding:10px 20px;border-radius:6px;font-size:13px;display:none;z-index:100;animation:si .3s}
+@keyframes si{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+</head>
+<body>
+<header><h1>LIBRARY MANAGER</h1><a href="/play">&larr; Back to Game</a></header>
+<div class="container">
+
+<!-- Status Row -->
+<div style="display:flex;gap:10px;margin-bottom:20px">
+  <div class="sbox"><div class="sl">Chunks</div><div class="sv" id="s-chunks">...</div></div>
+  <div class="sbox"><div class="sl">Rulesets</div><div class="sv" id="s-rules">...</div></div>
+  <div class="sbox"><div class="sl">Modules</div><div class="sv" id="s-mods">...</div></div>
+  <div class="sbox"><div class="sl">Model</div><div class="sv" id="s-model">...</div></div>
+</div>
+
+<!-- Library -->
+<div class="section" id="sec-rules"><h3>Rulesets</h3><div class="grid" id="rules-grid"></div></div>
+<div class="section" id="sec-modules"><h3>Adventure Modules</h3><div class="grid" id="modules-grid"></div></div>
+
+<!-- Add New -->
+<h2>Add to Library</h2>
+<div class="fcard">
+  <div class="row">
+    <div class="fg"><label>Name (unique key)</label><input id="f-name" placeholder="e.g. barrowmaze"></div>
+    <div class="fg"><label>Display Name</label><input id="f-display" placeholder="e.g. Barrowmaze Complete"></div>
+  </div>
+  <div class="row">
+    <div class="fg"><label>Type</label><select id="f-type"><option value="module">Adventure Module</option><option value="rules">Rules System</option><option value="both">Both</option></select></div>
+    <div class="fg"><label>Game System Tag</label><input id="f-system" placeholder="e.g. ose, adnd1e, bx"><div class="help">Links modules to their rules</div></div>
+  </div>
+  <div class="fg"><label>Description</label><input id="f-desc" placeholder="Brief description"></div>
+
+  <!-- File Browser -->
+  <div class="fg">
+    <label>PDF Files</label>
+    <div class="selected-files" id="sel-files"></div>
+    <div class="fb" id="file-browser">
+      <div class="fb-bar">
+        <button onclick="fbUp()">&#8593; Up</button>
+        <span class="fb-path" id="fb-path">Choose files...</span>
+        <button onclick="fbHome()">Home</button>
+      </div>
+      <div class="fb-list" id="fb-list"></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;justify-content:flex-end">
+    <button class="btn pri" onclick="addEntry()">Add to Library</button>
+  </div>
+</div>
+
+<!-- Map Manager -->
+<h2>Maps</h2>
+<div class="fcard">
+  <div class="fg"><label>Select Module</label><select id="m-module" onchange="loadModuleMaps()"><option value="">-- Select --</option></select></div>
+  <div id="current-maps"></div>
+  <div class="fg" id="map-browser-section" style="display:none">
+    <label>Browse for Map Images</label>
+    <div class="selected-files" id="map-sel-files"></div>
+    <div class="fb" id="map-file-browser">
+      <div class="fb-bar">
+        <button onclick="mfbUp()">&#8593; Up</button>
+        <span class="fb-path" id="mfb-path">Choose map files...</span>
+        <button onclick="mfbHome()">Home</button>
+      </div>
+      <div class="fb-list" id="mfb-list"></div>
+    </div>
+  </div>
+  <div id="map-label-section" style="display:none">
+    <div id="map-labels"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+      <button class="btn pri" onclick="addMaps()">Add Maps to Module</button>
+    </div>
+  </div>
+</div>
+
+<!-- Briefing Editor -->
+<h2>Briefing Editor</h2>
+<div class="fcard">
+  <div class="fg"><label>Select Module</label><select id="b-module"><option value="">-- Select --</option></select></div>
+  <div class="fg"><label>Briefing Text</label><textarea id="b-text" style="min-height:200px" placeholder="Select a module above, then edit or auto-generate its DM briefing."></textarea></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end">
+    <button class="btn" onclick="genBriefing()" id="btn-gen">Auto-Generate from PDFs</button>
+    <button class="btn pri" onclick="saveBriefing()">Save Briefing</button>
+  </div>
+</div>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const API=location.origin;
+let selectedPdfs=[];
+let fbCurrentPath='';
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3000)}
+
+// ── Load Library ───────────────────────────────────────────
+async function load(){
+  try{const st=await(await fetch(`${API}/status`)).json();
+    document.getElementById('s-chunks').textContent=st.indexed_chunks;
+    document.getElementById('s-model').textContent=st.ollama_model}catch(e){}
+  try{
+    const lib=await(await fetch(`${API}/library`)).json();
+    const rules=lib.rules||{},mods=lib.modules||{};
+    document.getElementById('s-rules').textContent=Object.keys(rules).length;
+    document.getElementById('s-mods').textContent=Object.keys(mods).length;
+    document.getElementById('rules-grid').innerHTML=Object.entries(rules).length?Object.entries(rules).map(([k,v])=>renderCard(k,v,'rules',lib.entries[k])).join(''):'<p style="color:var(--dim)">No rulesets yet</p>';
+    document.getElementById('modules-grid').innerHTML=Object.entries(mods).length?Object.entries(mods).map(([k,v])=>renderCard(k,v,'module',lib.entries[k])).join(''):'<p style="color:var(--dim)">No modules yet</p>';
+    const bsel=document.getElementById('b-module');bsel.innerHTML='<option value="">-- Select --</option>';
+    const msel=document.getElementById('m-module');msel.innerHTML='<option value="">-- Select --</option>';
+    for(const [k,v] of Object.entries(mods)){
+      bsel.innerHTML+=`<option value="${k}">${v.display_name}</option>`;
+      msel.innerHTML+=`<option value="${k}">${v.display_name}</option>`;
+    }
+  }catch(e){console.error(e)}
+}
+
+function renderCard(k,info,type,full){
+  const hb=info.has_briefing||false,pdfs=full?.pdf_files||[];
+  return `<div class="card"><div class="card-name">${info.display_name}</div><div class="card-desc">${info.description||'No description'}</div>
+    <span class="tag ${type}">${type}</span>${info.system?`<span class="tag sys">${info.system}</span>`:''}
+    ${type!=='rules'?`<span class="bs ${hb?'y':'n'}">${hb?'Briefing Ready':'No Briefing'}</span>`:''}
+    <div class="card-meta">${pdfs.length} PDF${pdfs.length!==1?'s':''}</div>
+    <div class="card-actions">
+      <button class="btn" onclick="editEntryFiles('${k}',null)">Add/Edit Files</button>
+      <button class="btn ${pdfs.length?'pri':''}" onclick="ingestEntry('${k}')" ${pdfs.length?'':'disabled'}>Ingest ${pdfs.length} PDFs</button>
+      ${type!=='rules'?`<button class="btn" onclick="genBriefFor('${k}')">Gen Briefing</button>`:''}
+      <button class="btn red" onclick="removeEntry('${k}')">Remove</button>
+    </div></div>`;
+}
+
+async function addEntry(){
+  const name=document.getElementById('f-name').value.trim(),display=document.getElementById('f-display').value.trim();
+  if(!name||!display){toast('Name and display name required');return}
+  if(!selectedPdfs.length){toast('Select PDF files from the browser below first!');return}
+  const paths=selectedPdfs.map(f=>f.path);
+  console.log('Adding with PDFs:',paths);
+  try{await fetch(`${API}/library/add`,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name,display_name:display,entry_type:document.getElementById('f-type').value,
+      system:document.getElementById('f-system').value.trim(),pdf_files:paths,
+      description:document.getElementById('f-desc').value.trim()})});
+    toast(`Added: ${display} (${paths.length} PDFs)`);selectedPdfs=[];renderSelectedFiles();
+    document.getElementById('f-name').value='';document.getElementById('f-display').value='';document.getElementById('f-desc').value='';
+    load()}catch(e){toast('Error: '+e.message)}
+}
+
+async function removeEntry(k){if(!confirm(`Remove "${k}"?`))return;try{await fetch(`${API}/library/${k}`,{method:'DELETE'});toast('Removed');load()}catch(e){toast('Error')}}
+
+async function ingestEntry(k){
+  // Check if entry has PDFs
+  const lib=await(await fetch(`${API}/library`)).json();
+  const entry=lib.entries?.[k];
+  if(!entry?.pdf_files?.length){
+    // No PDFs — prompt user to add them
+    toast('No PDFs assigned to this entry. Use "Add Files" to select PDFs first.');
+    editEntryFiles(k,entry);
+    return;
+  }
+  toast(`Ingesting ${k} (${entry.pdf_files.length} PDFs)...`);
+  try{const d=await(await fetch(`${API}/library/${k}/ingest`,{method:'POST'})).json();
+    toast(`${d.chunks_indexed} chunks indexed (${d.total_in_store} total)`);load()
+  }catch(e){toast('Failed: '+e.message)}
+}
+
+// Add files to an existing entry
+async function editEntryFiles(k,entry){
+  if(!entry){
+    const lib=await(await fetch(`${API}/library`)).json();
+    entry=lib.entries?.[k]||{};
+  }
+  selectedPdfs=[];
+  if(entry?.pdf_files){
+    entry.pdf_files.forEach(p=>selectedPdfs.push({path:p,name:p.split('/').pop()}));
+  }
+  // Scroll to the add form and pre-fill
+  document.getElementById('f-name').value=k;
+  document.getElementById('f-display').value=entry?.display_name||k;
+  document.getElementById('f-type').value=entry?.entry_type||'module';
+  document.getElementById('f-system').value=entry?.system||'';
+  document.getElementById('f-desc').value=entry?.description||'';
+  renderSelectedFiles();
+  document.getElementById('f-name').scrollIntoView({behavior:'smooth'});
+  toast('Select PDFs below, then click "Add to Library" to update');
+}
+
+async function genBriefFor(k){
+  toast(`Generating briefing for ${k}...`);
+  try{const d=await(await fetch(`${API}/library/${k}/generate-briefing`,{method:'POST'})).json();toast(`Briefing: ${d.briefing_length} chars`);load();
+    document.getElementById('b-module').value=k;loadBriefText(k)}catch(e){toast('Failed: '+e.message)}
+}
+
+// ── File Browser ───────────────────────────────────────────
+async function fbNavigate(path){
+  try{
+    const url=path?`${API}/files/browse?path=${encodeURIComponent(path)}`:`${API}/files/browse`;
+    const d=await(await fetch(url)).json();
+    fbCurrentPath=d.path||'';
+    document.getElementById('fb-path').textContent=d.path||'Select a location';
+    const list=document.getElementById('fb-list');
+
+    if(!d.path&&d.roots?.length){
+      // Show roots
+      list.innerHTML=`<div class="fb-roots">${d.roots.map(r=>`<div class="fb-root" onclick="fbNavigate('${r.path.replace(/'/g,"\\'")}')">${r.name}</div>`).join('')}</div>`;
+      return;
+    }
+
+    let html='';
+    // Directories
+    for(const dir of d.dirs){
+      html+=`<div class="fb-item" ondblclick="fbNavigate('${dir.path.replace(/'/g,"\\'")}')">
+        <span class="fb-icon">&#128193;</span><span class="fb-name">${dir.name}</span><span class="fb-size">DIR</span><span class="fb-check"></span></div>`;
+    }
+    // PDF files
+    for(const f of d.files){
+      const isSel=selectedPdfs.some(s=>s.path===f.path);
+      html+=`<div class="fb-item ${isSel?'selected':''}" onclick="fbToggleFile(this,'${f.path.replace(/'/g,"\\'")}','${f.name.replace(/'/g,"\\'")}')">
+        <span class="fb-icon">&#128196;</span><span class="fb-name">${f.name}</span><span class="fb-size">${f.size_mb} MB</span>
+        <span class="fb-check">${isSel?'&#10003;':''}</span></div>`;
+    }
+    if(!d.dirs.length&&!d.files.length)html='<div style="padding:16px;color:var(--dim);text-align:center">No PDFs or folders here</div>';
+    list.innerHTML=html;
+  }catch(e){toast('Browse error: '+e.message)}
+}
+
+function fbToggleFile(el,path,name){
+  const idx=selectedPdfs.findIndex(f=>f.path===path);
+  if(idx>=0){selectedPdfs.splice(idx,1);el.classList.remove('selected');el.querySelector('.fb-check').innerHTML=''}
+  else{selectedPdfs.push({path,name});el.classList.add('selected');el.querySelector('.fb-check').innerHTML='&#10003;'}
+  renderSelectedFiles();
+}
+
+function fbUp(){
+  if(!fbCurrentPath)return;
+  const parts=fbCurrentPath.split('/');parts.pop();
+  const parent=parts.join('/')||'/';
+  fbNavigate(parent);
+}
+function fbHome(){fbNavigate('')}
+
+function renderSelectedFiles(){
+  const el=document.getElementById('sel-files');
+  if(!selectedPdfs.length){el.innerHTML='';return}
+  el.innerHTML=selectedPdfs.map((f,i)=>`<div class="sf-item"><span class="sf-name" title="${f.path}">${f.name}</span><span class="sf-rm" onclick="rmSelFile(${i})">&#10005;</span></div>`).join('');
+}
+function rmSelFile(i){selectedPdfs.splice(i,1);renderSelectedFiles();if(fbCurrentPath)fbNavigate(fbCurrentPath)}
+
+// ── Map Manager ────────────────────────────────────────────
+let mapSelectedFiles=[];
+let mfbCurrentPath='';
+
+async function loadModuleMaps(){
+  const mod=document.getElementById('m-module').value;
+  const el=document.getElementById('current-maps');
+  const brSec=document.getElementById('map-browser-section');
+  const lbSec=document.getElementById('map-label-section');
+  mapSelectedFiles=[];renderMapSelected();
+
+  if(!mod){el.innerHTML='';brSec.style.display='none';lbSec.style.display='none';return}
+
+  brSec.style.display='block';
+  mfbNavigate('');
+
+  // Load existing maps
+  try{
+    const resp=await fetch(`${API}/maps/${mod}/data`);
+    if(resp.ok){
+      const d=await resp.json();
+      const mapEntries=Object.entries(d.maps||{});
+      if(mapEntries.length){
+        el.innerHTML=`<div style="margin:8px 0"><h4 style="font-size:10px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:6px">Current Maps (${mapEntries.length})</h4>
+          ${mapEntries.map(([k,v])=>`<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--border)">
+            <img src="${API}/maps/${mod}/image/${v.file}" style="width:60px;height:40px;object-fit:cover;border-radius:3px;border:1px solid var(--border)" onerror="this.style.display='none'">
+            <span style="flex:1;font-size:13px">${v.label}</span>
+            <span style="color:var(--dim);font-size:11px">${v.file}</span>
+            <button class="btn red" style="padding:3px 8px;font-size:10px" onclick="removeMap('${mod}','${k}')">Remove</button>
+          </div>`).join('')}</div>`;
+      }else{el.innerHTML='<p style="color:var(--dim);font-size:12px;margin:8px 0">No maps yet. Browse and add map files below.</p>'}
+    }else{el.innerHTML='<p style="color:var(--dim);font-size:12px;margin:8px 0">No maps yet. Browse and add map files below.</p>'}
+  }catch(e){el.innerHTML='<p style="color:var(--dim);font-size:12px;margin:8px 0">No maps yet. Browse and add map files below.</p>'}
+}
+
+async function removeMap(mod,key){
+  if(!confirm(`Remove map "${key}"?`))return;
+  try{await fetch(`${API}/maps/${mod}/${key}`,{method:'DELETE'});toast('Map removed');loadModuleMaps()}catch(e){toast('Error')}
+}
+
+async function mfbNavigate(path){
+  try{
+    const url=path?`${API}/files/browse-maps?path=${encodeURIComponent(path)}`:`${API}/files/browse-maps`;
+    const d=await(await fetch(url)).json();
+    mfbCurrentPath=d.path||'';
+    document.getElementById('mfb-path').textContent=d.path||'Select a location';
+    const list=document.getElementById('mfb-list');
+
+    if(!d.path&&d.roots?.length){
+      list.innerHTML=`<div class="fb-roots">${d.roots.map(r=>`<div class="fb-root" onclick="mfbNavigate('${r.path.replace(/'/g,"\\'")}')">${r.name}</div>`).join('')}</div>`;
+      return;
+    }
+
+    let html='';
+    for(const dir of d.dirs)html+=`<div class="fb-item" ondblclick="mfbNavigate('${dir.path.replace(/'/g,"\\'")}')"><span class="fb-icon">&#128193;</span><span class="fb-name">${dir.name}</span><span class="fb-size">DIR</span><span class="fb-check"></span></div>`;
+    for(const f of d.files){
+      const sel=mapSelectedFiles.some(s=>s.path===f.path);
+      html+=`<div class="fb-item ${sel?'selected':''}" onclick="mfbToggle(this,'${f.path.replace(/'/g,"\\'")}','${f.name.replace(/'/g,"\\'")}')"><span class="fb-icon">&#128506;</span><span class="fb-name">${f.name}</span><span class="fb-size">${f.size_mb}MB</span><span class="fb-check">${sel?'&#10003;':''}</span></div>`;
+    }
+    if(!d.dirs.length&&!d.files.length)html='<div style="padding:12px;color:var(--dim);text-align:center">No map files here</div>';
+    list.innerHTML=html;
+  }catch(e){toast('Browse error')}
+}
+
+function mfbToggle(el,path,name){
+  const idx=mapSelectedFiles.findIndex(f=>f.path===path);
+  if(idx>=0){mapSelectedFiles.splice(idx,1);el.classList.remove('selected');el.querySelector('.fb-check').innerHTML=''}
+  else{mapSelectedFiles.push({path,name,label:name.replace(/\.[^.]+$/,'').replace(/[_-]/g,' ')});el.classList.add('selected');el.querySelector('.fb-check').innerHTML='&#10003;'}
+  renderMapSelected();
+}
+
+function mfbUp(){if(mfbCurrentPath){const p=mfbCurrentPath.split('/');p.pop();mfbNavigate(p.join('/')||'/')}}
+function mfbHome(){mfbNavigate('')}
+
+function renderMapSelected(){
+  const el=document.getElementById('map-sel-files');
+  const lbSec=document.getElementById('map-label-section');
+  if(!mapSelectedFiles.length){el.innerHTML='';lbSec.style.display='none';return}
+  el.innerHTML=mapSelectedFiles.map((f,i)=>`<div class="sf-item"><span class="sf-name">${f.name}</span><span class="sf-rm" onclick="rmMapFile(${i})">&#10005;</span></div>`).join('');
+  // Show label inputs
+  lbSec.style.display='block';
+  document.getElementById('map-labels').innerHTML=mapSelectedFiles.map((f,i)=>`<div class="fg" style="margin-bottom:6px"><label>${f.name}</label><input value="${f.label}" onchange="mapSelectedFiles[${i}].label=this.value" placeholder="Label, e.g. Ground Floor"></div>`).join('');
+}
+function rmMapFile(i){mapSelectedFiles.splice(i,1);renderMapSelected();if(mfbCurrentPath)mfbNavigate(mfbCurrentPath)}
+
+async function addMaps(){
+  const mod=document.getElementById('m-module').value;
+  if(!mod){toast('Select a module first');return}
+  if(!mapSelectedFiles.length){toast('Select map files first');return}
+  try{
+    const d=await(await fetch(`${API}/maps/add`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({module:mod,files:mapSelectedFiles.map(f=>({path:f.path,label:f.label}))})})).json();
+    toast(`Added ${d.added.length} maps (${d.total_maps} total)`);
+    mapSelectedFiles=[];renderMapSelected();loadModuleMaps();
+  }catch(e){toast('Error: '+e.message)}
+}
+
+// ── Briefing Editor ────────────────────────────────────────
+document.getElementById('b-module').addEventListener('change',function(){if(this.value)loadBriefText(this.value);else document.getElementById('b-text').value=''});
+
+async function loadBriefText(k){
+  try{const lib=await(await fetch(`${API}/library`)).json();const e=lib.entries?.[k];
+    document.getElementById('b-text').value=e?.briefing||'(No briefing — auto-generate or write one)'}catch(e){}}
+
+async function genBriefing(){
+  const k=document.getElementById('b-module').value;if(!k){toast('Select a module');return}
+  const btn=document.getElementById('btn-gen');btn.disabled=true;btn.textContent='Generating...';
+  await genBriefFor(k);btn.disabled=false;btn.textContent='Auto-Generate from PDFs';
+}
+
+async function saveBriefing(){
+  const k=document.getElementById('b-module').value,text=document.getElementById('b-text').value;
+  if(!k){toast('Select a module');return}
+  try{
+    // Get existing entry data first
+    const lib=await(await fetch(`${API}/library`)).json();
+    const existing=lib.entries?.[k]||{};
+    await fetch(`${API}/library/add`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:k,display_name:existing.display_name||k,entry_type:existing.entry_type||'module',
+        system:existing.system||'',pdf_files:existing.pdf_files||[],description:existing.description||'',briefing:text})});
+    toast('Briefing saved');load()}catch(e){toast('Error: '+e.message)}
+}
+
+// ── Init ───────────────────────────────────────────────────
+load();
+fbNavigate('');
+</script>
+</body>
+</html>

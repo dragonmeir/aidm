@@ -1,0 +1,153 @@
+{
+  "entries": {
+    "ose": {
+      "name": "ose",
+      "display_name": "Old-School Essentials",
+      "entry_type": "rules",
+      "system": "ose",
+      "pdf_files": [
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Rules Tome [1.3].pdf",
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Monsters [1.0].pdf",
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Treasures [1.0].pdf",
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Cleric and Magic-User Spells [1.0].pdf"
+      ],
+      "description": "B/X D&D rules as presented in Old-School Essentials Classic Fantasy.",
+      "briefing": "",
+      "setting": "",
+      "starting_location": "",
+      "intro_queries": [],
+      "compatible_systems": [],
+      "source_labels": [
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Rules Tome [1.3]",
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Monsters [1.0]",
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Treasures [1.0]",
+        "OSR/Old-School Essentials/Old-School Essentials Classic Fantasy Cleric and Magic-User Spells [1.0]"
+      ]
+    },
+    "xyntillan": {
+      "name": "xyntillan",
+      "display_name": "Castle Xyntillan",
+      "entry_type": "module",
+      "system": "ose",
+      "pdf_files": [
+        "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan (SW).pdf",
+        "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan GM's Worksheet.pdf"
+      ],
+      "description": "A haunted castle crawl for levels 1-6. The Mal\u00e9vol family's crumbling castle on a crystal-clear lake.",
+      "briefing": "# Castle Xyntillan \u2014 DM Briefing\nWARNING: You may ONLY use names, places, and NPCs listed in this briefing. If something is not listed here, it DOES NOT EXIST in this world. Do not invent tavern names, NPC names, shop names, or locations. If a player goes somewhere not listed, say \"There's nothing of note there\" or redirect to a listed location.\n\n## The Setting\nCastle Xyntillan sits on the shores of a crystal-clear lake in the Valley of the Three Rainbows. The nearby town is **Tours-en-Savoy**.\n\n## Tours-en-Savoy \u2014 COMPLETE list of locations\nThe town has ONLY these establishments. There are NO other named shops, taverns, or locations:\n1. **Mme. Polidori's** \u2014 Fine arts establishment. Mme. Polidori (Thief 3), retired opera singer, buys art objects, playbooks, librettos, sheet music at full price. Her girls (Thief 1) each have 1-in-6 chance to know a rumor.\n2. **Ben Mordechai's Curios & Antiques** \u2014 Ramshackle junk shop. Ben Mordechai (Magic-User 6) identifies curiosities for 100 gp. Employs Simon & Jacob (Fighter 1). Burly clay man in corner looks like a golem but isn't. Has 1d3 random curios in stock.\n3. **The Barracks** \u2014 Where soldiers and retainers can be hired.\n4. **Local pubs and inns** \u2014 No specific names given. Just call them \"a pub\" or \"an inn.\" Do NOT invent names for them.\n5. **Count Giscard Mal\u00e9vol's residence** \u2014 He nominally rules the town but is afraid of the castle's denizens, who consider him a traitor.\n\nThere is NO tavern called \"Le Chaudron M\u00e1gique\", \"The Shady Lady\", \"The Red Bull\", or any other invented name. If players want a tavern, describe \"a smoky local pub\" without naming it.\n\n## The Mal\u00e9vol Family (Key NPCs)\nThe castle is haunted by the undead Mal\u00e9vol family. Key members:\n- **Aristide Mal\u00e9vol the Patrician** (#11) \u2014 THE LICHE. HD 12, AC -4. The true power of Xyntillan. Conducts shadowy experiments. Half his noble face has been peeled away.\n- **Gilbert Mal\u00e9vol the Fox** (#1) \u2014 Thief 3. Bandit with his merry men near the castle gatehouse. Demands company pay toll or face robbery. Snub nose, short stature.\n- **Ad\u00e9laide Mal\u00e9vol the Splendid** (#3) \u2014 HD 4. Pale young dame with dazzling array, accompanied by black cats. Poisoned hairpin attack.\n- **Claude Mal\u00e9vol the Family Black Sheep** (#6) \u2014 Fighter 2. Wanted by the law. Hiding in town, drinking his woes away. Has chainmail and shield +2.\n- **Hubert Mal\u00e9vol the Huntsman** (#16) \u2014 Fighter 6. Hunts with his fantastic dog pack. Found on throne in room H1 or hunting in K1.\n- **Honor\u00e9 Mal\u00e9vol** \u2014 Family butler. HD 5. Ghostly paralysis touch.\n- **Serpentina Mal\u00e9vol the Sweet** (#46) \u2014 Succubus in the Lake Tower. Kiss drains levels.\n- **Runcius Mal\u00e9vol the Dark Man of the Woods** (#7) \u2014 Druid 6. Rules the Indoornesse with anti-druids. Touch inflicts lycanthropy.\n\n## Castle Layout (Floors)\n- **Ground Floor**: Grounds/Gatehouse (A), Servants' Wing (B), Gothic Wing (C/D), Entrance Halls (E), Summer Wing (H), Ruined Quarters (J), Storerooms (K)\n- **Upper Floor**: Upper Quarters (F), Donjon (G), Lake Tower (I), Maze of the Occult (L)\n- **Dungeons**: Understores/Wine Cellar (M), Service Tunnels (N), Lake Grotto (O), Crusaders' Tomb (P), The Oubliette (Q), The Indoornesse (R)\n\n## Key Rumors (from the module \u2014 use these!)\n- Tours-en-Savoy is filled with the Castle's spies. (Partially true)\n- Aristide Mal\u00e9vol conquered death by unholy means \u2014 do not cross him! (Partially true)\n- Those who don't leave the ruins by midnight suffer the Crooking Curse! (False)\n- Where you see signs of the cross, you can rest safely. (Partially true)\n- The hero Roland was buried under the Castle with a great relic. (True)\n- The goats are not what they seem. (True)\n- Gilbert Mal\u00e9vol and his merry men lurk near the Castle \u2014 watch your belongings! (True)\n- An old chimneysweep told of secret doors in the fireplaces. (True)\n- You can get in through a cave mouth from the lake. (True)\n- Don't believe everything you hear about the Castle \u2014 the gazebos are not dangerous. (True)\n\n## Five Family Heirlooms (Major Treasures)\nThe Mal\u00e9vols guard five invaluable heirlooms:\n1. **The Sceptre of the Merovings** \u2014 Hidden in the throne (H1). Worth 5000 gp.\n2. Other heirlooms are scattered through the castle.\n\n## Approach to the Castle\n- The main approach is through the **Gatehouse** (A1), where **Gilbert the Fox** and his bandits demand tolls.\n- Alternative: **Cave mouth from the lake** (area O) for a stealthy approach.\n- The castle sits on a promontory overlooking the lake. The battlements of the Lake Tower loom above with snarling gargoyles.\n\n## Key Encounter Rules for This Module\n- 1-in-6 chance of Loch Ness monsters on the lake.\n- Portraits throughout the castle act as spies for the Mal\u00e9vols \u2014 they talk and watch.\n- Many family members wander. Each has a number (#1-#58) and specific rooms where they appear.\n- The castle is dynamic \u2014 \"action begets reaction.\" NPCs respond to what the party does.\n",
+      "setting": "Valley of the Three Rainbows, mountain lake",
+      "starting_location": "Tours-en-Savoy",
+      "intro_queries": [
+        "Tours-en-Savoy town shops tavern inn NPCs",
+        "rumors about the castle hooks adventure leads",
+        "retainers hirelings men at arms available",
+        "castle approach entrance gatehouse grounds"
+      ],
+      "compatible_systems": [],
+      "source_labels": [
+        "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan (SW)",
+        "OSR/Castle Xyntillan (S+W)/EMDT60 Castle Xyntillan GM's Worksheet"
+      ]
+    },
+    "barrowmaze": {
+      "name": "barrowmaze",
+      "display_name": "Barrowmaze Complete",
+      "entry_type": "module",
+      "system": "ose",
+      "pdf_files": [
+        "/home/tyler/Desktop/aidm-main/aidm-main/Barrowmaze_Complete_OSR/Barrowmaze Complete OSR/Barrowmaze OSR Ebook.pdf"
+      ],
+      "description": "Massive megadungeon of undead-filled barrow mounds for OSE/OSR",
+      "briefing": "SETTING - Barrowmaze is an exploration-style megadungeon located in the Duchy of Aerik, where the village of Helix resides. It's designed to begin with first-level characters and continue through mid and high-level play.\n\nSTARTING LOCATION - The adventure begins in the isolated village of Helix. Key establishments include: the Mercenary Guild, Turgen's Trade Goods, the Shrine of St. Ygg, and the Rosy Quartz Jeweler and Money Lender. NPCs include Barrelgut (the blacksmith), Osen (the Guildmaster), Brother Othar (Level 5 Cleric), Cella (Level 2 Cleric), Gamdar (Level 2 Half-Orc Cleric), Harnold Huwen Reginald Huffnpuff (the jeweler and money lender), and Hendon (the miller).\n\nKEY NPCs - Barrelgut can craft unique non-magical dungeoneering items and equipment. Osen, the Guildmaster of the Mercenary Guild in Helix, recruits men-at-arms, henchmen, porters, torch-bearers, and guides for adventurers exploring Barrowmaze. Brother Othar (Level 5 Cleric), Cella (Level 2 Cleric), and Gamdar (Level 2 Half-Orc Cleric) oversee the Shrine of St. Ygg.\n\nKEY LOCATIONS - The major areas in Barrowmaze include: Mound #7, Mound #12, Mound #16, Mound #20, Mound #27, Mound #35, Mound #36, and Mound #42.\n\nRUMORS - Rumors circulating around Helix include statements about mutated people living in the Barrowmaze, all entrances to the maze being trapped, tomb-robbers recently returning with a valuable silver chalice, powerful evil warriors using it as a hideout, elven maidens freed from there, and piles of magical items found in the southern crypts.\n\nMAJOR TREASURES - The Barrow Mounds contain various treasures such as gold necklaces, jade scarabs, rubies, black opal gemstones, sealed arcane scroll tubes with spells, and sealed perfume bottles. Additionally, there are valuable bronze doors and decorative amphorae.\n\nIMPORTANT RULES - Excavation of the covered mounds requires 3d4+4 hours of digging with appropriate equipment (shovels, picks, etc.) purchased in town. Sealed mounds have entrances that require a sledgehammer and iron spike to break open. Opening these will necessitate a random monster roll.\n\nLOCATIONS THAT EXIST - The named locations in the Barrow Mounds include: Sealed Mound, Plundered Mound, Collapsed Mound, Mound #7, Mound #12, Mound #16, Mound #20, Mound #27, Mound #35, Mound #36, and Mound #42.",
+      "setting": "",
+      "starting_location": "",
+      "intro_queries": [],
+      "compatible_systems": [],
+      "source_labels": []
+    },
+    "forbidden-lands": {
+      "name": "forbidden-lands",
+      "display_name": "Forbidden Lands",
+      "entry_type": "rules",
+      "system": "forbidden-lands",
+      "pdf_files": [
+        "/home/tyler/Desktop/aidm-main/aidm-main/forbidden lands/rules/Forbidden_Lands_Gamemasters_Guide_5th_printing.r.pdf",
+        "/home/tyler/Desktop/aidm-main/aidm-main/forbidden lands/rules/Forbidden_Lands_Players_Handbook_5th_printing.pdf"
+      ],
+      "description": "Year Zero Engine fantasy RPG by Free League",
+      "briefing": "",
+      "setting": "",
+      "starting_location": "",
+      "intro_queries": [],
+      "compatible_systems": [],
+      "source_labels": [
+        "Forbidden_Lands_Gamemasters_Guide_5th_printing.r",
+        "Forbidden_Lands_Players_Handbook_5th_printing"
+      ]
+    },
+    "bitter-reach": {
+      "name": "bitter-reach",
+      "display_name": "The Bitter Reach",
+      "entry_type": "module",
+      "system": "forbidden-lands",
+      "pdf_files": [
+        "/home/tyler/Desktop/aidm-main/aidm-main/forbidden lands/modules/Forbidden_Lands_Bitter_Reach.pdf"
+      ],
+      "description": "Frozen wasteland campaign expansion for Forbidden Lands",
+      "briefing": "The Bitter Reach is a harsh, icy wilderness filled with danger and opportunity for adventurers. In this frozen land, ancient ruins of the Winter Elves lie hidden beneath the ice, waiting to be discovered by brave treasure hunters.\n\nKey players in the Wake of the Winter King campaign include Alabastor and his Misgrown forces, as well as Ingmar, a cunning merchant with secrets of his own. The PCs may also encounter Wurda, a powerful demon causing chaos across the Bitter Reach.\n\nAdventure awaits in the form of Ice Caves, Elven Ruins, and Settlements scattered throughout the frozen landscape. Encounters on the journey can include fierce Nanuik beasts, enigmatic Ice Giants, or even magical artifacts like Bur's Boots and Lerge's Hammer.\n\nAs the PCs explore this treacherous terrain, they'll need to rely on their wits and courage to survive the dangers that lurk around every corner. Will they uncover the secrets hidden within the ruins of the Winter Elves? Can they resist the allure of powerful magical artifacts? The choice is theirs in this frozen land of opportunity and peril.",
+      "setting": "",
+      "starting_location": "",
+      "intro_queries": [],
+      "compatible_systems": [],
+      "source_labels": []
+    },
+    "crypt-mellified-mage": {
+      "name": "crypt-mellified-mage",
+      "display_name": "Crypt of the Mellified Mage",
+      "entry_type": "module",
+      "system": "forbidden-lands",
+      "pdf_files": [
+        "/home/tyler/Desktop/aidm-main/aidm-main/forbidden lands/modules/Forbidden_Lands_Crypt_of_the_Mellified_Mage.pdf"
+      ],
+      "description": "Adventure site for Forbidden Lands",
+      "briefing": "SETTING:\nThe adventure takes place in various locations surrounding the Crypt of the Mellified Mage, including Anger Bay, Backwater Bay, Maidenholm, Molden Margeleda, Yendrara Belifargrove, and others. The crypt itself is located near a village with several named establishments.\n\nSTARTING LOCATION:\nThe PCs can start their journey in the village near the crypt, where they may visit various shops or interact with NPCs. Some of the named establishments include the town altar, Insectoid cave, and an obscured entrance to the crypt.\n\nKEY NPCs:\nThere are no specific named NPCs mentioned in the module excerpts provided.\n\nKEY LOCATIONS:\n1. The Crypt of the Mellified Mage: A honey-filled catacomb with three entrances.\n2. The Village: A settlement near the crypt where settlers have built some buildings.\n3. Insectoid Cave: A cave with tunnels that lead to one of the crypt's entrances.\n4. Obscured Entrance: An entrance to the crypt hidden behind a stone door.\n\nRUMORS:\nNo specific rumors or hooks are mentioned in the module excerpts provided.\n\nMAJOR TREASURES:\n1. The conical caps worn by the mummified corpses in the catafalque area are worth D6 silver each.\n2. The bronze clasps shaped like leathery toads found in the same area are worth 2D6 silver each.\n3. Peridot shavings on the mural in the Ritual Chamber are worth a total of 2D6 silver if scratched out.\n4. A topaz gem can be found inside one of the bodies in the Embalming Room, worth 4D6 silver.\n\nIMPORTANT RULES:\n1. The PCs may encounter various creatures and hazards within the crypt and surrounding areas.\n2. Some weapons cause less damage against the mummified corpses than others.\n3. Certain items or actions may trigger specific events or consequences within the adventure site.\n\nLOCATIONS THAT EXIST:\n- Anger Bay\n- Backwater Bay\n- Maidenholm\n- Molden Margeleda\n- Yendrara Belifargrove\n- The village near the crypt\n- Insectoid Cave\n- Obscured Entrance to the Crypt\n\nNOTE: There are NO other named locations. Do not invent any.",
+      "setting": "",
+      "starting_location": "",
+      "intro_queries": [],
+      "compatible_systems": [],
+      "source_labels": []
+    },
+    "Ravens Purge": {
+      "name": "Ravens Purge",
+      "display_name": "Ravens Purge",
+      "entry_type": "module",
+      "system": "forbidden-lands",
+      "pdf_files": [
+        "/home/tyler/Desktop/aidm-main/aidm-main/forbidden lands/modules/Ravens_Purge.pdf"
+      ],
+      "description": "",
+      "briefing": "SETTING - The adventure takes place primarily in various locations within the Forbidden Lands, including Grindbone village, Ravenhole quarry, Amber's Peak fortress, and the Eye of the Rose elven fortress.\n\nSTARTING LOCATION - Grindbone village is the starting location. Named establishments include the Blacksmith's Forge, the General Store run by Alderman Undar, and the tavern known as the Wolf Wailer. Key NPCs include Zagere, a Raven Sister who seeks to free a druid captive; Eranda, an orc from the Isir clan seeking revenge against the Urhur clan; and Murge, a merchant who provides the PCs with information on the ogres in exchange for protection.\n\nKEY LOCATIONS - Major areas of interest include Grindbone village, Ravenhole quarry, Amber's Peak fortress, and the Eye of the Rose elven fortress. Each location has its own unique challenges and opportunities for adventure.\n\nRUMORS - Rumors circulating around the Forbidden Lands include whispers about the powerful artifacts connected to the legend of Stanengist, as well as fears regarding the dangerous creatures that inhabit the land.\n\nMAJOR TREASURES - Significant treasures mentioned in the module excerpts include the elven crown Stanengist and other artifacts set with elven rubies. These items hold great power and are sought after by various key players in the campaign.\n\nIMPORTANT RULES - Special rules for this module include the effects of magical curses, encounters with dangerous creatures like Stone Ravens and fire elementals, and the use of the LORE skill to learn legends that provide important information about the land and its history.\n\nWrite the GM briefing now:",
+      "setting": "",
+      "starting_location": "",
+      "intro_queries": [],
+      "compatible_systems": [],
+      "source_labels": []
+    },
+    "Spire Of Quetzal": {
+      "name": "Spire Of Quetzal",
+      "display_name": "Spire Of Quetzol",
+      "entry_type": "module",
+      "system": "forbidden-lands",
+      "pdf_files": [
+        "/home/tyler/Desktop/aidm-main/aidm-main/forbidden lands/modules/Spire_of_Quetzel.pdf"
+      ],
+      "description": "",
+      "briefing": "SETTING:\nThe adventure takes place at \"The Spire of Quetzol\".\n\nSTARTING LOCATION:\nThe town/village name is not mentioned, but there are named establishments including \"the tavern\" and NPCs with their classes/levels such as Grumis and Nachtrapp who have the personalities of weird, creepy, intelligent old men.\n\nKEY NPCs:\n1. The Demon-Queen - She lets the sword Narsika sing and performs a lightning quick slashing attack against two adventurers.\n2. Grumis and Nachtrapp - They are great monstrous birds turned into demonic Peacocks, crossed with Archetype and Birds of Paradise. They have the personalities of weird, creepy, intelligent old men.\n\nKEY LOCATIONS:\n1. The Tower of Quetzel\n2. The City of Black Spars\n\nRUMORS:\n1. (T)The Ghosts of Ash can only be hurt by fire or magic.\n2. (F) Grumis and Nachtrapp will not stop talking even during fights.\n\nMAJOR TREASURES:\n1. Argento, the Silver'd Crow - A tiny silver crow skeleton worn like a pendant on a silver chain that can grow to the size of a normal crow and act as a pet.\n2. The key with a tree symbol - It opens the Silver Door in the Poison Garden.\n\nIMPORTANT RULES:\n1. The Ghosts of Ash can only be hurt by fire or magic.\n2. Grumis and Nachtrapp will not stop talking even during fights.\n3. Argento, the Silver'd Crow, needs neither food nor rest, is capable of flight, and can speak with limited vocabulary and syntax.\n\nLOCATIONS THAT EXIST:\n1. The Tavern\n2. The Tower of Quetzel\n3. The City of Black Spars\n4. The Poison Garden\n5. The Parlor of Quet-Scyre\n\nNOTE: There are NO other named locations. Do not invent any.",
+      "setting": "",
+      "starting_location": "",
+      "intro_queries": [],
+      "compatible_systems": [],
+      "source_labels": []
+    }
+  }
+}

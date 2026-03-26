@@ -5,7 +5,6 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
-from rich.markdown import Markdown
 
 from ..game.character import Character, CharacterClass, ABILITY_NAMES, ability_modifier
 from ..game.dice import DiceResult
@@ -15,6 +14,8 @@ GAME_THEME = Theme({
     "dm": "bold yellow",
     "player1": "bold cyan",
     "player2": "bold magenta",
+    "player3": "bold green",
+    "player4": "bold blue",
     "combat": "bold red",
     "system": "dim white",
     "success": "bold green",
@@ -22,13 +23,13 @@ GAME_THEME = Theme({
     "danger": "bold red",
     "loot": "bold yellow",
     "title": "bold white on blue",
+    "mechanical": "dim cyan",
 })
 
 console = Console(theme=GAME_THEME)
 
 
 def print_banner() -> None:
-    """Display the game title banner."""
     banner = """
      _    ___   ____                                    __  __           _
     / \\  |_ _| |  _ \\ _   _ _ __   __ _  ___  ___  _ _|  \\/  | __ _ __| |_ ___ _ _
@@ -36,13 +37,14 @@ def print_banner() -> None:
   / ___ \\ | |  | |_| | |_| | | | | (_| |  __/ (_) | || |  | | \\__,_/__/\\__\\___|_|
  /_/   \\_\\___| |____/ \\__,_|_| |_|\\__, |\\___|\\___/|_||_|  |_|
                                    |___/             Old-School Essentials Edition
+                                                     v0.2.0 — Server + CLI
 """
     console.print(banner, style="bold cyan")
-    console.print("  Type [bold]/help[/bold] for commands. Type anything else to play.\n")
+    console.print("  Type [bold]/help[/bold] for commands. Type anything else to play.")
+    console.print("  The DM rolls all dice autonomously. You play, it adjudicates.\n")
 
 
 def print_dm(text: str) -> None:
-    """Print DM narration in a styled panel."""
     console.print(Panel(
         Text(text),
         title="[dm]Dungeon Master[/dm]",
@@ -52,42 +54,36 @@ def print_dm(text: str) -> None:
 
 
 def print_dm_stream_start() -> None:
-    """Start a streaming DM response."""
     console.print("\n[dm]Dungeon Master:[/dm]")
     console.print("─" * 60, style="yellow")
 
 
 def print_dm_stream_chunk(chunk: str) -> None:
-    """Print a chunk of streaming DM response."""
     console.print(chunk, end="", highlight=False)
 
 
 def print_dm_stream_end() -> None:
-    """End a streaming DM response."""
     console.print()
     console.print("─" * 60, style="yellow")
     console.print()
 
 
 def print_system(text: str) -> None:
-    """Print a system message."""
     console.print(f"[system]>> {text}[/system]")
 
 
 def print_combat(text: str) -> None:
-    """Print combat information."""
     console.print(Panel(text, title="[combat]Combat[/combat]", border_style="red"))
 
 
 def print_dice_result(result: DiceResult) -> None:
-    """Print a dice roll result."""
     console.print(f"  [success]{result}[/success]")
 
 
 def get_player_input(player_name: str = "", player_num: int = 0) -> str:
-    """Get input from a player."""
+    styles = ["player1", "player2", "player3", "player4"]
     if player_name:
-        style = "player1" if player_num <= 1 else "player2"
+        style = styles[min(player_num - 1, len(styles) - 1)] if player_num > 0 else "player1"
         prompt = f"[{style}]{player_name}>[/{style}] "
     else:
         prompt = "[bold]> [/bold]"
@@ -98,11 +94,9 @@ def get_player_input(player_name: str = "", player_num: int = 0) -> str:
 
 
 def print_character_sheet(char: Character) -> None:
-    """Display a full character sheet."""
     table = Table(title=f"{char.name} - {char.char_class.value} Level {char.level}",
                   border_style="cyan")
 
-    # Ability scores
     table.add_column("Ability", style="bold")
     table.add_column("Score", justify="center")
     table.add_column("Modifier", justify="center")
@@ -118,7 +112,6 @@ def print_character_sheet(char: Character) -> None:
 
     console.print(table)
 
-    # Stats
     stats = Table.grid(padding=(0, 3))
     stats.add_row(
         f"[bold]HP:[/bold] {char.hp}/{char.max_hp}",
@@ -129,7 +122,6 @@ def print_character_sheet(char: Character) -> None:
     )
     console.print(stats)
 
-    # Saves
     saves = Table(title="Saving Throws", border_style="dim")
     saves.add_column("Death", justify="center")
     saves.add_column("Wands", justify="center")
@@ -142,7 +134,6 @@ def print_character_sheet(char: Character) -> None:
     )
     console.print(saves)
 
-    # Inventory
     if char.inventory or char.weapons:
         console.print("\n[bold]Equipment:[/bold]")
         if char.armor != "None":
@@ -151,11 +142,16 @@ def print_character_sheet(char: Character) -> None:
             console.print(f"  Weapon: {w}")
         for item in char.inventory:
             console.print(f"  - {item}")
+
+    if char.spells_memorized:
+        console.print(f"\n[bold]Spells Memorized:[/bold]")
+        for s in char.spells_memorized:
+            console.print(f"  - {s}")
+
     console.print()
 
 
 def _roll_and_display_stats() -> list[int]:
-    """Roll 3d6-in-order and display the results. Returns the stat array."""
     from ..game.dice import roll_stats
     stats = roll_stats()
     console.print("\n[bold]Rolling 3d6 for abilities (in order):[/bold]")
@@ -167,13 +163,11 @@ def _roll_and_display_stats() -> list[int]:
 
 
 def character_creation_wizard(player_name: str) -> Character:
-    """Interactive character creation with reroll support."""
     console.print(Panel(
         f"Character Creation for [bold]{player_name}[/bold]",
         style="title",
     ))
 
-    # Roll stats with reroll option
     stats = _roll_and_display_stats()
 
     while True:
@@ -182,14 +176,13 @@ def character_creation_wizard(player_name: str) -> Character:
             break
         stats = _roll_and_display_stats()
 
-    # Choose class
     console.print("\n[bold]Available Classes:[/bold]")
     classes = list(CharacterClass)
     for i, cls in enumerate(classes, 1):
         console.print(f"  {i}. {cls.value}")
 
     while True:
-        choice = console.input("\n[bold]Choose class (1-7): [/bold]").strip()
+        choice = console.input(f"\n[bold]Choose class (1-{len(classes)}): [/bold]").strip()
         try:
             idx = int(choice) - 1
             if 0 <= idx < len(classes):
@@ -199,12 +192,10 @@ def character_creation_wizard(player_name: str) -> Character:
             pass
         console.print("[warning]Invalid choice. Try again.[/warning]")
 
-    # Character name
     char_name = console.input("[bold]Character name: [/bold]").strip()
     if not char_name:
         char_name = f"{player_name}'s {char_class.value}"
 
-    # Build character
     char = Character(
         name=char_name,
         player_name=player_name,
@@ -228,7 +219,6 @@ def character_creation_wizard(player_name: str) -> Character:
 
 
 def show_help() -> None:
-    """Display available commands."""
     table = Table(title="Commands", border_style="cyan")
     table.add_column("Command", style="bold")
     table.add_column("Description")
@@ -238,12 +228,14 @@ def show_help() -> None:
         ("/character", "Show your character sheet"),
         ("/party", "Show all party members"),
         ("/inventory", "Show your inventory"),
+        ("/light <torch|lantern> [name]", "Light a torch or lantern"),
+        ("/log [n]", "Show last n dice rolls/events (default 10)"),
         ("/save", "Save the current session"),
         ("/load", "Load a saved session"),
-        ("/module <name>", "Set active adventure module (filters RAG search)"),
-        ("/search <query>", "Search your RPG library for specific content"),
+        ("/module <name>", "Set active adventure module"),
+        ("/search <query>", "Search your RPG library"),
         ("/newchar", "Create a new character"),
-        ("/reroll", "Replace your current character with a fresh roll"),
+        ("/reroll", "Replace current character"),
         ("/switch", "Switch active player"),
         ("/quit", "Exit the game"),
         ("/help", "Show this help"),
@@ -252,10 +244,11 @@ def show_help() -> None:
         table.add_row(cmd, desc)
 
     console.print(table)
+    console.print("\n[system]The DM rolls all dice automatically — attacks, saves, morale, wandering monsters.[/system]")
+    console.print("[system]Just describe your actions and the DM handles the mechanics.[/system]\n")
 
 
 def show_session_list(sessions: list[dict]) -> None:
-    """Display saved sessions."""
     if not sessions:
         print_system("No saved sessions found.")
         return

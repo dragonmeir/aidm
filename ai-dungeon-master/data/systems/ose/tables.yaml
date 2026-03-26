@@ -1,0 +1,133 @@
+wandering_monsters:
+  "1":
+    - {name: Giant Rats, hp: 1, defense: 9, attack_value: 19, damage: "1d3", morale: 8, count_dice: "2d4"}
+    - {name: Goblins, hp: 3, defense: 6, attack_value: 19, damage: "1d6", morale: 7, count_dice: "2d4"}
+    - {name: Kobolds, hp: 2, defense: 7, attack_value: 19, damage: "1d4", morale: 6, count_dice: "4d4"}
+    - {name: Skeletons, hp: 4, defense: 7, attack_value: 19, damage: "1d6", morale: 12, count_dice: "3d4"}
+    - {name: Giant Centipedes, hp: 1, defense: 9, attack_value: 19, damage: "poison", morale: 7, count_dice: "1d6"}
+    - {name: Bandits, hp: 4, defense: 6, attack_value: 19, damage: "1d6", morale: 8, count_dice: "1d8"}
+    - {name: Fire Beetles, hp: 5, defense: 4, attack_value: 19, damage: "2d4", morale: 7, count_dice: "1d8"}
+    - {name: Giant Bats, hp: 2, defense: 6, attack_value: 19, damage: "1d4", morale: 8, count_dice: "1d10"}
+  "2":
+    - {name: Zombies, hp: 9, defense: 8, attack_value: 19, damage: "1d8", morale: 12, count_dice: "2d4"}
+    - {name: Orcs, hp: 4, defense: 6, attack_value: 19, damage: "1d6", morale: 8, count_dice: "2d4"}
+    - {name: Hobgoblins, hp: 5, defense: 6, attack_value: 19, damage: "1d8", morale: 8, count_dice: "1d6"}
+    - {name: Giant Spiders, hp: 9, defense: 7, attack_value: 19, damage: "1d6+poison", morale: 8, count_dice: "1d3"}
+    - {name: Troglodytes, hp: 9, defense: 5, attack_value: 19, damage: "1d4", morale: 9, count_dice: "1d8"}
+    - {name: Gnolls, hp: 9, defense: 5, attack_value: 19, damage: "2d4", morale: 8, count_dice: "1d6"}
+    - {name: Lizardmen, hp: 9, defense: 5, attack_value: 19, damage: "1d6+1", morale: 11, count_dice: "2d4"}
+    - {name: Giant Ferrets, hp: 5, defense: 5, attack_value: 19, damage: "1d8", morale: 8, count_dice: "1d8"}
+  "3":
+    - {name: Ghouls, hp: 13, defense: 6, attack_value: 19, damage: "1d3+paralysis", morale: 9, count_dice: "1d6"}
+    - {name: Wights, hp: 13, defense: 5, attack_value: 17, damage: "energy drain", morale: 12, count_dice: "1d4"}
+    - {name: Ogres, hp: 19, defense: 5, attack_value: 17, damage: "1d10", morale: 10, count_dice: "1d3"}
+    - {name: Shadows, hp: 13, defense: 7, attack_value: 19, damage: "1d4+STR drain", morale: 12, count_dice: "1d4"}
+    - {name: Bugbears, hp: 14, defense: 5, attack_value: 17, damage: "2d4", morale: 9, count_dice: "2d4"}
+    - {name: Harpies, hp: 14, defense: 7, attack_value: 17, damage: "1d4+charm", morale: 7, count_dice: "1d6"}
+    - {name: Gargoyles, hp: 18, defense: 5, attack_value: 17, damage: "1d4/1d4/1d6/1d4", morale: 11, count_dice: "1d4"}
+    - {name: Wraiths, hp: 18, defense: 3, attack_value: 17, damage: "1d6+energy drain", morale: 12, count_dice: "1d3"}
+  "4":
+    - {name: Minotaurs, hp: 27, defense: 6, attack_value: 15, damage: "1d6/1d6", morale: 12, count_dice: "1d4"}
+    - {name: Mummies, hp: 27, defense: 3, attack_value: 15, damage: "1d12+disease", morale: 12, count_dice: "1d4"}
+    - {name: Trolls, hp: 30, defense: 4, attack_value: 15, damage: "1d6/1d6/1d10", morale: 10, count_dice: "1d3"}
+    - {name: Cockatrices, hp: 22, defense: 6, attack_value: 15, damage: "1d6+petrify", morale: 7, count_dice: "1d4"}
+    - {name: Manticores, hp: 30, defense: 4, attack_value: 15, damage: "1d4/1d4/2d4", morale: 9, count_dice: "1d2"}
+    - {name: Werewolves, hp: 18, defense: 5, attack_value: 17, damage: "2d4", morale: 8, count_dice: "1d4"}
+
+treasure_tables:
+  - quality: poor
+    coins: {cp: "3d8"}
+  - quality: average
+    coins: {cp: "2d6", sp: "2d6"}
+  - quality: good
+    coins: {sp: "2d6", gp: "1d6"}
+  - quality: rich
+    coins: {sp: "3d6", gp: "2d6"}
+  - quality: hoard
+    coins: {sp: "1d6", gp: "3d6"}
+    gems_chance: 0.5
+    gems_value: "1d4 gems"
+    magic_items:
+      - "Potion of Healing"
+      - "Scroll of Protection from Evil"
+      - "+1 Dagger"
+
+gems:
+  - [agate, 10]
+  - [quartz, 10]
+  - [turquoise, 10]
+  - [bloodstone, 50]
+  - [onyx, 50]
+  - [jasper, 50]
+  - [amber, 100]
+  - [coral, 100]
+  - [garnet, 100]
+  - [pearl, 500]
+  - [topaz, 500]
+  - [opal, 500]
+  - [ruby, 1000]
+  - [emerald, 1000]
+  - [sapphire, 1000]
+  - [diamond, 5000]
+
+magic_items_minor:
+  - "Potion of Healing"
+  - "Potion of ESP"
+  - "Potion of Speed"
+  - "Scroll of Protection from Evil"
+  - "Scroll of Light"
+  - "Scroll of Hold Portal"
+  - "+1 Dagger"
+  - "+1 Arrows (1d6)"
+  - "Ring of Protection +1"
+  - "Wand of Magic Detection (2d10 charges)"
+
+magic_items_medium:
+  - "+1 Sword"
+  - "+1 Shield"
+  - "+1 Leather Armor"
+  - "Potion of Invisibility"
+  - "Potion of Giant Strength"
+  - "Scroll of Fireball"
+  - "Ring of Fire Resistance"
+  - "Wand of Paralysis (2d10 charges)"
+  - "Boots of Elvenkind"
+  - "Cloak of Displacement"
+
+trap_types:
+  - {name: Pit Trap, damage: "1d6", save: "Paralysis/Petrify", description: "The floor gives way!"}
+  - {name: Poison Needle, damage: poison, save: "Death/Poison", description: "A needle jabs from the lock!"}
+  - {name: Arrow Trap, damage: "1d6", save: Wands, description: "Arrows fire from the walls!"}
+  - {name: Falling Block, damage: "2d6", save: "Paralysis/Petrify", description: "A stone block drops from the ceiling!"}
+  - {name: Scything Blade, damage: "1d8", save: "Breath Attacks", description: "A blade swings from the wall!"}
+  - {name: Gas Trap, damage: sleep, save: "Spells/Rods/Staves", description: "A cloud of soporific gas fills the area!"}
+  - {name: Spear Trap, damage: "1d8", save: "Breath Attacks", description: "Spears thrust up from the floor!"}
+
+dungeon_dressing:
+  noises:
+    - "dripping water echoes from somewhere ahead"
+    - "a faint scratching sound from behind the walls"
+    - "distant, rhythmic hammering — too regular to be natural"
+    - "a low moan carried on a cold draft"
+    - "chains rattling somewhere below"
+    - "the skitter of many tiny legs across stone"
+    - "a faint chanting in an unknown tongue"
+    - "the creak and groan of old timber"
+    - "a sudden, sharp crack — then silence"
+    - "the splash of something moving through standing water"
+  smells:
+    - "damp stone and old rot"
+    - "acrid smoke, recently burned"
+    - "the copper tang of blood, not yet dry"
+    - "a sickly-sweet floral scent, entirely wrong for underground"
+    - "sulfur and brimstone"
+    - "animal musk — something lives nearby"
+    - "the musty smell of ancient parchment"
+    - "stale air that hasn't moved in decades"
+  air:
+    - "the air is stale and heavy"
+    - "a cold draft blows from the left passage"
+    - "the air is unnaturally warm here"
+    - "condensation drips from the ceiling"
+    - "a thin mist clings to the floor"
+    - "the air tastes of dust and iron"

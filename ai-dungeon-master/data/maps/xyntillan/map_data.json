@@ -1,0 +1,5562 @@
+{
+  "module": "Castle Xyntillan",
+  "maps": {
+    "ground_floor": {
+      "file": "ground_floor.jpg",
+      "label": "Ground Floor",
+      "sections": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "H",
+        "J",
+        "K"
+      ]
+    },
+    "upper_west": {
+      "file": "upper_west.jpg",
+      "label": "Upper Story (West)",
+      "sections": [
+        "F",
+        "G",
+        "L"
+      ]
+    },
+    "upper_east": {
+      "file": "upper_east.jpg",
+      "label": "Upper Story (East)",
+      "sections": [
+        "I"
+      ]
+    },
+    "dungeons": {
+      "file": "dungeons.jpg",
+      "label": "Dungeons",
+      "sections": [
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R"
+      ]
+    },
+    "rooftops": {
+      "file": "rooftops.png",
+      "label": "Rooftops",
+      "sections": []
+    }
+  },
+  "sections": {
+    "A": {
+      "floor": "ground",
+      "name": "Grounds",
+      "map": "ground_floor.jpg"
+    },
+    "B": {
+      "floor": "ground",
+      "name": "Servants' Wing",
+      "map": "ground_floor.jpg"
+    },
+    "C": {
+      "floor": "ground",
+      "name": "Gothic Wing",
+      "map": "ground_floor.jpg"
+    },
+    "D": {
+      "floor": "ground",
+      "name": "Gothic Wing II",
+      "map": "ground_floor.jpg"
+    },
+    "E": {
+      "floor": "ground",
+      "name": "Entrance Halls",
+      "map": "ground_floor.jpg"
+    },
+    "F": {
+      "floor": "upper",
+      "name": "Upper Quarters",
+      "map": "upper_west.jpg"
+    },
+    "G": {
+      "floor": "upper",
+      "name": "Donjon",
+      "map": "upper_west.jpg"
+    },
+    "H": {
+      "floor": "ground",
+      "name": "Summer Wing",
+      "map": "ground_floor.jpg"
+    },
+    "I": {
+      "floor": "upper",
+      "name": "Lake Tower",
+      "map": "upper_east.jpg"
+    },
+    "J": {
+      "floor": "ground",
+      "name": "Ruined Quarters",
+      "map": "ground_floor.jpg"
+    },
+    "K": {
+      "floor": "ground",
+      "name": "Storerooms",
+      "map": "ground_floor.jpg"
+    },
+    "L": {
+      "floor": "upper",
+      "name": "Maze of the Occult",
+      "map": "upper_west.jpg"
+    },
+    "M": {
+      "floor": "dungeon",
+      "name": "The Understores",
+      "map": "dungeons.jpg"
+    },
+    "N": {
+      "floor": "dungeon",
+      "name": "Service Tunnels",
+      "map": "dungeons.jpg"
+    },
+    "O": {
+      "floor": "dungeon",
+      "name": "Lake Grotto",
+      "map": "dungeons.jpg"
+    },
+    "P": {
+      "floor": "dungeon",
+      "name": "Crusaders' Tomb",
+      "map": "dungeons.jpg"
+    },
+    "Q": {
+      "floor": "dungeon",
+      "name": "The Oubliette",
+      "map": "dungeons.jpg"
+    },
+    "R": {
+      "floor": "dungeon",
+      "name": "The Indoornesse",
+      "map": "dungeons.jpg"
+    }
+  },
+  "floor_connections": [
+    {
+      "from": "A9",
+      "from_floor": "ground",
+      "to": "G7",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "A9",
+      "from_floor": "ground",
+      "to": "Q3",
+      "to_floor": "dungeon",
+      "type": "adjacent"
+    },
+    {
+      "from": "A9",
+      "from_floor": "ground",
+      "to": "Q1",
+      "to_floor": "dungeon",
+      "type": "adjacent"
+    },
+    {
+      "from": "C3",
+      "from_floor": "ground",
+      "to": "L2",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "E4",
+      "from_floor": "ground",
+      "to": "M1",
+      "to_floor": "dungeon",
+      "type": "vertical"
+    },
+    {
+      "from": "E4",
+      "from_floor": "ground",
+      "to": "F14",
+      "to_floor": "upper",
+      "type": "secret"
+    },
+    {
+      "from": "E9",
+      "from_floor": "ground",
+      "to": "I9",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "E16",
+      "from_floor": "ground",
+      "to": "F10",
+      "to_floor": "upper",
+      "type": "vertical"
+    },
+    {
+      "from": "F10",
+      "from_floor": "upper",
+      "to": "E9",
+      "to_floor": "ground",
+      "type": "vertical"
+    },
+    {
+      "from": "F10",
+      "from_floor": "upper",
+      "to": "E16",
+      "to_floor": "ground",
+      "type": "secret"
+    },
+    {
+      "from": "G3",
+      "from_floor": "upper",
+      "to": "Q7",
+      "to_floor": "dungeon",
+      "type": "vertical"
+    },
+    {
+      "from": "G4",
+      "from_floor": "upper",
+      "to": "A9",
+      "to_floor": "ground",
+      "type": "vertical"
+    },
+    {
+      "from": "G4",
+      "from_floor": "upper",
+      "to": "Q7",
+      "to_floor": "dungeon",
+      "type": "overlook"
+    },
+    {
+      "from": "H1",
+      "from_floor": "ground",
+      "to": "O14",
+      "to_floor": "dungeon",
+      "type": "adjacent"
+    },
+    {
+      "from": "H26",
+      "from_floor": "ground",
+      "to": "O12",
+      "to_floor": "dungeon",
+      "type": "vertical"
+    },
+    {
+      "from": "H26",
+      "from_floor": "ground",
+      "to": "O1",
+      "to_floor": "dungeon",
+      "type": "vertical"
+    },
+    {
+      "from": "I1",
+      "from_floor": "upper",
+      "to": "H26",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "I2",
+      "from_floor": "upper",
+      "to": "N1",
+      "to_floor": "dungeon",
+      "type": "adjacent"
+    },
+    {
+      "from": "I2",
+      "from_floor": "upper",
+      "to": "H26",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "J3",
+      "from_floor": "ground",
+      "to": "O2",
+      "to_floor": "dungeon",
+      "type": "vertical"
+    },
+    {
+      "from": "K16",
+      "from_floor": "ground",
+      "to": "L15",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "K19",
+      "from_floor": "ground",
+      "to": "L16",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "L15",
+      "from_floor": "upper",
+      "to": "K16",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "L25",
+      "from_floor": "upper",
+      "to": "E15",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "M6",
+      "from_floor": "dungeon",
+      "to": "A9",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "M11",
+      "from_floor": "dungeon",
+      "to": "K12",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "N5",
+      "from_floor": "dungeon",
+      "to": "K10",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "N5",
+      "from_floor": "dungeon",
+      "to": "I5",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "N5",
+      "from_floor": "dungeon",
+      "to": "J15",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "N5",
+      "from_floor": "dungeon",
+      "to": "D6",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "N5",
+      "from_floor": "dungeon",
+      "to": "F1",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "N5",
+      "from_floor": "dungeon",
+      "to": "C13",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "N5",
+      "from_floor": "dungeon",
+      "to": "B4",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "O1",
+      "from_floor": "dungeon",
+      "to": "H26",
+      "to_floor": "ground",
+      "type": "passage"
+    },
+    {
+      "from": "O2",
+      "from_floor": "dungeon",
+      "to": "J3",
+      "to_floor": "ground",
+      "type": "passage"
+    },
+    {
+      "from": "O7",
+      "from_floor": "dungeon",
+      "to": "H18",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "O12",
+      "from_floor": "dungeon",
+      "to": "H26",
+      "to_floor": "ground",
+      "type": "vertical"
+    },
+    {
+      "from": "O14",
+      "from_floor": "dungeon",
+      "to": "H1",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "O15",
+      "from_floor": "dungeon",
+      "to": "E15",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "O15",
+      "from_floor": "dungeon",
+      "to": "E17",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "O16",
+      "from_floor": "dungeon",
+      "to": "H1",
+      "to_floor": "ground",
+      "type": "secret"
+    },
+    {
+      "from": "O16",
+      "from_floor": "dungeon",
+      "to": "A9",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "O16",
+      "from_floor": "dungeon",
+      "to": "K2",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "O16",
+      "from_floor": "dungeon",
+      "to": "H11",
+      "to_floor": "ground",
+      "type": "secret"
+    },
+    {
+      "from": "O16",
+      "from_floor": "dungeon",
+      "to": "I14",
+      "to_floor": "upper",
+      "type": "adjacent"
+    },
+    {
+      "from": "Q1",
+      "from_floor": "dungeon",
+      "to": "A9",
+      "to_floor": "ground",
+      "type": "adjacent"
+    },
+    {
+      "from": "Q7",
+      "from_floor": "dungeon",
+      "to": "L6",
+      "to_floor": "upper",
+      "type": "adjacent"
+    }
+  ],
+  "rooms": {
+    "A4": {
+      "name": "Smithy",
+      "size": "30\u2019x30\u2019",
+      "desc": ". The hammer falls down after the first successful hit, but reanimates shortly after the party thinks they are safe! \uf0e8 C",
+      "section": "Grounds",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "A5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "A5": {
+      "name": "Stables",
+      "size": "40\u2019x20\u2019",
+      "desc": ". 18 \uf0e8 A saddlebag in the hayloft contains a flask of fiery wine (potion of extra-healing but character becomes reckless",
+      "section": "Grounds",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "A4": "implicit_adjacent",
+        "A6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "A6": {
+      "name": "Barracks",
+      "size": "40\u2019x40\u2019",
+      "desc": ", \u201cDead or Alive \u2013 preferably dead!\u201d",
+      "section": "Grounds",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "A7": "adjacent",
+        "A5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "A8": {
+      "name": "Entrance Passage",
+      "size": "60\u2019x20\u2019",
+      "desc": "",
+      "section": "Grounds",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "A9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "A9": {
+      "name": "Outer Court",
+      "size": "110\u2019x80\u2019",
+      "desc": ". \uf0e8 The statue of the king holds a heavy orb in his hand, and hurls it at anyone who would hold out their hand for it",
+      "section": "Grounds",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D13": "adjacent",
+        "G7": "adjacent",
+        "Q3": "adjacent",
+        "Q1": "adjacent",
+        "A8": "implicit_adjacent",
+        "A10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "A10": {
+      "name": "Inner Court",
+      "size": "120\u2019x100\u2019",
+      "desc": "gains a blessing upon the character: an incorporeal hand will avert a killing blow, once",
+      "section": "Grounds",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "A9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B1": {
+      "name": "Statue Nook",
+      "size": "10\u2019x10\u2019",
+      "desc": ". After three questions, it must rest for the expedition",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B2": {
+      "name": "Serjeant\u2019s Room",
+      "size": "30\u2019x20\u2019",
+      "desc": "",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B1": "implicit_adjacent",
+        "B3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B3": {
+      "name": "Laundry",
+      "size": "20\u2019x20\u2019",
+      "desc": ". The thoroughly cooked cadaver of a foppish gentleman stumbles out",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B2": "implicit_adjacent",
+        "B4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B4": {
+      "name": "Mess Hall",
+      "size": "50\u2019x40\u2019",
+      "desc": ": HD 1; AC 6 [13]; Atk sword 1d6; ML 8; AL N",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B3": "implicit_adjacent",
+        "B5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B5": {
+      "name": "Barracks",
+      "size": "20\u2019x20\u2019 and 20\u2019x30\u2019",
+      "desc": ": HD 2; AC 8 [11]; Atk strike 1d8; ML 12; AL N",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B6": "adjacent",
+        "B4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "B7": {
+      "name": "Kitchen",
+      "size": "40\u2019x30\u2019",
+      "desc": ". The chambers contain mouldy sacks of spice, stale iron rations, worm-eaten wheels of cheese, and jars of rock-hard jam",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B8": {
+      "name": "Cook",
+      "size": "20\u2019x30\u2019",
+      "desc": "",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B7": "implicit_adjacent",
+        "B9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B9": {
+      "name": "Bakery",
+      "size": "30\u2019x30\u2019",
+      "desc": ". Ghost: HD 6; AC 2 [17]; Atk rolling pin 1d6; Spec save on hit or lose consciousness; ML 10; AL C",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B8": "implicit_adjacent",
+        "B10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B10": {
+      "name": "Flower Room",
+      "size": "30\u2019x30\u2019",
+      "desc": "",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B9": "implicit_adjacent",
+        "B11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B11": {
+      "name": "Stables",
+      "size": "40\u2019x70\u2019",
+      "desc": ": HD 3; AC 3 [16]; Atk kick 1d6 and bite 1d6; Spec fiery breath 1/3 rounds, 3d4 Hp, save for \u00bd; ML 10; AL C",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B10": "implicit_adjacent",
+        "B12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B12": {
+      "name": "Chapel",
+      "size": "50\u2019x60\u2019",
+      "desc": ": HD 2; AC 7 [12]; Atk claws 2d4; Spec sharp claws add extra 1d4 for every 4 rolled; ML 9; AL C",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B11": "implicit_adjacent",
+        "B13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B13": {
+      "name": "Cleric",
+      "size": "40\u2019x30\u2019",
+      "desc": ", an intricately carved chestnut table, and an inviting canopied bed round out the scene",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B12": "implicit_adjacent",
+        "B14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B14": {
+      "name": "Prayer Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ". After passing on the plague, the cross turns into charcoal, worthless",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B13": "implicit_adjacent",
+        "B15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B15": {
+      "name": "Maid\u2019s Room",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B14": "implicit_adjacent",
+        "B16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B16": {
+      "name": "Closet",
+      "size": "10\u2019x20\u2019",
+      "desc": "",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B15": "implicit_adjacent",
+        "B17": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B17": {
+      "name": "Bath",
+      "size": "20\u2019x20\u2019",
+      "desc": ". Giant Toad: HD 4; AC 7 [12]; Atk bite 1d8; Spec swallow, poisonous skin; ML 5; AL L",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B16": "implicit_adjacent",
+        "B18": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B18": {
+      "name": "Sitting Room",
+      "size": "40\u2019x30\u2019",
+      "desc": "sits in a chair before a mirror, looking vainly upon her own reflection",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B17": "implicit_adjacent",
+        "B19": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "B19": {
+      "name": "Servants\u2019 Quarters",
+      "size": "30\u2019x30\u2019",
+      "desc": "",
+      "section": "Servants' Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B18": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C1": {
+      "name": "Ad\u00e9laide\u2019s Room",
+      "size": "30\u2019x30\u2019",
+      "desc": "in a company of several black cats; further 1:2 they are feasting on a skinned, decomposing cadaver",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C2": {
+      "name": "Bedroom",
+      "size": "30\u2019x30\u2019",
+      "desc": ": HD 2; AC 7 [12]; Atk touch 1d6 + ice-fear; Spec ice-fear gives -1 to all rolls, cumulative per hit; at -3, save or die",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C1": "implicit_adjacent",
+        "C3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C3": {
+      "name": "Bedroom",
+      "size": "20\u2019x20\u2019",
+      "desc": "A mere shadow of its companion (L2), this comfortable, two-level room is mostly dedicated to lighter reading",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "L2": "adjacent",
+        "C4": "adjacent",
+        "C2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C5": {
+      "name": "Records Room",
+      "size": "30\u2019x40\u2019",
+      "desc": "are chained to writing desks in this dimly lit chamber stuffed with paper stacks and filing cabinets",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "C6": {
+      "name": "S\u00e9ance Room",
+      "size": "30\u2019x20\u2019",
+      "desc": "",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C5": "implicit_adjacent",
+        "C7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C7": {
+      "name": "Captain\u2019s Room",
+      "size": "30\u2019x20\u2019",
+      "desc": ". One of each weapon type also emerges from the cabinet",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C6": "implicit_adjacent",
+        "C8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C8": {
+      "name": "Nook",
+      "size": "10\u2019x10\u2019",
+      "desc": "",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B1": "vertical",
+        "C19": "adjacent",
+        "C7": "implicit_adjacent",
+        "C9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "C9": {
+      "name": "Beatrice\u2019s Boudoir",
+      "size": "20\u2019x30\u2019",
+      "desc": ", still wearing her bridal clothes, leaps out if her prison is opened",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C8": "implicit_adjacent",
+        "C10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "C10": {
+      "name": "Bust Room",
+      "size": "50\u2019x20\u2019",
+      "desc": ": evil smile",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C9": "implicit_adjacent",
+        "C11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C11": {
+      "name": "Laboratory",
+      "size": "20\u2019x20\u2019",
+      "desc": ". \uf0e8 Suspended in one of the jars is a homunculus (1 Hp), peering outside and knocking on the glass surface to draw atten",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D12": "vertical",
+        "D13": "overlook",
+        "C12": "adjacent",
+        "C10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "C13": {
+      "name": "Feasting Hall",
+      "size": "70\u2019x50\u2019",
+      "desc": "",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C14": {
+      "name": "Nook",
+      "size": "10\u2019x20\u2019",
+      "desc": "peers at the company",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C13": "implicit_adjacent",
+        "C15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "C15": {
+      "name": "Sitting Room",
+      "size": "20\u2019x70\u2019",
+      "desc": ": HD 2+2; AC 7 [12]; Atk touch 1d6 Str; Spec strength drain; ML 6; AL CE",
+      "section": "Gothic Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "D1": {
+      "name": "Green Room",
+      "size": "30\u2019x20\u2019",
+      "desc": ", and the gaunt and rather disturbing figure of the stuffed hunter, whose loose, tanned skin is supported by a much smal",
+      "section": "Gothic Wing II",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "D2": {
+      "name": "Laboratory",
+      "size": "20\u2019x20\u2019",
+      "desc": ", who prepares poisons for his nefarious activities",
+      "section": "Gothic Wing II",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D1": "implicit_adjacent",
+        "D3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "D3": {
+      "name": "Mason\u2019s Room",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Gothic Wing II",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D2": "implicit_adjacent",
+        "D4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "D4": {
+      "name": "Smoking Room",
+      "size": "30\u2019x40\u2019",
+      "desc": ". \uf0e8 The cabinet displays a pipe collection worth 3500 gp to the right connoisseur",
+      "section": "Gothic Wing II",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "B1": "adjacent",
+        "C8": "vertical",
+        "D5": "secret",
+        "D3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "D6": {
+      "name": "Tea Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ". Undead Ladies (3): HD 1; AC 7 [12]; Atk claws 1d6; ML 9; AL C; fans, powder, one has silver hairpin (60 gp), another a",
+      "section": "Gothic Wing II",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "D7": {
+      "name": "Ice Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ". D8",
+      "section": "Gothic Wing II",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D9": "secret",
+        "K1": "adjacent",
+        "D10": "adjacent",
+        "D8": "adjacent",
+        "D6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "D11": {
+      "name": "Lounge",
+      "size": "30\u2019x60\u2019",
+      "desc": ". A card table in the centre is lit by a glowing globe suspended overhead",
+      "section": "Gothic Wing II",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D12": "adjacent",
+        "D13": "adjacent",
+        "E1": "adjacent",
+        "C12": "overlook"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E2": {
+      "name": "Vestibule",
+      "size": "40\u2019x50\u2019",
+      "desc": ", shocked by such disrespect, weeps silently",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E3": "overlook",
+        "E20": "vertical"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "E4": {
+      "name": "Head Butler\u2019s Room",
+      "size": "60\u2019x30\u2019",
+      "desc": "on first sight, but it is only kept in shape by the chimney, and soon after its removal, it collapses in a cloud of dark",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "M1": "vertical",
+        "F14": "secret",
+        "E5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "E5": {
+      "name": "Bedroom",
+      "size": "20\u2019x30\u2019",
+      "desc": "",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E4": "implicit_adjacent",
+        "E6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E6": {
+      "name": "Sitting Room",
+      "size": "20\u2019x30\u2019",
+      "desc": ". Curtained archway to the east",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E5": "implicit_adjacent",
+        "E7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E7": {
+      "name": "Den",
+      "size": "20\u2019x30\u2019",
+      "desc": "inside the rooms go for the PCs\u2019 necks (2 HD attack)",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E6": "implicit_adjacent",
+        "E8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E8": {
+      "name": "Occult Room",
+      "size": "60\u2019x40\u2019",
+      "desc": "; success has 1:6 of granting +1 Int",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E7": "implicit_adjacent",
+        "E9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E9": {
+      "name": "Den",
+      "size": "20\u2019x30\u2019",
+      "desc": ": stern, bearded judge serves summons, character is geased to seek out the Courtroom (I9)",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "I9": "adjacent",
+        "E8": "implicit_adjacent",
+        "E10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E10": {
+      "name": "Bath",
+      "size": "20\u2019x30\u2019",
+      "desc": ". \uf0e8 The back room is half-filled by a 10\u2019x10\u2019 gelatinous cube, containing 1600 gp in miscellaneous coinage and a crystal",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J1": "adjacent",
+        "E9": "implicit_adjacent",
+        "E11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E11": {
+      "name": "Samuel\u2019s Room",
+      "size": "40\u2019x30\u2019",
+      "desc": ". \uf0e8 1:6 of Samuel (#29) sitting here, contemplating a dead rat he is chewing on",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E10": "implicit_adjacent",
+        "E12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E12": {
+      "name": "Lady\u2019s Room",
+      "size": "30\u2019x20\u2019",
+      "desc": ". \uf0e8 As the company leaves the room, there is a piercing shriek and the mirror shatters into a hundred pieces! An alcove ",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E11": "implicit_adjacent",
+        "E13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E13": {
+      "name": "Rustic Room",
+      "size": "30\u2019x50\u2019",
+      "desc": ". Coins placed on the table double on a roll of 10 to 12 but disappear otherwise",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E12": "implicit_adjacent",
+        "E14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E14": {
+      "name": "Boulder",
+      "size": "30\u2019x10\u2019",
+      "desc": "",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E13": "implicit_adjacent",
+        "E15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E15": {
+      "name": "Count\u2019s Room",
+      "size": "50\u2019x30\u2019",
+      "desc": ", duelling swords hanging on the walls (one is a +2 dagger), four gold-covered copper candelabra (20 gp each), a trunk w",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E14": "implicit_adjacent",
+        "E16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "E16": {
+      "name": "Count\u2019s Study",
+      "size": "40\u2019x40\u2019",
+      "desc": ", 6 doses",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "F10": "vertical",
+        "E15": "implicit_adjacent",
+        "E17": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "E17": {
+      "name": "Countess\u2019s Room",
+      "size": "60\u2019x30\u2019",
+      "desc": ". A menacing old wardrobe decorated with gargoyles and grotesques stands by the southern wall, next to a dressing cabine",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E18": "adjacent",
+        "E16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E18": {
+      "name": "Countess\u2019s Study",
+      "size": "30\u2019x20\u2019",
+      "desc": "",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E17": "implicit_adjacent",
+        "E19": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E19": {
+      "name": "Butler\u2019s Room",
+      "size": "30\u2019x20\u2019",
+      "desc": ", other items in the room hint at a much more sinister occupation \u2013 or hobby",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E18": "implicit_adjacent",
+        "E20": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E20": {
+      "name": "Clerk\u2019s Room",
+      "size": "40\u2019x30\u2019",
+      "desc": "",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E21": "adjacent",
+        "E19": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "E21": {
+      "name": "Office",
+      "size": "20\u2019x30\u2019",
+      "desc": ", harmless except for ink spots",
+      "section": "Entrance Halls",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "E20": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F1": {
+      "name": "Grand Dining Hall",
+      "size": "120\u2019x90\u2019",
+      "desc": ". \uf0e8 If the company samples the fare on the table, the food quickly turns into ash and dark dirt; silver corrodes and cru",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "F2": {
+      "name": "Steward\u2019s Room",
+      "size": "50\u2019x30\u2019",
+      "desc": "",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F1": "implicit_adjacent",
+        "F3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "F3": {
+      "name": "Office",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F2": "implicit_adjacent",
+        "F4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F4": {
+      "name": "Gillz\u2019s Room",
+      "size": "40\u2019x30\u2019",
+      "desc": "is present, and 1:3 she is accompanied by 1d3 masked murderers lurking in the background",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F3": "implicit_adjacent",
+        "F5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F5": {
+      "name": "Crusaders\u2019 Room",
+      "size": "30\u2019x30\u2019",
+      "desc": ", 1:6 by glancing sword blow (HD 1; 1d6 Hp), 1:6 by flaming oil (HD 1; 2d4 Hp), and 1:6 by flying Saracen head",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F4": "implicit_adjacent",
+        "F6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F6": {
+      "name": "Game Parlour",
+      "size": "30\u2019x50\u2019",
+      "desc": ". The other tables mainly hold board games",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F5": "implicit_adjacent",
+        "F7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "F7": {
+      "name": "Bucolic Room",
+      "size": "20\u2019x30\u2019",
+      "desc": "",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F6": "implicit_adjacent",
+        "F8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F8": {
+      "name": "Bedroom",
+      "size": "30\u2019x40\u2019",
+      "desc": ", and brings delirious dreams of strange beauty and horror",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F7": "implicit_adjacent",
+        "F9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F9": {
+      "name": "Sitting Room",
+      "size": "30\u2019x30\u2019",
+      "desc": ". \uf0e8 The southern door is the darkest ebony reinforced with hammered brass",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F8": "implicit_adjacent",
+        "F10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F10": {
+      "name": "Scarlet Study",
+      "size": "50\u2019x40\u2019",
+      "desc": "surveys intruders with a cold, calculated expression",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "E9": "vertical",
+        "E16": "secret",
+        "F9": "implicit_adjacent",
+        "F11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "F11": {
+      "name": "Maid\u2019s Room",
+      "size": "30\u2019x40\u2019",
+      "desc": "pours forth, trying to drag victims back to the Stygian depths they came from",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F10": "implicit_adjacent",
+        "F12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F12": {
+      "name": "Butler\u2019s Room",
+      "size": "20\u2019x30\u2019",
+      "desc": ". 43 44 F13",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F13": "adjacent",
+        "F11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F14": {
+      "name": "Storage",
+      "size": "40\u2019x20\u2019",
+      "desc": "",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "F15": {
+      "name": "Storage",
+      "size": "20\u2019x20\u2019",
+      "desc": "slumbers within \u2013 the mouldy clothes adding to her putrid aspect, which is made even more nauseating by the perfumes she",
+      "section": "Upper Quarters",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "F14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "G1": {
+      "name": "Mess Hall",
+      "size": "40\u2019x30\u2019",
+      "desc": ". \uf0e8 In a corner, bronze automaton of a turbaned, cross-legged dervish plays chess against challengers and tells fortunes",
+      "section": "Donjon",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "G4": "vertical",
+        "G2": "passage"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "G3": {
+      "name": "Torture Chamber",
+      "size": "80\u2019x60\u2019",
+      "desc": ". Marble statue of a young woman stands on a pedestal",
+      "section": "Donjon",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "G4": "vertical",
+        "Q7": "vertical"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "G4": {
+      "name": "Guardroom",
+      "size": "70\u2019x60\u2019",
+      "desc": ". \uf0e8 If someone strays close to the pit, an invisible headless manservant tries to push them in with a strong shove, save",
+      "section": "Donjon",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "G7": "vertical",
+        "A9": "vertical",
+        "Q7": "overlook",
+        "G5": "overlook",
+        "G3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "G5": {
+      "name": "Temple",
+      "size": "50\u2019x60\u2019",
+      "desc": "lie on the steps, full of burnt ashes and two wraiths",
+      "section": "Donjon",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "G7": "vertical",
+        "G4": "implicit_adjacent",
+        "G6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "G6": {
+      "name": "Crypt",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Donjon",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "G5": "implicit_adjacent",
+        "G7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "G7": {
+      "name": "Aerie",
+      "size": "60\u2019x60\u2019",
+      "desc": ". Decaying corpses litter the floor, and one is suspended from the bell\u2019s tongue",
+      "section": "Donjon",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "G6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H1": {
+      "name": "Throne Room",
+      "size": "90\u2019x40\u2019",
+      "desc": "or rise back up",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "O14": "adjacent",
+        "H4": "secret",
+        "H2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H2": {
+      "name": "Ballroom",
+      "size": "60\u2019x70\u2019",
+      "desc": "",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H1": "implicit_adjacent",
+        "H3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H3": {
+      "name": "Lounge",
+      "size": "30\u2019x50\u2019",
+      "desc": ": asks, \u201cBut what if\u2026 I painted your portrait? Ha HA HA HA!\u201d, throws bucket of paint",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H2": "implicit_adjacent",
+        "H4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H4": {
+      "name": "Sitting Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ", and a hookah with swirling blue mist inside",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H3": "implicit_adjacent",
+        "H5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H5": {
+      "name": "Reception Room",
+      "size": "40\u2019x20\u2019",
+      "desc": ", 1:3 alone, 1:3 instructing 1d8 bandits, 1:3 conferring with random family member",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H4": "implicit_adjacent",
+        "H6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "H6": {
+      "name": "Lydia\u2019s Room",
+      "size": "20\u2019x30\u2019",
+      "desc": "\uf0e8 Disturbing the dress stirs up a huge cloud of choking dust (roll save, but no effect), which briefly coalesces into th",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H7": "adjacent",
+        "H5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H7": {
+      "name": "Odile\u2019s Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ". Gold thimble (5 gp), needles and thread",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H6": "implicit_adjacent",
+        "H8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H8": {
+      "name": "Statue",
+      "size": "10\u2019x10\u2019",
+      "desc": ". If the answer is yes, save or die on the spot",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H7": "implicit_adjacent",
+        "H9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H9": {
+      "name": "Laboratory",
+      "size": "30\u2019x50\u2019",
+      "desc": ", 1:3 experimenting, 1:3 cursing misfortune, 1:3 laughing maniacally over successful scheme",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H8": "implicit_adjacent",
+        "H10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H10": {
+      "name": "Black Room",
+      "size": "20\u2019x30\u2019",
+      "desc": ". Head levitates into the air, menacingly declaring \u201cOnly the blind shall see! Prepare thyself!\u201d, before another skeleto",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H9": "implicit_adjacent",
+        "H11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H11": {
+      "name": "Occult Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ". The razzle-dazzles only attack those who look at them",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H10": "implicit_adjacent",
+        "H12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H12": {
+      "name": "Overlook Suite",
+      "size": "30\u2019x60\u2019",
+      "desc": "",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H11": "implicit_adjacent",
+        "H13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H13": {
+      "name": "Parlour",
+      "size": "50\u2019x40\u2019",
+      "desc": "; ML 10; AL C",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H12": "implicit_adjacent",
+        "H14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H14": {
+      "name": "Rattling Room",
+      "size": "40\u2019x40\u2019",
+      "desc": ". \uf0e8 1:3 of Guillemette Mal\u00e9vol the Enchanted (#42), drifting among the bubbles in somnolent reverie",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H13": "implicit_adjacent",
+        "H15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H15": {
+      "name": "Round Gallery",
+      "size": "50\u2019x20\u2019",
+      "desc": ": trips character, roll for broken items",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H25": "adjacent",
+        "H14": "implicit_adjacent",
+        "H16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H16": {
+      "name": "Bedroom",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H15": "implicit_adjacent",
+        "H17": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H17": {
+      "name": "Tea Room",
+      "size": "30\u2019x20\u2019",
+      "desc": "stripped of all belongings",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "G2": "adjacent",
+        "H16": "implicit_adjacent",
+        "H18": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H18": {
+      "name": "Captain\u2019s Room",
+      "size": "30\u2019x30\u2019",
+      "desc": ", his shade pacing up and down, growling curses",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H17": "implicit_adjacent",
+        "H19": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H19": {
+      "name": "Music Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ". \uf0e8 Although both instruments are close to falling apart, the twelve golden strings of the harp are 200 gp for their met",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H18": "implicit_adjacent",
+        "H20": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H20": {
+      "name": "Garden Dome",
+      "size": "50\u2019x50\u2019",
+      "desc": ". Shambling Mound: HD 6; AC 3 [16]; Atk 2*tendrils 2d8 and gardeners\u2019 shears 1d6; Spec enfold and suffocate victim 2d4 r",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H22": "secret",
+        "H19": "implicit_adjacent",
+        "H21": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H21": {
+      "name": "Steam Room",
+      "size": "30\u2019x20\u2019",
+      "desc": ". The horn is inhabited by a horde of miniature spiders (save or die if inhaled, save or 3d6 Hp if they get on the body)",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H22": "adjacent",
+        "H20": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H22": {
+      "name": "Hothouse",
+      "size": "60\u2019x30\u2019",
+      "desc": "",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H21": "adjacent",
+        "H20": "adjacent",
+        "H23": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H23": {
+      "name": "Gardener",
+      "size": "30\u2019x30\u2019",
+      "desc": ". \uf0e8 1:2 any vibration sends the moss down on investigating character",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H22": "implicit_adjacent",
+        "H24": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H24": {
+      "name": "Storage",
+      "size": "20\u2019x20\u2019",
+      "desc": "Worn wooden floor with deep, wide groove in the middle",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H25": "passage",
+        "H23": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H26": {
+      "name": "Garden",
+      "size": "230\u2019x130\u2019",
+      "desc": ", radiating an aura of calm",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H27": "adjacent",
+        "O12": "vertical",
+        "O1": "vertical"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "H27": {
+      "name": "Chapel on the Lake",
+      "size": "70\u2019x60\u2019",
+      "desc": "must save or turn back immediately",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H26": "implicit_adjacent",
+        "H28": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "H28": {
+      "name": "Attic Study",
+      "size": "50\u2019x30\u2019",
+      "desc": ", his soul is instantly carried down to the deepest Hells, no chance of resurrection",
+      "section": "Summer Wing",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "H27": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I1": {
+      "name": "Bridge",
+      "size": "80\u2019x20\u2019",
+      "desc": ". Their elongated neck allows their head to reach those on the bridge, but not to use their tail sweep",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "H26": "adjacent",
+        "I2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "I2": {
+      "name": "Templars\u2019 Hall",
+      "size": "80\u2019x40\u2019",
+      "desc": ", weeping profusely on his knees",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "N1": "adjacent",
+        "H26": "adjacent",
+        "I1": "implicit_adjacent",
+        "I3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I3": {
+      "name": "Cloakroom",
+      "size": "50\u2019x20\u2019",
+      "desc": ". Another, bearing a red cross on one side and the image of a sword on the other is the crusader\u2019s cloak +1: the bonus a",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I2": "implicit_adjacent",
+        "I4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I4": {
+      "name": "Stalking Passage",
+      "size": "10\u2019x50\u2019",
+      "desc": "! Up to 10 may be encountered on successive encounters",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I3": "implicit_adjacent",
+        "I5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": true
+      }
+    },
+    "I5": {
+      "name": "Dining Room",
+      "size": "30\u2019x40\u2019",
+      "desc": ". A bell rests next to the head of a chef and a bloody knife",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I4": "implicit_adjacent",
+        "I6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I6": {
+      "name": "Kitchen",
+      "size": "70\u2019x30\u2019",
+      "desc": ". Supplies decay in the corner",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I5": "implicit_adjacent",
+        "I7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I7": {
+      "name": "Cook",
+      "size": "20\u2019x40\u2019",
+      "desc": "",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I6": "implicit_adjacent",
+        "I8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I8": {
+      "name": "Greenhouse",
+      "size": "40\u2019x20\u2019",
+      "desc": ". In their dream, a random character will be visited by Jaumon Mal\u00e9vol the Dreamwright (#44), who offers sack of 3000 go",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I7": "implicit_adjacent",
+        "I9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I9": {
+      "name": "Courtroom",
+      "size": "40\u2019x40\u2019",
+      "desc": "hands down judgements on the unworthy, flanked by two suits of animated armour",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "R1": "adjacent",
+        "I14": "adjacent",
+        "G2": "adjacent",
+        "I8": "implicit_adjacent",
+        "I10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": true
+      }
+    },
+    "I10": {
+      "name": "Maid\u2019s Room",
+      "size": "30\u2019x40\u2019",
+      "desc": "Strange-smelling room bathed in peculiar colours thanks to the varicoloured stained glass windows",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I9": "implicit_adjacent",
+        "I11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I11": {
+      "name": "Serpentina\u2019s Room",
+      "size": "30\u2019x40\u2019",
+      "desc": ", reclining on the bed with a mischievous smile and not much else",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I13": "adjacent",
+        "I12": "adjacent",
+        "I10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "I13": {
+      "name": "Cell",
+      "size": "20\u2019x20\u2019",
+      "desc": ": HD 1; AC 5 [14]; Atk claws 1d4; ML 4; AL C",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "I14": {
+      "name": "Evidence Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ", as well as several rotting cloaks, boots and gloves; corroded weapons; coils of rotted rope; lanterns, etc",
+      "section": "Lake Tower",
+      "floor": "upper",
+      "map": "upper_east.jpg",
+      "connections": {
+        "I9": "adjacent",
+        "I13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J1": {
+      "name": "Grand Bath",
+      "size": "40\u2019x40\u2019",
+      "desc": ". \uf0e8 The statue is covered with varicoloured ceramic scales",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J2": {
+      "name": "Bath",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J1": "implicit_adjacent",
+        "J3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J3": {
+      "name": "Steam Bath",
+      "size": "20\u2019x20\u2019",
+      "desc": "sit on a small round table",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "O2": "vertical",
+        "J1": "vertical",
+        "J2": "implicit_adjacent",
+        "J4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "J4": {
+      "name": "Maid",
+      "size": "10\u2019x20\u2019",
+      "desc": "to reveal a gap swarming with rats",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J3": "implicit_adjacent",
+        "J5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "J5": {
+      "name": "Gardener",
+      "size": "20\u2019x30\u2019",
+      "desc": ". \uf0e8 In the corner lies a mighty sack of magic turnips, which will each grow into an enormous specimen filling a wheelbar",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J4": "implicit_adjacent",
+        "J6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J6": {
+      "name": "Bedroom",
+      "size": "30\u2019x20\u2019",
+      "desc": ", the room is filled with 1d100*1000 gp, and the cornucopia splits as above",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J5": "implicit_adjacent",
+        "J7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J7": {
+      "name": "Barracks",
+      "size": "20\u2019x30\u2019",
+      "desc": "",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J6": "implicit_adjacent",
+        "J8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J8": {
+      "name": "Cook",
+      "size": "20\u2019x30\u2019",
+      "desc": "",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J7": "implicit_adjacent",
+        "J9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J9": {
+      "name": "Bedroom",
+      "size": "30\u2019x20\u2019",
+      "desc": ". The wand has 6 charges",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J8": "implicit_adjacent",
+        "J10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J10": {
+      "name": "Linen",
+      "size": "30\u2019x10\u2019",
+      "desc": ". Werewolf: HD 4+4; AC 5 [14]; Atk bite 2d4; Spec lycanthropy, silver to hit; ML 9; AL C",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J9": "implicit_adjacent",
+        "J11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J11": {
+      "name": "Galopping Hall",
+      "size": "100\u2019x10\u2019 and 10\u2019x60\u2019",
+      "desc": "",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J10": "implicit_adjacent",
+        "J12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J12": {
+      "name": "Armoury",
+      "size": "20\u2019x20\u2019",
+      "desc": ". Several weapons sitting on racks and dummies with suits of armour",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J11": "implicit_adjacent",
+        "J13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "J13": {
+      "name": "Hunting Hall",
+      "size": "50\u2019x30\u2019 and 40\u2019x40\u2019",
+      "desc": ". A stygous lurks in this area, pouncing from a protruding beam to skewer an unaware character",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J12": "implicit_adjacent",
+        "J14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "J14": {
+      "name": "Western Gallery",
+      "size": "50\u2019x30\u2019",
+      "desc": ": foretells next random encounter (pre-roll, reveal results and how Odile recommends dealing with it)",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J13": "implicit_adjacent",
+        "J15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J15": {
+      "name": "Mead Hall",
+      "size": "50\u2019x30\u2019",
+      "desc": ": HD 2; AC",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J14": "implicit_adjacent",
+        "J16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "J16": {
+      "name": "Butler",
+      "size": "30\u2019x20\u2019",
+      "desc": "sound surrounds the head of the decayed gentleman",
+      "section": "Ruined Quarters",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "J15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K1": {
+      "name": "Menagerie",
+      "size": "50\u2019x70\u2019",
+      "desc": "sits on the throne, 1:2 surrounded by his loyal dog pack",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "D9": "adjacent",
+        "K2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K2": {
+      "name": "Display Room",
+      "size": "30\u2019x40\u2019",
+      "desc": ". Water extinguishes them, but only temporarily, for they flare up again in 1d3 turns",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K1": "implicit_adjacent",
+        "K3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K3": {
+      "name": "Storage",
+      "size": "30\u2019x30\u2019",
+      "desc": "",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K2": "implicit_adjacent",
+        "K4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K4": {
+      "name": "Storage",
+      "size": "30\u2019x30\u2019",
+      "desc": ". \uf0e8 Anyone washing hands in the blood gains a permanent magical +1 to m\u00eal\u00e9e attacks which transfer to held weapons",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K3": "implicit_adjacent",
+        "K5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K5": {
+      "name": "Fountain Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ": o 1 \u2013 save or polymorph into goldfish; o 2 \u2013 grow golden scales, AC 6 [13] or harvest for 2000 gp (painful); o 3 \u2013 gai",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K4": "implicit_adjacent",
+        "K6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K6": {
+      "name": "Nursery",
+      "size": "30\u2019x30\u2019",
+      "desc": ": HD 1+1; AC 6 [13]; Atk bite 1d6; Spec too cute to harm (save); ML 6; AL C (but innocently so)",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K5": "implicit_adjacent",
+        "K7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K7": {
+      "name": "Storage",
+      "size": "20\u2019x20\u2019",
+      "desc": "under its bandages and a sun amulet (3000 gp) around its neck",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K6": "implicit_adjacent",
+        "K8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K8": {
+      "name": "Storage",
+      "size": "40\u2019x30\u2019",
+      "desc": ". In the balm, there rests a stone hand- axe and a masque",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K7": "implicit_adjacent",
+        "K9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K9": {
+      "name": "Nursery",
+      "size": "30\u2019x30\u2019",
+      "desc": "",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K8": "implicit_adjacent",
+        "K10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K10": {
+      "name": "Speakeasy",
+      "size": "30\u2019x20\u2019",
+      "desc": "before melting into ectoplasm",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K9": "implicit_adjacent",
+        "K11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K11": {
+      "name": "Armoury",
+      "size": "30\u2019x30\u2019",
+      "desc": ": HD 2; AC 8 [11]; Atk strike 1d8; ML 12; AL N",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K10": "implicit_adjacent",
+        "K12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K12": {
+      "name": "Linen",
+      "size": "30\u2019x30\u2019",
+      "desc": ". Hand Swarm: HD 4; AC 6 [13]; Atk swarm 2d4; Spec choke 3d4/round; ML 6; AL C",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K11": "implicit_adjacent",
+        "K13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K13": {
+      "name": "Firewood",
+      "size": "30\u2019x20\u2019",
+      "desc": "before departing to chop limbs elsewhere",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K12": "implicit_adjacent",
+        "K14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K14": {
+      "name": "Barracks",
+      "size": "50\u2019x30\u2019",
+      "desc": "",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K13": "implicit_adjacent",
+        "K15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K15": {
+      "name": "Chapel of Hounds",
+      "size": "50\u2019x30\u2019 and 30\u2019x50",
+      "desc": ". \uf0e8 Cleaning up the chapel turns the dogs into lambs, and reveals a set of robes +3 on the clean altar (they can only be",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "C11": "secret",
+        "K14": "implicit_adjacent",
+        "K16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K16": {
+      "name": "Utility",
+      "size": "20\u2019x30\u2019",
+      "desc": "is deactivated, and power in the Control Room (L17) goes down",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "L15": "adjacent",
+        "L17": "vertical",
+        "K15": "implicit_adjacent",
+        "K17": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "K17": {
+      "name": "Storage",
+      "size": "30\u2019x20\u2019",
+      "desc": "",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K16": "implicit_adjacent",
+        "K18": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "K18": {
+      "name": "Storage",
+      "size": "30\u2019x30\u2019",
+      "desc": ". A ledger full of scribbled notes and shipping manifests rests on an empty barrel",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K17": "implicit_adjacent",
+        "K19": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "K19": {
+      "name": "Lower Laboratory",
+      "size": "70\u2019x50\u2019",
+      "desc": ". Arcane diagrams inlaid into the floor gleam in copper and silver tones, while vile fluids boil in iron and glass retor",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "L16": "adjacent",
+        "K18": "implicit_adjacent",
+        "K20": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "K20": {
+      "name": "Burial Chamber",
+      "size": "30\u2019x40\u2019",
+      "desc": ". Three wooden sarcophagi carved from brightly painted wood lie against the walls",
+      "section": "Storerooms",
+      "floor": "ground",
+      "map": "ground_floor.jpg",
+      "connections": {
+        "K19": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "L1": {
+      "name": "Trophy Room",
+      "size": "70\u2019x70\u2019",
+      "desc": "was the limb of a treant",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L2": "adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L2": {
+      "name": "Greater Library",
+      "size": "50\u2019x90\u2019",
+      "desc": ". \uf0e8 The wheezing and shuffling sounds always come from behind company, remaining incorporeal until they reach a dead end",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L4": "adjacent",
+        "L3": "adjacent",
+        "L6": "adjacent",
+        "L1": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L4": {
+      "name": "Bartholomew\u2019s Gallery",
+      "size": "50\u2019x60\u2019",
+      "desc": ": HD 3; AC 7 [12]; Atk 2*talons 1d4; Spec flies, siren song draws victim, charm touch, +2 vs spells; ML 7; AL C",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L5": {
+      "name": "Study",
+      "size": "50\u2019x60\u2019",
+      "desc": ", skeletal artist, studies half-finished portrait of himself with palette and brush, 1:3 only the portrait is present, s",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L4": "implicit_adjacent",
+        "L6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L6": {
+      "name": "Mirror Room",
+      "size": "20\u2019x30\u2019",
+      "desc": ":",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L5": "implicit_adjacent",
+        "L7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L7": {
+      "name": "The Masterpiece of Death",
+      "size": "10\u2019x30\u2019",
+      "desc": ", a gas valve trap (front row save or die), a crushing gears trap (2d6 and mangled hand on failed roll) and a guillotine",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L6": "implicit_adjacent",
+        "L8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L8": {
+      "name": "Spirit Storage",
+      "size": "20\u2019x20\u2019",
+      "desc": ". Enraged poltergeist hurls empty bottles at training dummy, switching to characters if they linger",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L7": "implicit_adjacent",
+        "L9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L9": {
+      "name": "Waxworks",
+      "size": "30\u2019x40\u2019",
+      "desc": "sweeps through room, stirring up dust",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L8": "implicit_adjacent",
+        "L10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L10": {
+      "name": "Singing Hall",
+      "size": "90\u2019x20\u2019 and 10\u2019x100\u2019",
+      "desc": ". \uf0e8 The singing turns into a cold wind in 1 turn, then coalesces into the ghost of Malvin Mal\u00e9vol the Strangler, bound t",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L15": "adjacent",
+        "I8": "adjacent",
+        "L9": "implicit_adjacent",
+        "L11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "L11": {
+      "name": "Chapel",
+      "size": "20\u2019x20\u2019",
+      "desc": ". \uf0e8 A plaque at the base of the statue reads: \u201cSt",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L10": "implicit_adjacent",
+        "L12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "L12": {
+      "name": "Show Room",
+      "size": "30\u2019x30\u2019",
+      "desc": ". Encore, clapping, and the dead are dragged out by invisible servants",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L11": "implicit_adjacent",
+        "L13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L13": {
+      "name": "Sparring Room",
+      "size": "30\u2019x30\u2019",
+      "desc": ". \uf0e8 The winner can challenge the suit of armour for three strikes, wagering the wreath for the heart of heroes (fighting",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L12": "implicit_adjacent",
+        "L14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L14": {
+      "name": "Yellow Room",
+      "size": "30\u2019x30\u2019",
+      "desc": ", slices of human ham on a silver platter (200 gp) and a crystal bottle of delicious golden wine (save or melt into pudd",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L13": "implicit_adjacent",
+        "L15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L15": {
+      "name": "Anteroom",
+      "size": "40\u2019x20\u2019",
+      "desc": "",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "K16": "adjacent",
+        "L14": "implicit_adjacent",
+        "L16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L16": {
+      "name": "Laboratory",
+      "size": "70\u2019x50\u2019",
+      "desc": ", 1:3 conducting an experiment, 1:3 giving orders to Bruno the Frankenstein (L17), 1:3 dissecting adventurer",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L18": "adjacent",
+        "L17": "vertical",
+        "L15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": true
+      }
+    },
+    "L19": {
+      "name": "Bedroom",
+      "size": "30\u2019x20\u2019",
+      "desc": "is friendly but inquisitive and voracious, and tries to snatch and chew up a character\u2019s backpack if not placated with s",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L20": "adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L21": {
+      "name": "Parlour",
+      "size": "30\u2019x30\u2019",
+      "desc": ": smirks and exclaims, \u201cI am just a victim of society.\u201d o Tristano Mal\u00e9vol the Love-Lost (#2): offers potion of love to ",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L22": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L22": {
+      "name": "Jean-Jacques\u2019 Room",
+      "size": "30\u2019x20\u2019",
+      "desc": "working on philosophical treatise with peacock quill while sipping plum wine",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L23": "adjacent",
+        "L21": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L24": {
+      "name": "The Beast\u2019s Quarters",
+      "size": "70\u2019x50\u2019",
+      "desc": "and Samuel (#29), respectively",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "L25": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "L25": {
+      "name": "Bedroom",
+      "size": "30\u2019x20\u2019",
+      "desc": "implants a suggestion to visit the count in his quarters (E15)",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {
+        "E15": "adjacent",
+        "L26": "adjacent",
+        "L24": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "L27": {
+      "name": "Statuary",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Maze of the Occult",
+      "floor": "upper",
+      "map": "upper_west.jpg",
+      "connections": {},
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M1": {
+      "name": "Wine Cellar",
+      "size": "90\u2019x20\u2019 and 20\u2019x60\u2019",
+      "desc": ", examining the barrels or the winemaking equipment",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M4": "secret",
+        "R10": "secret",
+        "M2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M2": {
+      "name": "Root Cellar",
+      "size": "70\u2019x20\u2019",
+      "desc": ". Moving the pedestal or ogling the statue agitates the beets",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q1": "vertical",
+        "M1": "implicit_adjacent",
+        "M3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "M3": {
+      "name": "Excavation",
+      "size": "30\u2019x30\u2019",
+      "desc": ", 1:6 present and exhorting the tools to take action and throw off their chains",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M2": "implicit_adjacent",
+        "M4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M4": {
+      "name": "Lookout",
+      "size": "20\u2019x20\u2019",
+      "desc": ", benches and tables for 9 skeletal sentries",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M1": "overlook",
+        "M3": "implicit_adjacent",
+        "M5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M5": {
+      "name": "Junk Room",
+      "size": "20\u2019x30\u2019",
+      "desc": ". \uf0e8 Lingering characters with wooden items are attacked by the woodworms, make item saving throws",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M4": "implicit_adjacent",
+        "M6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M6": {
+      "name": "Lapidary",
+      "size": "140\u2019x30\u2019",
+      "desc": ". \uf0e8 One of the half-broken gargoyles whispers to lead character, promising to trade a secret in exchange for destroying ",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "A9": "adjacent",
+        "M5": "implicit_adjacent",
+        "M7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M7": {
+      "name": "Sundial Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ". Created by the infamous watchmaker Teophilus Gansch, it is worth 3250 gp for its jewellery value alone",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M8": "adjacent",
+        "M6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "M9": {
+      "name": "D\u00e9j\u00e0 vu Room",
+      "size": "30\u2019x20\u2019",
+      "desc": "Worthless furniture, equipment and bric-a-brac: broken table and chairs, split training dummy and archery target, severa",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M10": "adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M11": {
+      "name": "Cloakroom",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "K12": "adjacent",
+        "M12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M12": {
+      "name": "Larder",
+      "size": "30\u2019x20\u2019",
+      "desc": ": HD 4; AC 6/5 [13/14]; Atk swarm 2d4; Spec choke 3d4/round; ML 6; AL C; one wears a ring of protection +1",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M11": "implicit_adjacent",
+        "M13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "M13": {
+      "name": "Chapel",
+      "size": "30\u2019x50\u2019",
+      "desc": "lies on an unmarked grave",
+      "section": "The Understores",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N1": {
+      "name": "Salt Room",
+      "size": "30\u2019x20\u2019",
+      "desc": ". Anyone harming the statue animates the goatrices",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "N2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N2": {
+      "name": "Tax Room",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "N1": "implicit_adjacent",
+        "N3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N3": {
+      "name": "Maids\u2019 Room",
+      "size": "20\u2019x30\u2019",
+      "desc": ". Both secret doors are behind dressers which have to be moved to operate door",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "N2": "implicit_adjacent",
+        "N4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N4": {
+      "name": "Taproom",
+      "size": "20\u2019x50\u2019",
+      "desc": ": smooth, but keeps kicking down the gullet",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "N3": "implicit_adjacent",
+        "N5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N5": {
+      "name": "Killer Kitchen",
+      "size": "30\u2019x30\u2019",
+      "desc": ", scalding hot pot of soup can be hurled as projectile (3d4 Hp)",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "K10": "adjacent",
+        "I5": "adjacent",
+        "J15": "adjacent",
+        "D6": "adjacent",
+        "F1": "adjacent",
+        "C13": "adjacent",
+        "B4": "adjacent",
+        "N4": "implicit_adjacent",
+        "N6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N6": {
+      "name": "Pantry",
+      "size": "20\u2019x20\u2019",
+      "desc": ": HD 1; AC 8 [11]; Atk bite 1d4; ML 5; AL N",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "N5": "implicit_adjacent",
+        "N7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N7": {
+      "name": "Firewood",
+      "size": "20\u2019x20\u2019",
+      "desc": "chained to wall, runs in panic if freed",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "N6": "implicit_adjacent",
+        "N8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N8": {
+      "name": "Linen",
+      "size": "30\u2019x30\u2019",
+      "desc": ". Severely wounded strangling sheet tries to stave off the inevitable, three mice with broken necks before it",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "N7": "implicit_adjacent",
+        "N9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "N9": {
+      "name": "Theatre",
+      "size": "50\u2019x60\u2019",
+      "desc": "and troupe of 33 skeletons",
+      "section": "Service Tunnels",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "R13": "vertical",
+        "N8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "O1": {
+      "name": "Cave Mouth",
+      "size": "20\u2019x110\u2019",
+      "desc": ". Winding passage",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O3": "adjacent",
+        "H26": "passage",
+        "O2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "O2": {
+      "name": "Lake Grotto",
+      "size": "70\u2019x90\u2019",
+      "desc": ", and down to a pool of scalding water \u2013 anyone submerging themselves in the water takes 3d6 Hp, but survivors gain 1 po",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "J3": "passage",
+        "O1": "implicit_adjacent",
+        "O3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "O3": {
+      "name": "Flooded Vault",
+      "size": "30\u2019x30\u2019",
+      "desc": ": HD 2; AC 6 [13]; Atk 2*claws 1d6; Spec slow; ML 8; AL C",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O2": "implicit_adjacent",
+        "O4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O4": {
+      "name": "Pirate Room",
+      "size": "20\u2019x20\u2019",
+      "desc": "",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O3": "implicit_adjacent",
+        "O5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O5": {
+      "name": "Lesser Grotto",
+      "size": "80\u2019x70\u2019",
+      "desc": ", 3d100 gp, lantern",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O4": "implicit_adjacent",
+        "O6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O6": {
+      "name": "Room of the Prophecy",
+      "size": "30\u2019x50\u2019",
+      "desc": "",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O5": "implicit_adjacent",
+        "O7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O7": {
+      "name": "Chapel",
+      "size": "30\u2019x30\u2019",
+      "desc": ", this is the X that marks the spot! Digging in the middle of the intersection reveals a trapdoor and a ladder leading d",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "H18": "adjacent",
+        "O6": "implicit_adjacent",
+        "O8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": true,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "O8": {
+      "name": "Empty Tomb",
+      "size": "20\u2019x20\u2019",
+      "desc": ": HD 2; AC 6 [13]; Atk 2*claws 1d4 and bite 1d4; Spec paralysis; ML 6; AL C",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O7": "implicit_adjacent",
+        "O9": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O9": {
+      "name": "Tomb",
+      "size": "30\u2019x20\u2019",
+      "desc": "moves earth from one grave to fill another; then begins again",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O8": "implicit_adjacent",
+        "O10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O10": {
+      "name": "Tomb",
+      "size": "30\u2019x20\u2019",
+      "desc": "",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O9": "implicit_adjacent",
+        "O11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O11": {
+      "name": "Tomb",
+      "size": "30\u2019x20\u2019",
+      "desc": ", 2:3 present and brooding on the things he has forgotten",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O10": "implicit_adjacent",
+        "O12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O12": {
+      "name": "Serpentile Well",
+      "size": "25\u2019x25\u2019",
+      "desc": ", under the statue of the lady",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "H26": "vertical",
+        "O11": "implicit_adjacent",
+        "O13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": true,
+        "locked": false
+      }
+    },
+    "O13": {
+      "name": "Retreat",
+      "size": "20\u2019x20\u2019",
+      "desc": "entertains himself by penning improbable stories featuring heroic alter ego",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "O12": "implicit_adjacent",
+        "O14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O14": {
+      "name": "Dressing Room",
+      "size": "20\u2019x20\u2019",
+      "desc": "can descend to",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "H1": "adjacent",
+        "O15": "adjacent",
+        "O13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "O15": {
+      "name": "Hermitage",
+      "size": "30\u2019x40\u2019",
+      "desc": ", 5:6 present here, 1:6 in secret cubicle",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "E15": "adjacent",
+        "E17": "adjacent",
+        "O16": "adjacent",
+        "M1": "adjacent",
+        "O14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "O16": {
+      "name": "Nuns\u2019 Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ": HD 1; AC 7 [12]; Atk claws 1d6; ML 7; AL C",
+      "section": "Lake Grotto",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "H1": "secret",
+        "A9": "adjacent",
+        "K2": "adjacent",
+        "P3": "adjacent",
+        "D8": "adjacent",
+        "H11": "secret",
+        "I14": "adjacent",
+        "R21": "adjacent",
+        "O7": "adjacent",
+        "O15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "P1": {
+      "name": "Tomb Entrance",
+      "size": "10\u2019x20\u2019 and 20\u2019x20\u2019",
+      "desc": ". \uf0e8 In anteroom, vivid frescoes of stern-faced warrior saints follow with peering eyes",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "P2": {
+      "name": "Pool Room",
+      "size": "30\u2019x50\u2019",
+      "desc": "",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P1": "implicit_adjacent",
+        "P3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "P3": {
+      "name": "Knights\u2019 Graves",
+      "size": "10\u2019x80\u2019",
+      "desc": ": Fighter 6; AC 4 [15]; Atk sword 1d6 or war axe 1d8; Spec distribute attacks among 6 HD of opponents; ML 12; AL C",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P2": "implicit_adjacent",
+        "P4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": true
+      }
+    },
+    "P4": {
+      "name": "Treasury",
+      "size": "20\u2019x30\u2019",
+      "desc": "; o fistful of 2d6 random gems (out of 60); o random jewellery (out of 5); o staff of healing; o horn of blasting; o hel",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P3": "implicit_adjacent",
+        "P5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "P5": {
+      "name": "Idol Room",
+      "size": "50\u2019x30\u2019",
+      "desc": "; Spec eye rays 1/round (one opponent, save or polymorph into regular snail), MR 60%, regeneration 3 Hp/r; ML 12; AL C",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P4": "implicit_adjacent",
+        "P6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "P6": {
+      "name": "Mosaic Room",
+      "size": "40\u2019x20\u2019",
+      "desc": "",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P5": "implicit_adjacent",
+        "P7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "P7": {
+      "name": "False Grayl",
+      "size": "20\u2019x20\u2019",
+      "desc": "must save or become possessed by the Grayl\u2019s evil, turning to the cause of Chaos",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P6": "implicit_adjacent",
+        "P8": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "P8": {
+      "name": "Tomb of the Grayl",
+      "size": "15\u2019x15\u2019",
+      "desc": ". Finally, possessing it grants its bearer an AC of 2 (but only the pure can bear it for long)",
+      "section": "Crusaders' Tomb",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "P7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q1": {
+      "name": "Cistern",
+      "size": "30\u2019x30\u2019",
+      "desc": "filled with 10\u2019 of brackish, filthy water",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "M2": "vertical",
+        "A9": "adjacent",
+        "Q2": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q2": {
+      "name": "Room of Eyes",
+      "size": "40\u2019x30\u2019",
+      "desc": ". If the giant eye in the pool is damaged (Hp 2), the pool 100 showers acidic blood on all within room (3d4 Hp, save \u00bd) ",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q1": "implicit_adjacent",
+        "Q3": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q3": {
+      "name": "Room of the Blind",
+      "size": "30\u2019x20\u2019",
+      "desc": "",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q2": "implicit_adjacent",
+        "Q4": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q4": {
+      "name": "Kitchen",
+      "size": "20\u2019x30\u2019",
+      "desc": "brewing soup in giant cauldron",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q1": "adjacent",
+        "Q3": "implicit_adjacent",
+        "Q5": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q5": {
+      "name": "Slaughterhouse",
+      "size": "30\u2019x20\u2019",
+      "desc": ", searching for something she has lost nearby with severed, bloody head in hand",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q4": "implicit_adjacent",
+        "Q6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q6": {
+      "name": "Ball Room",
+      "size": "15\u2019x15\u2019",
+      "desc": "\u2013 see Q5",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q5": "adjacent",
+        "Q7": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q7": {
+      "name": "Arena of Rats",
+      "size": "60\u2019x60\u2019",
+      "desc": ". There will be 3 rat swarms at first, with one more joining the fray every 1d3 rounds",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "L6": "adjacent",
+        "Q8": "passage",
+        "Q6": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": true,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q9": {
+      "name": "Lapidary",
+      "size": "50\u2019x50\u2019",
+      "desc": ". A student holds up a stone book, but one of the pages sticking out is paper (scroll of 2 spells: protection vs",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q10": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q10": {
+      "name": "Rat Room",
+      "size": "20\u2019x20\u2019",
+      "desc": ", and attacking if the music is disrupted",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q9": "implicit_adjacent",
+        "Q11": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q11": {
+      "name": "Rose Garden",
+      "size": "30\u2019x30\u2019",
+      "desc": "digging up the ground, looking for lost soul (she will never find it)",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q10": "implicit_adjacent",
+        "Q12": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": false,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q12": {
+      "name": "Stone Gallery",
+      "size": "10\u2019x60\u2019",
+      "desc": "; the din of battle among two great hosts still ringing somewhere in the distance",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q11": "implicit_adjacent",
+        "Q13": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": false,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q13": {
+      "name": "Tapestry Hall",
+      "size": "20\u2019x50\u2019",
+      "desc": ": HD 1; AC 7 [12]; Atk sword 1d6; ML 8; AL C; elegant but rotting clothing, 1d6*5 gp each",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q12": "implicit_adjacent",
+        "Q14": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q14": {
+      "name": "Court",
+      "size": "30\u2019x30\u2019",
+      "desc": "and curse scroll (monsters will preferentially target character)",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q13": "implicit_adjacent",
+        "Q15": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q15": {
+      "name": "Throne Room",
+      "size": "30\u2019x30\u2019",
+      "desc": "",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q14": "implicit_adjacent",
+        "Q16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q16": {
+      "name": "Pendulum Room",
+      "size": "25\u2019x25\u2019",
+      "desc": ". \uf0e8 The pit\u2019s cavities are the dwelling place for 2 rat swarms, who will issue forth to kill and gnaw away ropes if the ",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q15": "implicit_adjacent",
+        "Q17": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": true,
+        "treasure": true,
+        "monster": true,
+        "npc": false,
+        "stairs": false,
+        "locked": false
+      }
+    },
+    "Q17": {
+      "name": "Pendulum Room",
+      "size": "25\u2019x25\u2019",
+      "desc": ". Examining the point of suspension, engraved letters spelling out \u201cT.R.E.S.\u201d can be observed",
+      "section": "The Oubliette",
+      "floor": "dungeon",
+      "map": "dungeons.jpg",
+      "connections": {
+        "Q18": "adjacent",
+        "Q16": "implicit_adjacent"
+      },
+      "features": {
+        "secret_door": false,
+        "trap": false,
+        "treasure": true,
+        "monster": true,
+        "npc": true,
+        "stairs": false,
+        "locked": false
+      }
+    }
+  }
+}

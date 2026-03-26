@@ -7,6 +7,7 @@ ai_dungeon_master.egg-info/requires.txt
 ai_dungeon_master.egg-info/top_level.txt
 src/__init__.py
 src/main.py
+src/server.py
 src/cli/__init__.py
 src/cli/commands.py
 src/cli/interface.py
@@ -14,10 +15,13 @@ src/dm/__init__.py
 src/dm/context.py
 src/dm/engine.py
 src/dm/prompts.py
+src/dm/tools.py
+src/dm/vision.py
 src/game/__init__.py
 src/game/character.py
 src/game/combat.py
 src/game/dice.py
+src/game/equipment.py
 src/game/state.py
 src/game/tables.py
 src/persistence/__init__.py

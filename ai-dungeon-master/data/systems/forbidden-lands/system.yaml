@@ -1,0 +1,240 @@
+id: forbidden-lands
+name: "Forbidden Lands"
+version: "5th printing"
+genre: dark fantasy
+
+dm_title: "Gamemaster"
+player_term: "adventurer"
+tone: "gritty, survival-focused, sandbox exploration"
+gm_principles:
+  - "The Forbidden Lands are dangerous. Nature, monsters, and other humans are all threats."
+  - "Let the players drive the story. Present situations, not plots."
+  - "Push rolls have consequences. When players push, make them hurt."
+  - "Resources matter. Track food, water, arrows, torches, and condition."
+  - "Combat is deadly. Encourage players to think before fighting."
+
+attributes:
+  generation_order: assign
+  attributes:
+    - name: Strength
+      abbreviation: STR
+      min_value: 2
+      max_value: 5
+      generation_method: "point_buy"
+    - name: Agility
+      abbreviation: AGL
+      min_value: 2
+      max_value: 5
+      generation_method: "point_buy"
+    - name: Wits
+      abbreviation: WIT
+      min_value: 2
+      max_value: 5
+      generation_method: "point_buy"
+    - name: Empathy
+      abbreviation: EMP
+      min_value: 2
+      max_value: 5
+      generation_method: "point_buy"
+
+skills:
+  resolution: d6_pool
+  dice: "d6"
+  improvement_method: advance_on_fail
+  skills:
+    - name: Might
+      linked_attribute: STR
+      category: combat
+    - name: Endurance
+      linked_attribute: STR
+      category: survival
+    - name: Melee
+      linked_attribute: STR
+      category: combat
+    - name: Crafting
+      linked_attribute: STR
+      category: crafting
+    - name: Stealth
+      linked_attribute: AGL
+      category: exploration
+    - name: Sleight of Hand
+      linked_attribute: AGL
+      category: social
+    - name: Move
+      linked_attribute: AGL
+      category: exploration
+    - name: Marksmanship
+      linked_attribute: AGL
+      category: combat
+    - name: Scouting
+      linked_attribute: WIT
+      category: exploration
+    - name: Lore
+      linked_attribute: WIT
+      category: knowledge
+    - name: Survival
+      linked_attribute: WIT
+      category: survival
+    - name: Insight
+      linked_attribute: WIT
+      category: social
+    - name: Manipulation
+      linked_attribute: EMP
+      category: social
+    - name: Performance
+      linked_attribute: EMP
+      category: social
+    - name: Healing
+      linked_attribute: EMP
+      category: survival
+    - name: Animal Handling
+      linked_attribute: EMP
+      category: survival
+
+character_types:
+  label: Kin
+  optional: false
+  types:
+    - name: Human
+      category: kin
+      special_abilities:
+        - "Adaptive: one extra general talent at start"
+    - name: Elf
+      category: kin
+      special_abilities:
+        - "Inner Peace: can heal all conditions by spending a Quarter Day in nature"
+    - name: Dwarf
+      category: kin
+      special_abilities:
+        - "True Grit: can push rolls on Endurance and Crafting without taking damage"
+    - name: Halfling
+      category: kin
+      special_abilities:
+        - "Hard to Catch: can push Move and Stealth rolls without taking damage"
+    - name: Orc
+      category: kin
+      special_abilities:
+        - "Unbreakable: can push rolls on Might and Melee without taking damage"
+    - name: Wolfkin
+      category: kin
+      special_abilities:
+        - "Hunting Instinct: can push Scouting and Survival without taking damage"
+    - name: Goblin
+      category: kin
+      special_abilities:
+        - "Sneaky: can push Stealth and Sleight of Hand without taking damage"
+
+combat:
+  attack:
+    method: dice_pool
+    dice: "d6"
+    success_condition: "Roll pool of Attribute + Skill d6s. Each 6 = one success. One or more successes = hit."
+    critical_success: "Two or more sixes on an attack: extra damage or special effect"
+    critical_failure: ""
+    damage_default: "weapon dependent"
+  initiative:
+    method: draw_cards
+    dice: ""
+    modifier_attribute: ""
+    reroll_each_round: true
+  morale:
+    dice: "d6_pool"
+    holds_on: "one or more successes on WIT roll"
+    default_score: 3
+    check_triggers:
+      - "NPC takes a critical injury"
+      - "NPC's leader is defeated"
+  rounds_description: "~5-10 seconds per round"
+  special_rules:
+    - "Fast and slow actions each round. Fast: draw weapon, dodge, parry, shove. Slow: attack, cast spell, flee, use skill."
+    - "Dodge and Parry reduce incoming damage successes."
+    - "Armor absorbs damage but degrades."
+    - "Pushing a roll: re-roll all non-six dice, but take 1 point of attribute damage per 1 rolled on the push."
+
+health:
+  model: conditions
+  conditions:
+    - "Exhausted (STR damage)"
+    - "Sore (AGL damage)"
+    - "Dazed (WIT damage)"
+    - "Angry (EMP damage)"
+    - "Hungry"
+    - "Thirsty"
+    - "Cold"
+    - "Sleepy"
+  death_at: "When any attribute reaches 0, you are Broken. If STR reaches 0 from damage, you die unless healed."
+  healing: "Healing skill roll or rest. A Quarter Day rest recovers 1 attribute point (with food/water). Full sleep (Quarter Day) recovers all Willpower Points."
+  death_rules: "When STR drops to 0 from damage, roll on the Critical Injuries table. Result 66 = death. Otherwise, you are Broken and helpless until healed to at least 1 STR."
+
+defense:
+  model: armor_value
+  base_value: 0
+  better_direction: higher
+  modifier_attribute: ""
+  armor_examples:
+    "Leather": 2
+    "Studded Leather": 3
+    "Chainmail": 6
+    "Plate": 8
+    "Shield": 1
+
+saves:
+  per_class: false
+  roll_dice: "d6_pool"
+  categories: []
+
+magic:
+  model: power_points
+  recovery: full_rest
+  notes: "Spells cost Willpower Points (WP) to cast. Roll a pool of d6s equal to your relevant talent rank. Each 6 is a success. Overcasting (pushing a spell) risks mishaps. Spell schools: Blood Magic, Death Magic, Animism, Elementalism, Mentalism, Healing, Symbolism, Stone Singing."
+
+dice_conventions:
+  primary_dice: d6_pool
+  stat_generation: "point_buy"
+  ability_check_method: dice_pool
+  common_notation: "Roll Attribute + Skill in d6. Each 6 = success. Push to re-roll failures, but 1s on push damage your attributes."
+
+special_mechanics:
+  - name: "Push Rolls"
+    description: "After a failed roll, you can push it — re-roll all non-6 dice. But every 1 on the push deals 1 point of damage to the attribute used."
+    mechanic_type: roll_modifier
+    resolution: "Re-roll all non-6 dice. Each 1 on pushed dice = 1 attribute damage."
+    depletion_effect: "Attribute reaches 0 = Broken"
+    recovery: "Rest, healing, or kin ability"
+  - name: "Willpower Points"
+    description: "Fuel for magic, talents, and some special abilities. Start with WP equal to sum of all attributes."
+    mechanic_type: resource
+    starting_value: "sum of all attributes"
+    resolution: "Spend WP to activate talents, cast spells, or use certain abilities"
+    depletion_effect: "Cannot cast spells or use WP-powered abilities"
+    recovery: "Full sleep (Quarter Day) restores all WP"
+  - name: "Conditions"
+    description: "Starving, Dehydrated, Cold, Sleepy — each imposes -1 to all dice pools. Multiple conditions stack."
+    mechanic_type: condition_track
+    depletion_effect: "Each condition = -1 to ALL rolls. Four conditions = extremely dangerous."
+    recovery: "Eat, drink, warm up, or sleep to remove the relevant condition."
+
+exploration:
+  turn_length: "Quarter Day (roughly 6 hours)"
+  wandering_monster_frequency: "each Quarter Day of travel"
+  wandering_monster_chance: "1 on d6 (varies by terrain)"
+  light_sources:
+    torch: "burns for 1 Quarter Day"
+    lantern: "burns for 2 Quarter Days (requires oil)"
+  search_mechanic: "Scouting roll (AGL + Scouting)"
+  door_mechanic: "Might roll to force"
+  listen_mechanic: "Scouting roll"
+  rest_rules: "Quarter Day rest: recover 1 attribute point (requires food + water). Sleep (Quarter Day): recover all WP. Camp requires a successful Survival roll in wilderness."
+  movement_rates:
+    "Foot": "one hex per Quarter Day (open terrain)"
+    "Horse": "two hexes per Quarter Day"
+  notes: "Overland travel uses hex crawl. Each hex = ~10km. Random encounters, foraging, and mishaps rolled per Quarter Day of travel."
+
+reaction_table:
+  dice: "1d6"
+  modifier_attribute: "EMP"
+  results:
+    "1": "Hostile — attacks or threatens immediately"
+    "2-3": "Unfriendly — suspicious, may demand payment or threaten"
+    "4-5": "Neutral — willing to talk but cautious"
+    "6": "Friendly — helpful, willing to trade or share information"

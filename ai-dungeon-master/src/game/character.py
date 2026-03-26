@@ -84,6 +84,20 @@ CLASS_DATA = {
 
 ABILITY_NAMES = ["STR", "DEX", "CON", "INT", "WIS", "CHA"]
 
+# OSE Level 1 Spell Lists
+MAGIC_USER_SPELLS_L1 = [
+    "Charm Person", "Detect Magic", "Floating Disc",
+    "Hold Portal", "Light", "Magic Missile",
+    "Protection from Evil", "Read Languages",
+    "Read Magic", "Shield", "Sleep", "Ventriloquism",
+]
+
+CLERIC_SPELLS_L1 = [
+    "Cure Light Wounds", "Detect Evil", "Detect Magic",
+    "Light", "Protection from Evil", "Purify Food and Water",
+    "Remove Fear", "Resist Cold",
+]
+
 
 def ability_modifier(score: int) -> int:
     """OSE ability score modifier table."""
@@ -154,6 +168,8 @@ class Character(BaseModel):
     # Spells (for casters)
     spells_known: list[str] = Field(default_factory=list)
     spells_memorized: list[str] = Field(default_factory=list)
+    # Spell slots: how many spells per spell level this character can memorize
+    spell_slots: list[int] = Field(default_factory=list)  # [level1_slots, level2_slots, ...]
 
     # Status
     conditions: list[str] = Field(default_factory=list)
@@ -171,7 +187,7 @@ class Character(BaseModel):
         return ability_modifier(self.get_ability(ability))
 
     def apply_class_data(self) -> None:
-        """Apply class-specific data (saves, thac0, etc.)."""
+        """Apply class-specific data (saves, thac0, spells, etc.)."""
         data = CLASS_DATA[self.char_class]
         self.thac0 = data["thac0"]
         self.save_death = data["saves"]["death"]
@@ -179,6 +195,43 @@ class Character(BaseModel):
         self.save_paralysis = data["saves"]["paralysis"]
         self.save_breath = data["saves"]["breath"]
         self.save_spells = data["saves"]["spells"]
+
+        # Spell slots for casters (OSE level 1)
+        if self.char_class == CharacterClass.MAGIC_USER:
+            self.spell_slots = [1]  # 1 first-level spell
+            self.spells_known = MAGIC_USER_SPELLS_L1.copy()
+            self.spells_memorized = [self.spells_known[0]] if self.spells_known else []
+        elif self.char_class == CharacterClass.CLERIC:
+            self.spell_slots = [0]  # Clerics get no spells at L1 in OSE
+            self.spells_known = CLERIC_SPELLS_L1.copy()
+        elif self.char_class == CharacterClass.ELF:
+            self.spell_slots = [1]  # 1 first-level spell
+            self.spells_known = MAGIC_USER_SPELLS_L1.copy()
+            self.spells_memorized = [self.spells_known[0]] if self.spells_known else []
+
+    def cast_spell(self, spell_name: str) -> bool:
+        """Cast a memorized spell. Returns True if successful."""
+        for i, s in enumerate(self.spells_memorized):
+            if s.lower() == spell_name.lower() and not s.startswith("[USED] "):
+                self.spells_memorized[i] = f"[USED] {s}"
+                return True
+        return False
+
+    def available_spells(self) -> list[str]:
+        """Get list of spells that haven't been cast yet."""
+        return [s for s in self.spells_memorized if not s.startswith("[USED] ")]
+
+    def rest_and_memorize(self, spells: list[str] | None = None) -> None:
+        """Full rest: restore spell slots. Optionally choose new spells to memorize."""
+        if not self.spell_slots:
+            return
+        total_slots = sum(self.spell_slots)
+        if spells:
+            self.spells_memorized = spells[:total_slots]
+        else:
+            # Re-memorize whatever was there before, minus [USED] tags
+            clean = [s.replace("[USED] ", "") for s in self.spells_memorized]
+            self.spells_memorized = clean[:total_slots]
 
     def roll_hit_points(self) -> None:
         """Roll HP for level 1 with CON modifier."""
@@ -222,8 +275,8 @@ class Character(BaseModel):
         )
 
 
-def create_character(name: str, player_name: str, char_class: CharacterClass) -> Character:
-    """Create a new level 1 character with rolled stats."""
+def create_character(name: str, player_name: str, char_class: CharacterClass, auto_equip: bool = True) -> Character:
+    """Create a new level 1 character with rolled stats and starting equipment."""
     stats = roll_stats()
     char = Character(
         name=name,
@@ -239,4 +292,9 @@ def create_character(name: str, player_name: str, char_class: CharacterClass) ->
     )
     char.apply_class_data()
     char.roll_hit_points()
+
+    if auto_equip:
+        from .equipment import equip_starting_package
+        equip_starting_package(char)
+
     return char

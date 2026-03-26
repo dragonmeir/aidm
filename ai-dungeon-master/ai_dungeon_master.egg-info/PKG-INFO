@@ -1,7 +1,7 @@
 Metadata-Version: 2.4
 Name: ai-dungeon-master
-Version: 0.1.0
-Summary: AI Dungeon Master for OSR/OSE tabletop RPGs
+Version: 0.2.0
+Summary: AI Dungeon Master server for OSR/OSE tabletop RPGs
 Requires-Python: >=3.10
 Requires-Dist: chromadb>=0.4.0
 Requires-Dist: PyMuPDF>=1.23.0
@@ -10,3 +10,6 @@ Requires-Dist: rich>=13.0.0
 Requires-Dist: pydantic>=2.0.0
 Requires-Dist: pyyaml>=6.0
 Requires-Dist: sentence-transformers>=2.2.0
+Requires-Dist: fastapi>=0.110.0
+Requires-Dist: uvicorn[standard]>=0.27.0
+Requires-Dist: websockets>=12.0
